@@ -1,19 +1,21 @@
-import React, {useEffect, useState, useContext} from 'react';
-import {Box, Switch} from '@mui/material';
-import {ShoppingBasket, Redo, Undo} from '@mui/icons-material';
-import {RenderMode, Categories} from 'modules/Editor/definitions/types';
-import {useStyles} from '../styles';
+import React, { useEffect, useState, useContext } from 'react';
+import { Box, Switch } from '@mui/material';
+import { ShoppingBasket, Redo, Undo } from '@mui/icons-material';
+import { RenderMode, Categories } from 'modules/Editor/definitions/types';
+import { useStyles } from '../styles';
 import Header from 'shared/components/Header';
 import ColorButton from './ColorButton';
 import EditorContext from '../../context/EditorContext';
 import clsx from 'clsx';
+import useWindowDimensions from '../../../../../../hooks/useWindowDimensions';
+
 
 interface Props {
   onChangeCanvasColor: (color: string) => void;
 }
 export function LeftMenu(props: Props) {
   const [selected, setSelected] = useState<number | null>(null);
-  const {onChangeCanvasColor} = props;
+  const { onChangeCanvasColor } = props;
   const handleButtonClick = (id: number) => {
     setSelected(id);
   };
@@ -24,8 +26,8 @@ export function LeftMenu(props: Props) {
     backgroundSize: 'contain',
     backgroundPosition: 'top right',
   };
-  const {elementType} = useContext(EditorContext);
-
+  const { elementType } = useContext(EditorContext);
+  const { width, height } = useWindowDimensions();
   let leftArcButtons: any[] = [
     {
       id: 0,
@@ -141,7 +143,7 @@ export function LeftMenu(props: Props) {
     image.src = 'assets/arcMenu/leftArc.svg';
   }, []);
   return (
-    <Box className={classes.leftArcMenu} style={bgImage}>
+    <Box display={(width ?? 0) > 700 ? 'flex' : 'none'} className={classes.leftArcMenu} style={bgImage}>
       {showButtons &&
         leftArcButtons.map((btn, index) => (
           <ColorButton

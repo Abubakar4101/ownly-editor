@@ -23,4 +23,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: '85px !important',
     backgroundColor: '#ffffff00 !important',
   },
+  selectedItem: {
+    borderStyle: 'solid',
+    borderColor: '#39a1c9 !important',
+    backgroundColor: 'rgba(57, 161, 201, 0.25)',
+    borderRadius: '10px',
+    '&:hover': {
+      backgroundColor: 'rgba(57, 161, 201, 0.5)',
+    },
+    '& .MuiSelect-icon': {
+      color: 'white',
+    },
+    marginLeft: '16px',
+  }
 }));
