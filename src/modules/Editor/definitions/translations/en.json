@@ -1,0 +1,11 @@
+{
+  "general": {
+    "404": {
+      "title": "Page Not Found",
+      "homeButton": "Back To Home Page"
+    }
+  },
+  "editor": {
+    "title": "title"
+  }
+}

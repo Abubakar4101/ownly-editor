@@ -1,0 +1,176 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "classes": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "mocha": true,
+    "node": true,
+    "amd": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["json", "react", "prettier", "react-hooks", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/camelcase": "off",
+    "no-dupe-args": "error",
+    "max-params": ["error", 5],
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-func-assign": "error",
+    "no-sparse-arrays": "error",
+    "no-unreachable": "warn",
+    "no-empty": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-irregular-whitespace": [
+      "warn",
+      {
+        "skipStrings": true,
+        "skipComments": true,
+        "skipTemplates": true
+      }
+    ],
+    "no-template-curly-in-string": "warn",
+    "array-callback-return": "error",
+    "curly": ["error", "all"],
+    "dot-location": ["error", "property"],
+    "eqeqeq": ["error", "smart"],
+    "no-empty-pattern": "error",
+    "no-floating-decimal": "warn",
+    "no-loop-func": "error",
+    "no-new-wrappers": "error",
+    "require-await": "error",
+    "global-require": "error",
+    "no-new-require": "error",
+    "no-path-concat": "error",
+    "no-sync": [
+      "error",
+      {
+        "allowAtRootLevel": true
+      }
+    ],
+    "default-case": "warn",
+    "no-fallthrough": "warn",
+    "no-redeclare": "warn",
+    "no-useless-escape": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "callback-return": ["warn", ["callback", "cb", "done", "next", "response"]],
+    "handle-callback-err": ["warn", "^.*(e|E)rr"],
+    "comma-style": ["error", "last"],
+    "consistent-this": ["error", "self"],
+    "func-names": ["error", "as-needed"],
+    "id-length": [
+      "warn",
+      {
+        "min": 3,
+        "exceptions": [
+          "id",
+          "qs",
+          "i",
+          "j",
+          "k",
+          "l",
+          "e",
+          "fs",
+          "to",
+          "x",
+          "y"
+        ],
+        "properties": "never"
+      }
+    ],
+    "new-cap": "warn",
+    "new-parens": "error",
+    "no-lonely-if": "error",
+    "no-multi-assign": "error",
+    "no-negated-condition": "error",
+    "no-new-object": "error",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"],
+        "enforceInMethodNames": true
+      }
+    ],
+    "no-unneeded-ternary": [
+      "error",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "one-var": ["error", "never"],
+    "constructor-super": "error",
+    "no-const-assign": "error",
+    "no-dupe-class-members": "error",
+    "no-duplicate-imports": "error",
+    "no-new-symbol": "error",
+    "no-this-before-super": "error",
+    "no-var": "error",
+    "prefer-arrow-callback": [
+      "error",
+      {
+        "allowNamedFunctions": true,
+        "allowUnboundThis": true
+      }
+    ],
+    "prefer-const": "error",
+    "prefer-destructuring": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "require-yield": "error",
+    "symbol-description": "error",
+    "no-useless-constructor": "warn",
+    "react/jsx-uses-vars": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
+    "react/prefer-es6-class": "error",
+    "react/display-name": "warn",
+    "react/prop-types": "warn",
+    "react/no-unescaped-entities": "warn",
+    "@typescript-eslint/ban-types": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 100,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "jsxSingleQuote": false,
+        "trailingComma": "all",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": false,
+        "arrowParens": "avoid",
+        "htmlWhitespaceSensitivity": "ignore",
+        "endOfLine": "auto"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "linebreak-style": 0
+  }
+}

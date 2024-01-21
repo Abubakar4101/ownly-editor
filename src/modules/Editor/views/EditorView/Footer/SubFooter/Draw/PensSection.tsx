@@ -1,0 +1,83 @@
+import React, { useContext, useState } from "react";
+import { useStyles } from "./styles";
+import { Box, Typography } from "@mui/material";
+import { ReactSVG } from "react-svg";
+import clsx from "clsx";
+import { PenTypes } from "./index";
+
+type Tabs = "TextStyles" | "Heading";
+interface Pen {
+  id: PenTypes;
+  name: string;
+  src: string;
+  onClick: () => void;
+}
+
+interface Props {
+  selectedPenType?: PenTypes;
+  setselectedPenType: (penType?: PenTypes) => void;
+}
+
+function PensSection(props: Props) {
+  const { selectedPenType, setselectedPenType } = props;
+  const classes = useStyles();
+  const [I, setSelectedTab] = useState<Tabs>("Heading");
+
+  const Pens: Pen[] = [
+    {
+      id: "Pencil",
+      name: "Blue",
+      src: "./assets/icons/DrawMenu/bluePen.svg",
+      onClick: () => {},
+    },
+    {
+      id: "Circle",
+      name: "Red",
+      src: "./assets/icons/DrawMenu/redPen.svg",
+      onClick: () => {},
+    },
+    {
+      id: "Marker",
+      name: "Yellow",
+      src: "./assets/icons/DrawMenu/yellowPen.svg",
+      onClick: () => {},
+    },
+    {
+      id: "Easer",
+      name: "Erase",
+      src: "./assets/icons/DrawMenu/earse.svg",
+      onClick: () => {},
+    },
+  ];
+  const handleSVGInjection = (svg: any) => {
+    // Modify the SVG's attributes here
+    svg.setAttribute("width", "20px");
+    svg.setAttribute("height", "50px");
+  };
+  return (
+    <Box mr={0.5} display={"flex"} flexDirection={"row"}>
+      {Pens.map((pen: Pen) => {
+        return (
+          <Box
+            key={pen.id}
+            className={clsx(classes.penButton, {
+              selected: pen.id === selectedPenType,
+            })}
+            onClick={() => {
+              if (selectedPenType === pen.id) {
+                setselectedPenType(undefined);
+              } else {
+                setselectedPenType(pen.id);
+              }
+              pen.onClick();
+            }}
+          >
+            <ReactSVG beforeInjection={handleSVGInjection} src={pen.src} />
+          </Box>
+        );
+      })}
+    </Box>
+  );
+}
+
+export default PensSection;
