@@ -7,12 +7,14 @@ import EditorContext from '../../context/EditorContext';
 import { modelsConfigs } from '../configs';
 import { ModelConfig, Side } from '../utilities';
 import SidesFooter from '../../Footer/SidesFooter';
+import useWindowDimensions from '../../../../../../hooks/useWindowDimensions'
 import clsx from "clsx";
 
 function Editor2D() {
   const { fabricContainer, selectedCategory, selectedModelType, selectedSide, canvasColor, onSelectCategory, onInit2DEditor } =
     useContext(EditorContext);
   const classes = useStyles();
+  const {width} = useWindowDimensions();
 
   useEffect(() => {
     onInit2DEditor();
@@ -47,7 +49,7 @@ function Editor2D() {
             </div>
           )}
           {selectedCategory !== "PrintingTypes" && < div className={classes.sideWrapper}>
-            <Box style={{ position: "absolute", bottom: 0, marginLeft: "16px" }}>
+            <Box  style={{ position: "absolute", bottom: 0, marginLeft: "16px" }}>
               <div style={{ position: "relative", pointerEvents: "none" }}>
                 <img src='./assets/images/tshirt.png' width={"70px"} style={{ pointerEvents: "none" }}></img>
                 <div className={clsx(classes.leftSleeve, { selected: selectedSide === "LEFT" })}></div>

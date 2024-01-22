@@ -1,3 +1,4 @@
+import { Height } from '@mui/icons-material';
 import {makeStyles} from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
@@ -29,6 +30,13 @@ export const useStyles = makeStyles((theme: any) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('700')]: {
+      height: '300px',
+      width: '300px',
+      flexDirection: 'row',
+      alignItems: 'end',
+
+    },
     '@media (min-height: 601px) and (max-height: 800px)': {
       height: '300px',
       paddingTop: '40px',

@@ -1,4 +1,4 @@
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -7,8 +7,6 @@ export const useStyles = makeStyles((theme: any) => ({
     justifyContent: 'center',
   },
   wrrapper: {
-    position: 'relative',
-    display: 'flex',
     justifyContent: 'center',
     whiteSpace: 'normal',
     height: 'calc(100%)',
@@ -16,6 +14,7 @@ export const useStyles = makeStyles((theme: any) => ({
     '&.printingTypes': {
       width: '40vw',
     },
+    
   },
   bkWrrapper: {
     width: '100%',
@@ -26,6 +25,7 @@ export const useStyles = makeStyles((theme: any) => ({
     background: '#ffffff00',
     justifyContent: 'center',
     position: 'absolute',
+    
   },
   drawnWrrapper: {
     border: '2px dashed #00000045',
@@ -33,11 +33,13 @@ export const useStyles = makeStyles((theme: any) => ({
     height: '100%',
     // background: 'linear-gradient(102.01deg, #FFFFFF -0.42%, rgba(255, 255, 255, 1) 102.23%)',
     boxShadow: '0px 0px 15px 5px #6561C2 !important',
+   
   },
   canvasWrrapper: {
     width: '100%',
     height: '100%',
     margin: 'auto',
+    
   },
   sideWrapper: {
     width: '100px',
@@ -45,6 +47,9 @@ export const useStyles = makeStyles((theme: any) => ({
     // margin: 'auto',
     background: '#ffffff00',
     position: 'relative',
+    [theme.breakpoints.down(700)]: {
+      display: 'none',
+    },
   },
   dragging: {
     borderStyle: 'dashed',

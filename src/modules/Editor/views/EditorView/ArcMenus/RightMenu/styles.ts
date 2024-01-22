@@ -32,16 +32,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: '0px 0px 15px 5px #6561C2 !important',
       border: '2px solid #8783E1',
     },
-
-    [theme.breakpoints.down(1367)]: {
-      minWidth: '40px !important',
-      minHeight: '40px !important',
-    },
-    '@media (min-height: 901px) and (max-height: 3000px)': {
-      minWidth: '70px !important',
-      minHeight: '70px !important',
-      borderRadius: '25px !important',
-    },
   },
   selectedText: {
     display: 'none',

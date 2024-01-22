@@ -1,16 +1,18 @@
-import React, {useContext} from 'react';
-import {Box, IconButton, Fab, Typography} from '@mui/material';
-import {useStyles} from './styles';
-import {InfoOutlined, InvertColorsOutlined} from '@mui/icons-material';
+import React, { useContext } from 'react';
+import { Box, IconButton, Fab, Typography } from '@mui/material';
+import { useStyles } from './styles';
+import { InfoOutlined, InvertColorsOutlined } from '@mui/icons-material';
 import ActionMenu from './ActionMenu';
 import EditorContext from '../context/EditorContext';
 import SubFooter from './SubFooter';
 import SidesFooter from './SidesFooterHori';
-import {ReactSVG} from 'react-svg';
+import { ReactSVG } from 'react-svg';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 function Footer() {
-  const {selectedRenderMode, isFirstUse} = useContext(EditorContext);
+  const { selectedRenderMode, isFirstUse } = useContext(EditorContext);
   const [priceCollapse, setPriceCollapse] = React.useState(true);
+  const { width } = useWindowDimensions();
   const classes = useStyles();
   const handleClickCollapse = (e: any) => {
     setPriceCollapse(!priceCollapse); // Un-commented this line
@@ -18,7 +20,7 @@ function Footer() {
   };
   return (
     <Box className={classes.footer}>
-      <Box display={'flex'} alignItems={'flex-end'} style={{pointerEvents: 'none'}}>
+      {(width ?? 0) > 700 && <Box alignItems={'flex-end'} style={{ pointerEvents: 'none', marginTop: '100%'}}>
         <Box className={classes.priceWrapper}>
           <Box
             display={'flex'}
@@ -42,7 +44,7 @@ function Footer() {
           {priceCollapse ? (
             <Box></Box>
           ) : (
-            <Box style={{backgroundColor: 'grey'}} paddingY={1} paddingX={2}>
+            <Box style={{ backgroundColor: 'grey' }} paddingY={1} paddingX={2}>
               <Box display={'flex'} flexDirection={'column'}>
                 <Typography fontSize={'12px'}>{'Text 1'}</Typography>
                 <Box display={'flex'} justifyContent={'space-between'}>
@@ -84,26 +86,35 @@ function Footer() {
             </Typography>
           </Box>
         </Box>
-      </Box>
+      </Box>}
+      {(width ?? 0) <= 700 && <Box display={'none'} style={{
+       backgroundColor: '#282729', height: '90px', border: '1px solid #707070', padding: '10px',
+      }} justifyContent={'center'} flexDirection={'column'}>
+        <img src='./assets/images/tshirt.png' width={"60px"} style={{ pointerEvents: "none" }}></img>
+      </Box>}
       <Box
-        display={'flex'}
-        alignItems={'center'}
+        display={'none'}
+        alignItems={(width ?? 0) > 700 ? 'center' : 'flex-start'}
         flexDirection={'column'}
         justifyContent={'flex-end'}
-        style={{pointerEvents: 'none'}}
+        overflow={(width ?? 0) > 700 ? 'hidden' : 'scroll'}
+        style={{
+          pointerEvents: 'none',
+         }}
       >
+        
         {selectedRenderMode === '3DMODE' && <SidesFooter />}
-        {/* <SubFooter /> */}
         <ActionMenu />
       </Box>
-      <Box className={classes.infoWrapper}>
+
+      {(width ?? 0) > 700 && <Box className={classes.infoWrapper}>
         <Fab color="primary" aria-label="water" size="medium" className={classes.infoBut}>
           <InvertColorsOutlined />
         </Fab>
         <Fab color="primary" aria-label="info" size="medium" className={classes.infoBut}>
           <InfoOutlined />
         </Fab>
-      </Box>
+      </Box>}
     </Box>
   );
 }

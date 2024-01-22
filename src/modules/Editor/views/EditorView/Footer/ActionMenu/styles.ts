@@ -12,7 +12,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: '10px 16px',
     width: '720px',
     height: '90px',
+    
     pointerEvents: 'all',
+    [theme.breakpoints.down(700)]: {
+      justifySelf: 'flex-start',
+    },
 
     '&.isSubMenu': {
       width: '810px',

@@ -87,6 +87,7 @@ function Editor3D(props: Props) {
         // background: 'radial-gradient(at top, #f1f3f5 0%, #f1f3f5 100%) top',
         alignItems: 'center',
       }}
+      display={'flex'}
       width={'100%'}
       height={'100%'}
     >

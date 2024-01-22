@@ -99,7 +99,7 @@ const MobileHeader = (props: Props) => {
             variant="standard"
             onChange={() => { }}
             className={classes.sizeSelect}
-            style={{ marginLeft: '8px' }}
+            style={{ margin: '5px 10px 0 10px' }}
           >
             <MenuItem value={1}>
               <img src='./assets/images/tshirt.png' width={"30px"} style={{ pointerEvents: "none" }}></img>

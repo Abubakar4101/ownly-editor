@@ -7,6 +7,7 @@ import EditorContext from '../../context/EditorContext';
 import { modelsConfigs } from '../configs';
 import { ModelConfig, Side } from '../utilities';
 import clsx from "clsx";
+import useWindowDimensions from '../../../../../../hooks/useWindowDimensions';
 
 function StartCanvas() {
   const { selectedModelType, selectedSide, onSelectFistSide } =
@@ -19,9 +20,10 @@ function StartCanvas() {
     return sideConfigs?.configs.canvasRatio || ""
   }, [selectedModelType, selectedSide]);
 
+  const {width} = useWindowDimensions();
 
   return (
-    <Box id={`pop`} className={classes.wrrapper}>
+    <Box id={`pop`}  className={classes.wrrapper}>
       <div className={classes.bkWrrapper}>
         <div className={classes.sideWrapper}></div>
         {true && (

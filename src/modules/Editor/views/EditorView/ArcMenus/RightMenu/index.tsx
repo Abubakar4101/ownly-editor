@@ -1,11 +1,13 @@
-import React, {useEffect, useState, useContext, useMemo} from 'react';
-import {Box, Switch} from '@mui/material';
-import {useStyles} from '../styles';
+import React, { useEffect, useState, useContext, useMemo } from 'react';
+import { Box, Switch, Fab} from '@mui/material';
+import { useStyles } from '../styles';
+import AddIcon from '@mui/icons-material/Add';
 import Header from 'shared/components/Header';
-import {ReactSVG} from 'react-svg';
+import { ReactSVG } from 'react-svg';
 import RightArcButton from './RightArcButton';
 import EditorContext from '../../context/EditorContext';
-import {Categories} from 'modules/Editor/definitions/types';
+import { Categories } from 'modules/Editor/definitions/types';
+import useWindowDimensions from 'hooks/useWindowDimensions'
 
 export type ArcAction = 'Bold' | 'FontChange' | 'RemoveBG' | Categories;
 interface ArcButton {
@@ -19,6 +21,8 @@ interface ArcButton {
 
 export function RightMenu() {
   const [selected, setSelected] = useState<string | null>(null);
+  const { width } = useWindowDimensions();
+
   const {
     elementType,
     selectedRenderMode,
@@ -89,7 +93,7 @@ export function RightMenu() {
             id: 'Bold',
             name: 'My Save Images',
             iconSrc: 'assets/arcMenu/mySavedImage.svg',
-            onClick: () => {},
+            onClick: () => { },
           },
         ];
       case 'image':
@@ -132,7 +136,7 @@ export function RightMenu() {
             id: 'Bold',
             name: 'My Save Images',
             iconSrc: 'assets/arcMenu/mySavedImage.svg',
-            onClick: () => {},
+            onClick: () => { },
           },
         ];
       default:
@@ -174,7 +178,7 @@ export function RightMenu() {
             id: 'Templates',
             name: 'My Saved image',
             iconSrc: 'assets/arcMenu/mySavedImage.svg',
-            onClick: () => {},
+            onClick: () => { },
           },
         ];
     }
@@ -191,42 +195,42 @@ export function RightMenu() {
   let rightArcButtons: ArcButton[] = [
     {
       id: 0,
-      degree: '-20',
-      transValue: '22',
+      degree: (width ?? 0) > 700 ? '-20' : '-60',
+      transValue: (width ?? 0) > 700 ? '22' : '145',
       iconSrc: 'assets/arcMenu/cloud-up.svg',
-      rotateValue: '19',
+      rotateValue: (width ?? 0) > 700 ? '1' : '1',
       buttonText: 'UPload image',
     },
     {
       id: 1,
-      degree: '-10',
-      transValue: '54',
+      degree: (width ?? 0) > 700 ? '-10' : '-30',
+      transValue: (width ?? 0) > 700 ? '54' : '75',
       iconSrc: 'assets/arcMenu/shape.svg',
-      rotateValue: '7',
+      rotateValue: (width ?? 0) > 700 ? '7' : '7',
       buttonText: 'Add Shape',
     },
     {
       id: 2,
       degree: '0',
-      transValue: '72',
+      transValue: (width ?? 0) > 700 ? '72' : '10',
       iconSrc: 'assets/arcMenu/text.svg',
       rotateValue: '0',
       buttonText: 'Add Text',
     },
     {
       id: 3,
-      degree: '10',
-      transValue: '71',
+      degree: (width ?? 0) > 700 ? '10' : '30',
+      transValue: (width ?? 0) > 700 ? '71' : '55',
       iconSrc: 'assets/arcMenu/pencil.svg',
-      rotateValue: '-12',
+      rotateValue: (width ?? 0) > 700 ? '12' : '12',
       buttonText: 'Pencil',
     },
     {
       id: 4,
-      degree: '20',
-      transValue: '54',
+      degree: (width ?? 0) > 700 ? '20' : '60',
+      transValue: (width ?? 0) > 700 ? '54' : '105',
       iconSrc: 'assets/arcMenu/mySavedImage.svg',
-      rotateValue: '-15',
+      rotateValue: (width ?? 0) > 700 ? '-15' : '-15',
       buttonText: 'My Saved image',
     },
   ];
@@ -354,7 +358,7 @@ export function RightMenu() {
   }, [getActionsByType, rightArcButtons]);
 
   return (
-    <Box className={classes.arcMenu} style={bgImage}>
+    <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 ? bgImage : undefined}>
       {showButtons &&
         getArcButtons.map((btn, index) => (
           <RightArcButton
@@ -373,6 +377,9 @@ export function RightMenu() {
             activated={btn.isSelected}
           />
         ))}
+      {/* {(width ?? 0) <= 700 && <Fab color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>} */}
     </Box>
   );
 }

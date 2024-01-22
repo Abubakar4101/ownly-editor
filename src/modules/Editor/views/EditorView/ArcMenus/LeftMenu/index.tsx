@@ -143,7 +143,7 @@ export function LeftMenu(props: Props) {
     image.src = 'assets/arcMenu/leftArc.svg';
   }, []);
   return (
-    <Box display={(width ?? 0) > 700 ? 'flex' : 'none'} className={classes.leftArcMenu} style={bgImage}>
+    <Box display={'flex'} className={classes.leftArcMenu} style={bgImage}>
       {showButtons &&
         leftArcButtons.map((btn, index) => (
           <ColorButton

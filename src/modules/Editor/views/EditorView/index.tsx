@@ -16,7 +16,7 @@ import clsx from 'clsx';
 import {ReactComponent as IconLeftArrow} from 'shared/assets/images/icons/leftArrow.svg';
 import {ReactComponent as IconRightArrow} from 'shared/assets/images/icons/rightArrow.svg';
 import {Canvas} from 'fabric/fabric-impl';
-
+import useWindowDimensions from '../../../../hooks/useWindowDimensions'
 function EditorView() {
   const [selectedModelType, setSelectedModelType] = useState<ModelType>('Tshirt');
   const [leftArcMenuState, setLeftArcMenuState] = useState(true);
@@ -114,6 +114,8 @@ function EditorView() {
     setRightArcMenuState(!rightArcMenuState);
   };
 
+  const {width} = useWindowDimensions();
+
   return (
     <Box>
       <EditorContext.Provider
@@ -197,9 +199,10 @@ function EditorView() {
         }}
       >
         <Header>{!isFirstUse && <RenderSwitch />}</Header>
+        {((width ?? 0) <= 700 && !isFirstUse) && <RenderSwitch />}
         <Box className={clsx(classes.editorWrraper, {isFirstUse: isFirstUse})}>
           <>
-            {selectedCategory !== 'PrintingTypes' && true && (
+            {selectedCategory !== 'PrintingTypes' && true && (width ?? 0) > 700 && (
               <Box
                 height={'100%'}
                 display={'flex'}
@@ -233,7 +236,7 @@ function EditorView() {
           </>
           <>
             <Editor />
-            {selectedCategory !== 'PrintingTypes' && !isFirstUse && (
+            {selectedCategory !== 'PrintingTypes' && (!isFirstUse && (width ?? 0) > 700) && (
               <Box display={'flex'} alignItems={'center'}>
                 <Box
                   display={'flex'}
@@ -253,12 +256,12 @@ function EditorView() {
             )}
           </>
 
-          {selectedCategory !== 'PrintingTypes' && !isFirstUse && (
+          {selectedCategory !== 'PrintingTypes' && !isFirstUse &&  (
             <Box
               height={'100%'}
               display={'flex'}
               alignItems={'center'}
-              justifyContent={'flex-end'}
+              justifyContent={(width ?? 0) > 700 ? 'flex-end' : 'center'}
               minWidth={'360px'}
             >
               {rightArcMenuState && renderRightSideMenu}

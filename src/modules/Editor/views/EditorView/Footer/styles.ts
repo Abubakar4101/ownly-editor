@@ -12,6 +12,9 @@ export const useStyles = makeStyles((theme: any) => ({
     justifyContent: 'space-between',
     marginBottom: '.65em',
     pointerEvents: 'none',
+    [theme.breakpoints.down(700)]: {
+      alignItems: 'flex-end',
+    }
   },
   infoBut: {
     borderRadius: '16px !important',

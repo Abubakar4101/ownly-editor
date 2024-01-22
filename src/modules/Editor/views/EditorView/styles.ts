@@ -31,5 +31,12 @@ export const useStyles = makeStyles((theme: any) => ({
       justifyContent: 'flex-start',
       marginTop: '0px',
     },
+    [theme.breakpoints.down(700)]: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      '&.isFirstUse': {
+        justifyContent: 'center',
+      },
+    }
   },
 }));

@@ -1,4 +1,5 @@
-import {makeStyles} from '@mui/styles';
+import { Margin } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -25,7 +26,11 @@ export const useStyles = makeStyles((theme: any) => ({
     alignItems: 'flex-start',
     background: '#ffffff00',
     justifyContent: 'center',
-    position: 'absolute',
+    [theme.breakpoints.down(700)]: {
+      height: '70%',
+    }
+    
+
   },
   drawnWrrapper: {
     // border: '2px dashed #00000045',
@@ -36,6 +41,9 @@ export const useStyles = makeStyles((theme: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    [theme.breakpoints.down(700)]: {
+      height: '70%',
+    }
   },
   canvasWrrapper: {
     width: '100%',
@@ -48,6 +56,9 @@ export const useStyles = makeStyles((theme: any) => ({
     // margin: 'auto',
     background: '#ffffff00',
     position: 'relative',
+    [theme.breakpoints.down(700)]: {
+      display: 'none',
+    }
   },
   dragging: {
     borderStyle: 'dashed',
@@ -118,7 +129,6 @@ export const useStyles = makeStyles((theme: any) => ({
     pointerEvents: 'none',
     height: '100%',
     width: '100%',
-    // padding: '38px',
   },
   textColor: {
     color: '#8783E1',
