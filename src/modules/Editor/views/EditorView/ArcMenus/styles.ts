@@ -35,6 +35,7 @@ export const useStyles = makeStyles((theme: any) => ({
       width: '300px',
       flexDirection: 'row',
       alignItems: 'end',
+      transform: 'translate(0, 30%) !important',
 
     },
     '@media (min-height: 601px) and (max-height: 800px)': {
@@ -53,6 +54,18 @@ export const useStyles = makeStyles((theme: any) => ({
     },
     transformOrigin: 'left center',
     animation: '$rightfadeIn 0.5s ease-in-out',
+  },
+  moreButton:{
+    backgroundColor: `${theme.palette.primary.main} !important`,
+    color: 'white !important',
+    fontSize: '40px !important',
+    transform: 'translate(0, 60%) !important',
+
+  },
+  bottomMenuWrapper: {
+    [theme.breakpoints.down('700')]: {
+      marginTop: '100%',
+    }
   },
   leftArcMenu: {
     paddingTop: '59px',

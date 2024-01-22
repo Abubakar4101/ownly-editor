@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react';
-import { Box, Switch, Fab} from '@mui/material';
+import { Box, Switch, Fab } from '@mui/material';
 import { useStyles } from '../styles';
 import AddIcon from '@mui/icons-material/Add';
 import Header from 'shared/components/Header';
@@ -195,16 +195,16 @@ export function RightMenu() {
   let rightArcButtons: ArcButton[] = [
     {
       id: 0,
-      degree: (width ?? 0) > 700 ? '-20' : '-60',
-      transValue: (width ?? 0) > 700 ? '22' : '145',
+      degree: (width ?? 0) > 700 ? '-20' : '0',
+      transValue: (width ?? 0) > 700 ? '22' : '85',
       iconSrc: 'assets/arcMenu/cloud-up.svg',
-      rotateValue: (width ?? 0) > 700 ? '1' : '1',
+      rotateValue: (width ?? 0) > 700 ? '1' : '0',
       buttonText: 'UPload image',
     },
     {
       id: 1,
-      degree: (width ?? 0) > 700 ? '-10' : '-30',
-      transValue: (width ?? 0) > 700 ? '54' : '75',
+      degree: (width ?? 0) > 700 ? '-10' : '0',
+      transValue: (width ?? 0) > 700 ? '54' : '45',
       iconSrc: 'assets/arcMenu/shape.svg',
       rotateValue: (width ?? 0) > 700 ? '7' : '7',
       buttonText: 'Add Shape',
@@ -212,23 +212,23 @@ export function RightMenu() {
     {
       id: 2,
       degree: '0',
-      transValue: (width ?? 0) > 700 ? '72' : '10',
+      transValue: (width ?? 0) > 700 ? '72' : '20',
       iconSrc: 'assets/arcMenu/text.svg',
       rotateValue: '0',
       buttonText: 'Add Text',
     },
     {
       id: 3,
-      degree: (width ?? 0) > 700 ? '10' : '30',
-      transValue: (width ?? 0) > 700 ? '71' : '55',
+      degree: (width ?? 0) > 700 ? '10' : '0',
+      transValue: (width ?? 0) > 700 ? '71' : '45',
       iconSrc: 'assets/arcMenu/pencil.svg',
       rotateValue: (width ?? 0) > 700 ? '12' : '12',
       buttonText: 'Pencil',
     },
     {
       id: 4,
-      degree: (width ?? 0) > 700 ? '20' : '60',
-      transValue: (width ?? 0) > 700 ? '54' : '105',
+      degree: (width ?? 0) > 700 ? '20' : '0',
+      transValue: (width ?? 0) > 700 ? '54' : '85',
       iconSrc: 'assets/arcMenu/mySavedImage.svg',
       rotateValue: (width ?? 0) > 700 ? '-15' : '-15',
       buttonText: 'My Saved image',
@@ -358,28 +358,36 @@ export function RightMenu() {
   }, [getActionsByType, rightArcButtons]);
 
   return (
-    <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 ? bgImage : undefined}>
-      {showButtons &&
-        getArcButtons.map((btn, index) => (
-          <RightArcButton
-            key={index}
-            degree={btn.degree}
-            transValue={btn.transValue}
-            iconSrc={btn.iconSrc}
-            rotateValue={btn.rotateValue}
-            buttonText={btn.buttonText}
-            animationDelay={index * 80} // Adjust the delay time as needed (in milliseconds)
-            onClick={() => {
-              handleButtonClick(btn.id);
-              btn.onClick();
-            }}
-            selected={selected === btn.id}
-            activated={btn.isSelected}
-          />
-        ))}
-      {/* {(width ?? 0) <= 700 && <Fab color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>} */}
+    <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+      <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 ? bgImage : undefined}>
+        {showButtons &&
+          getArcButtons.map((btn, index) => (
+            <RightArcButton
+              key={index}
+              degree={btn.degree}
+              transValue={btn.transValue}
+              iconSrc={btn.iconSrc}
+              rotateValue={btn.rotateValue}
+              buttonText={btn.buttonText}
+              animationDelay={index * 80} // Adjust the delay time as needed (in milliseconds)
+              onClick={() => {
+                handleButtonClick(btn.id);
+                btn.onClick();
+              }}
+              selected={selected === btn.id}
+              activated={btn.isSelected}
+            />
+          ))}
+
+      </Box>
+
+      {(width ?? 0) <= 700 && <Box width={100} height={100}
+        borderRadius={'50%'}
+        display={'flex'}
+        justifyContent={'center'}
+        className={classes.moreButton}
+      >+</Box>}
     </Box>
+
   );
 }
