@@ -17,9 +17,8 @@ interface Props {
   animationDelay: number;
   onClick: () => void;
 }
-
 export default function RightArcButton(props: Props) {
-  const {width} = useWindowDimensions()
+  const { width } = useWindowDimensions();
   const {
     selected,
     activated,
@@ -40,6 +39,11 @@ export default function RightArcButton(props: Props) {
   const rotateSVG = {
     transform: `rotate(${rotateValue}deg)`,
   };
+
+  const handleClick = () => {
+    onClick();
+  };
+
   return (
     <Box className={clsx(classes.rightArcButtonContainer)} style={buttonPosition}>
       <Button
@@ -47,21 +51,24 @@ export default function RightArcButton(props: Props) {
           selected: selected,
         })}
         variant="contained"
-        style={{animationDelay: `${animationDelay}ms`, opacity: '0'}}
-        // color="primary"
-        onClick={onClick}
+        style={{ animationDelay: `${animationDelay}ms`, opacity: '0' }}
+        onClick={handleClick}
       >
         <Box className={classes.actionContainer}>
           <ReactSVG src={iconSrc} style={rotateSVG} />
           {activated && (
             <ReactSVG
               src={'assets/arcMenu/selectedShadow.svg'}
-              style={{...rotateSVG, position: 'absolute'}}
+              style={{ ...rotateSVG, position: 'absolute' }}
             />
           )}
         </Box>
       </Button>
-      <div className={clsx(classes.selectedText, classes.animatedButton)}>{buttonText}</div>
+      {(width ?? 0) > 700 && (
+        <div className={clsx(classes.selectedText, classes.animatedButton)}>
+          {buttonText}
+        </div>
+      )}
     </Box>
   );
 }

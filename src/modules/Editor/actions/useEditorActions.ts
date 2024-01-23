@@ -41,6 +41,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import SouthIcon from '@mui/icons-material/South';
 import NorthIcon from '@mui/icons-material/North';
 import Iconn from './back.svg';
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 
 type SideData = {
@@ -72,6 +73,7 @@ export const DefualtSelectedObjectsConfig: ObjectConfig = {
 const X_API_KEY = process.env.REACT_APP_X_API_KEY;
 
 const useEditorActions = () => {
+  const {width} = useWindowDimensions();
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
   const [isFirstUse, setIsFirstUse] = useState<boolean>(true);
   const [canvasColor, setCanvasColor] = useState<string>("#FFF");
@@ -213,7 +215,7 @@ const useEditorActions = () => {
         return;
       }
 
-      if (aObject?.type !== "activeSelection") {
+      if (aObject?.type !== "activeSelection" && (width ?? 0) > 700) {
         selectedElementType(aObject?.type as ElementTypes);
         if (aObject?.type) {
           setTimeout(() => {

@@ -1,3 +1,4 @@
+import { Height } from '@mui/icons-material';
 import {makeStyles} from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
@@ -27,7 +28,6 @@ export const useStyles = makeStyles((theme: any) => ({
     marginTop: '16px',
     width: '100%',
     '&.isFirstUse': {
-      height: 'calc(100vh - 70px)',
       justifyContent: 'flex-start',
       marginTop: '0px',
     },

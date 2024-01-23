@@ -10,10 +10,12 @@ import EditorContext from '../../../modules/Editor/views/EditorView/context/Edit
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 interface Props {
   children: React.ReactNode;
+  onChangeCanvasColor: (color: string) => void;
 }
 
 const MobileHeader = (props: Props) => {
   const { children } = props;
+  const {onChangeCanvasColor} = props;
   const classes = useStyles();
   const { onSubmitData } = useContext(EditorContext);
 
@@ -39,7 +41,6 @@ const MobileHeader = (props: Props) => {
       buttonColor: '#7DCD85',
     },
   ];
-
   return (
     <AppBar elevation={0} className={classes.headerWrapper}>
       <Box height={'100%'} display={'flex'} justifyContent={'space-between'}>
@@ -131,7 +132,7 @@ const MobileHeader = (props: Props) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue={0}
+          defaultValue={2}
           variant="standard"
           onChange={() => { }}
           className={classes.sizeSelect}
@@ -139,9 +140,18 @@ const MobileHeader = (props: Props) => {
         >
           {temp.map((value, index) => (
             <MenuItem key={value.id} value={value.id}>
-              <div style={{ backgroundColor: value.buttonColor, width: '25px', height: '25px', borderRadius: '100%' }}></div>
+              <div
+                onClick={() => onChangeCanvasColor(value.buttonColor)}
+                style={{
+                  backgroundColor: value.buttonColor,
+                  width: '25px',
+                  height: '25px',
+                  borderRadius: '100%',
+                }}
+              ></div>
             </MenuItem>
           ))}
+
         </Select>
       </Box>
     </AppBar>

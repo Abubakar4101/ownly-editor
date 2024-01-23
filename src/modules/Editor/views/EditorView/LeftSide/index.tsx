@@ -52,9 +52,14 @@ function LeftSide() {
 
   return (
     <Box
-      className={clsx(classes.rightSideWrapper, isBorderedTab && classes.boxWrapper, {
-        uploadMenu: selectedCategory === 'Uploads',
-      })}
+      className={clsx(
+        classes.rightSideWrapper,
+        classes.translateAnimation,
+        isBorderedTab && classes.boxWrapper,
+        {
+          uploadMenu: selectedCategory === 'Uploads',
+        }
+      )}
     >
       {renderTab}
     </Box>

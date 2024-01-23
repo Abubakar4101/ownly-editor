@@ -1,5 +1,6 @@
-import {makeStyles} from '@mui/styles';
-import {Theme} from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material';
+import { Translate } from '@mui/icons-material';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   rightSideWrapper: {
@@ -17,6 +18,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
       // width: '100%',
     },
     // padding: '16px',
+    [theme.breakpoints.down(700)]: {
+      width: '375px',
+      // minWidth: '330px',
+      maxWidth: '90vw',
+      maxHeight: '60%',
+      minHeight: '60%',
+      // margin: '0px 1vw',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      zIndex: 99,
+      transform: 'translate(-50%, -50%)'
+    }
   },
   boxWrapper: {
     border: `1px solid ${theme.palette.primary.main}`,
@@ -42,4 +56,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: 20,
     },
   },
+  translateAnimation: {
+    [theme.breakpoints.down(700)]: {
+      animation: '$translateAnimation 1s ease-in-out',
+    }
+  },
+
+  '@keyframes translateAnimation': {
+    '0%': {
+      top: '100%',
+    },
+    '100%': {
+      top: '50%',
+    },
+  },
+
 }));

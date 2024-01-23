@@ -34,9 +34,8 @@ export const useStyles = makeStyles((theme: any) => ({
       height: '300px',
       width: '300px',
       flexDirection: 'row',
-      alignItems: 'end',
-      transform: 'translate(0, 30%) !important',
-
+      position: 'fixed',
+      bottom: -35,
     },
     '@media (min-height: 601px) and (max-height: 800px)': {
       height: '300px',
@@ -59,14 +58,12 @@ export const useStyles = makeStyles((theme: any) => ({
     backgroundColor: `${theme.palette.primary.main} !important`,
     color: 'white !important',
     fontSize: '40px !important',
-    transform: 'translate(0, 60%) !important',
+    position: 'fixed',
+    bottom: -50,
+    
 
   },
-  bottomMenuWrapper: {
-    [theme.breakpoints.down('700')]: {
-      marginTop: '100%',
-    }
-  },
+  
   leftArcMenu: {
     paddingTop: '59px',
     paddingBottom: '54px',

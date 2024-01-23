@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme: any) => ({
     background: '#ffffff00',
     justifyContent: 'center',
     [theme.breakpoints.down(700)]: {
-      height: '70%',
+      height: '70vh',
     }
     
 
@@ -42,7 +42,7 @@ export const useStyles = makeStyles((theme: any) => ({
     alignItems: 'center',
     justifyContent: 'center',
     [theme.breakpoints.down(700)]: {
-      height: '70%',
+      height: '50vh',
     }
   },
   canvasWrrapper: {

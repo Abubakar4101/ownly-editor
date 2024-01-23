@@ -15,6 +15,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   colorButton: {
     minWidth: '50px !important',
     minHeight: '50px !important',

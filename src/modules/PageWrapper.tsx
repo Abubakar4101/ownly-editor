@@ -5,6 +5,7 @@ import {TopbarHeight} from 'shared/globalTheme/Theme-variable';
 import Footer from 'shared/components/Footer';
 import {useTheme} from '@mui/material/styles';
 import {makeStyles} from '@mui/styles';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 interface Props {
   children: React.ReactNode;
@@ -26,10 +27,12 @@ export default function PageWrapper(props: Props) {
       },
       [theme.breakpoints.down('lg')]: {
         paddingTop: '64px',
+        height: 'calc(100vh - 64px)'
       },
     },
   }));
   const classes = useStyles();
+  const {width} = useWindowDimensions();
 
   return (
     <div className={classes.root}>
@@ -45,7 +48,7 @@ export default function PageWrapper(props: Props) {
           padding: '0px 8px',
         }}
       >
-        <Box sx={{minHeight: 'calc(100vh - 100px)'}}>{children}</Box>
+        <Box sx={{minHeight: (width ?? 0) > 700 ? 'calc(100vh - 100px)' : ''}}>{children}</Box>
         {/* <Footer /> */}
       </Container>
       {/* </PageWrapper> */}

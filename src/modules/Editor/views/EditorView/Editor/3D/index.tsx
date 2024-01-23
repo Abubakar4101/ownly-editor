@@ -17,6 +17,8 @@ import {useStyles} from './styles';
 import EditorContext from '../../context/EditorContext';
 import babylonManager from './Babylon/babylonManager';
 import {ModelType, SideTypes} from '../utilities';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+
 
 export interface GameManager {
   engine: Engine;
@@ -47,7 +49,7 @@ function Editor3D(props: Props) {
   } = useContext(EditorContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const classes = useStyles();
-
+  const {width} = useWindowDimensions()
   const studioSceneHandlers = useMemo(() => {
     return {
       onDrop: () => {},
@@ -88,7 +90,7 @@ function Editor3D(props: Props) {
         alignItems: 'center',
       }}
       display={'flex'}
-      width={'100%'}
+      width={(width ?? 0) > 700 ? '100%' : '90vw'}
       height={'100%'}
     >
       <GmContext.Provider value={gameManager}>

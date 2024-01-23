@@ -22,6 +22,7 @@ function EditorView() {
   const [leftArcMenuState, setLeftArcMenuState] = useState(true);
   const [rightArcMenuState, setRightArcMenuState] = useState(true);
   const classes = useStyles();
+  const {width} = useWindowDimensions();
 
   const {
     container,
@@ -84,19 +85,19 @@ function EditorView() {
       // return <></>;
       default:
       case 'Draw':
-        return <LeftArcMenu onChangeCanvasColor={onChangeCanvasColor} />;
-    }
+        return (width ?? 0) > 700 ? <LeftArcMenu onChangeCanvasColor={onChangeCanvasColor} /> : null;
+      }
   }, [onChangeCanvasColor, selectedCategory]);
 
   const renderRightSideMenu = useMemo(() => {
     switch (selectedCategory) {
       case 'Templates':
       case 'Elements':
-      case 'Graphics':
         return <></>;
       case 'Draw':
       case 'Uploads':
       case 'Texts':
+      case 'Graphics':
         return <RightArcMenu />;
       case 'Filters':
       default:
@@ -114,7 +115,6 @@ function EditorView() {
     setRightArcMenuState(!rightArcMenuState);
   };
 
-  const {width} = useWindowDimensions();
 
   return (
     <Box>
@@ -198,20 +198,20 @@ function EditorView() {
           onSubmitData,
         }}
       >
-        <Header>{!isFirstUse && <RenderSwitch />}</Header>
+        <Header onChangeCanvasColor={onChangeCanvasColor}>{!isFirstUse && <RenderSwitch />}</Header>
         {((width ?? 0) <= 700 && !isFirstUse) && <RenderSwitch />}
         <Box className={clsx(classes.editorWrraper, {isFirstUse: isFirstUse})}>
           <>
-            {selectedCategory !== 'PrintingTypes' && true && (width ?? 0) > 700 && (
+            {selectedCategory !== 'PrintingTypes' && true &&(
               <Box
-                height={'100%'}
+                height={(width ?? 0) > 700 ? '100%' : 0}
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'flex-start'}
                 minWidth={'360px'}
               >
                 {true && renderLeftSideMenu}
-                {!isFirstUse && (
+                {!isFirstUse &&  (width ?? 0) > 700 && (
                   <Box display={'flex'} alignItems={'center'} paddingLeft={'15px'} zIndex={111}>
                     <Box
                       display={'flex'}
