@@ -1,4 +1,4 @@
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
   footer: {
@@ -14,6 +14,7 @@ export const useStyles = makeStyles((theme: any) => ({
     pointerEvents: 'none',
     [theme.breakpoints.down(700)]: {
       alignItems: 'flex-end',
+
     }
   },
   infoBut: {
@@ -45,4 +46,41 @@ export const useStyles = makeStyles((theme: any) => ({
     color: theme.palette.secondary.main,
     fontSize: '13px !important',
   },
+  '@keyframes leftSlide': {
+    from: {
+      transform: 'translate(-100%, 0)',
+    },
+    to: {
+      transform: 'translate(0, 0)',
+    },
+  },
+  '@keyframes bottomSlide': {
+    from: {
+      transform: 'translate(0, 100%)',
+    },
+    to: {
+      transform: 'translate(0, 0)',
+    },
+  },
+  leftBottom: {
+    [theme.breakpoints.down(700)]: {
+      backgroundColor: '#282729',
+      height: '90px',
+      border: '1px solid #707070',
+      padding: '10px',
+      transform: 'translate(0, 0)',
+      cursor: 'pointer',
+      pointerEvents: 'all',
+      transformOrigin: 'left center',
+      animation: '$leftSlide 1s ease-in-out',
+    }
+  },
+  actionMenu:{
+    [theme.breakpoints.down(700)]: {
+      pointerEvents: 'none',
+      transform: 'translate(0, 0)',
+      transformOrigin: 'bottom center',
+      animation: '$bottomSlide 1.5s ease-in-out',
+    }
+  }
 }));

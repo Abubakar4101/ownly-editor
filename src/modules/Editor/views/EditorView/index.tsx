@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import {Box} from '@mui/material';
 import useEditorActions from '../../actions/useEditorActions';
-import {RenderMode, Categories} from 'modules/Editor/definitions/types';
+import {RenderMode, Categories, BottomMenuType} from 'modules/Editor/definitions/types';
 import {useStyles} from './styles';
 import Header from 'shared/components/Header';
 import EditorContext from './context/EditorContext';
@@ -36,6 +36,7 @@ function EditorView() {
     isFirstUse,
     selectedRenderMode,
     canvasColor,
+    bottomMenu,
     onSelectSvgIcon,
     onChangeCanvasColor,
     setSelectedRenderMode,
@@ -46,6 +47,7 @@ function EditorView() {
     selectedElementType,
     setSelectedSide,
     setSelectedCategory,
+    setBottomMenu,
     setSelectedSubCategory,
     removeImageBackground,
     onAddText,
@@ -132,6 +134,7 @@ function EditorView() {
           elementType,
           isFirstUse,
           canvasColor,
+          bottomMenu,
           onSelectSvgIcon,
           onSelectFistSide,
           onInit2DEditor,
@@ -152,6 +155,9 @@ function EditorView() {
             setSelectedRenderMode(newRenderMode);
             setSelectedCategory(undefined);
             selectedElementType(undefined);
+          },
+          onSelectBottomMenuType: (newType: BottomMenuType | undefined) => {
+            setBottomMenu(newType);
           },
           onSelectCategory: (newCategory: Categories | undefined) => {
             setSelectedRenderMode('2DMODE');

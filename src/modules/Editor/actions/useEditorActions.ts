@@ -13,6 +13,7 @@ import {
   BorderStyle,
   SubCategories,
   RenderMode,
+  BottomMenuType,
 } from "../definitions/types";
 import * as api from "../api/editor";
 import { v4 as uuidv4 } from "uuid";
@@ -77,7 +78,6 @@ const useEditorActions = () => {
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
   const [isFirstUse, setIsFirstUse] = useState<boolean>(true);
   const [canvasColor, setCanvasColor] = useState<string>("#FFF");
-
   const [fabricCanvas, setFabricCanvas] = useState<Canvas>();
   const [gameManager, setGameManager] = useState<GameManager>();
   const [selectedSide, setSelectedSide] =
@@ -104,6 +104,7 @@ const useEditorActions = () => {
   const [selectedCategory, setSelectedCategory] = useState<
     Categories | undefined
   >();
+  const [bottomMenu, setBottomMenu] = useState<BottomMenuType | undefined>((width ?? 0) > 700 ? 'HorizontalMenu' : 'CircularMenu');
   const [isFabricActonsReady, setIsFabricActonsReady] =
     useState<boolean>(false);
 
@@ -1292,6 +1293,17 @@ const useEditorActions = () => {
     },
     []
   );
+  const bottomMenuVisibility = useCallback(
+    (menu: BottomMenuType) => {
+      // if (!fabricCanvas) {
+      //   return;
+      // }
+      setBottomMenu(menu);
+      // fabricCanvas.backgroundColor=color;
+
+    },
+    []
+  );
   
   const onSelectSvgIcon = useCallback((svgString: string)=>{
     if (!fabricCanvas) {
@@ -1335,12 +1347,15 @@ const useEditorActions = () => {
     selectedSide,
     elementType,
     selectedCategory,
+    bottomMenu,
     selectedSubCategory,
     isFirstUse,
     selectedRenderMode,
     canvasColor,
     onSelectSvgIcon,
     onChangeCanvasColor,
+    setBottomMenu,
+    bottomMenuVisibility,
     setSelectedRenderMode,
     onSelectFistSide,
     isDrawingMode,

@@ -1,4 +1,4 @@
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: any) => ({
   printingTypesWrraper: {
@@ -13,6 +13,19 @@ export const useStyles = makeStyles((theme: any) => ({
     border: '1px solid #4D4D4D',
     background: '#282729',
     backdropFilter: 'blur(25px)',
+    [theme.breakpoints.down(700)]: {
+      width: '450px',
+      // minWidth: '330px',
+      maxWidth: '90vw',
+      maxHeight: '70%',
+      minHeight: '70%',
+      // margin: '0px 1vw',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      zIndex: 99,
+      transform: 'translate(-50%, -50%)'
+    }
   },
   bodyWrraper: {
     width: '100%',

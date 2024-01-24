@@ -9,7 +9,8 @@ export const OuterId = 'EXSIT';
 
 export type RenderMode = '2DMODE' | '3DMODE';
 export type SubCategories = 'TextStyles' | 'Pincel';
-
+ 
+export type BottomMenuType = 'CircularMenu' | 'HorizontalMenu';
 export type Categories =
   | 'Templates'
   | 'Uploads'

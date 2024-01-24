@@ -21,6 +21,15 @@ export const useStyles = makeStyles((theme: any) => ({
       opacity: 1,
       transform: 'scale(1) translate(0px, 0px)',
     },
+
+  },
+  '@keyframes bottomSlide': {
+    from: {
+      bottom: -100,
+    },
+    to: {
+      bottom: -35,
+    },
   },
   arcMenu: {
     paddingTop: '80px',
@@ -36,6 +45,8 @@ export const useStyles = makeStyles((theme: any) => ({
       flexDirection: 'row',
       position: 'fixed',
       bottom: -35,
+      transformOrigin: 'bottom center',
+      animation: '$bottomSlide 0.5s ease-in-out',
     },
     '@media (min-height: 601px) and (max-height: 800px)': {
       height: '300px',
@@ -60,8 +71,7 @@ export const useStyles = makeStyles((theme: any) => ({
     fontSize: '40px !important',
     position: 'fixed',
     bottom: -50,
-    
-
+    cursor: 'pointer',
   },
   
   leftArcMenu: {

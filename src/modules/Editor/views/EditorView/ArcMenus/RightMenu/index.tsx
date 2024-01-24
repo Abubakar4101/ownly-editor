@@ -8,6 +8,8 @@ import RightArcButton from './RightArcButton';
 import EditorContext from '../../context/EditorContext';
 import { Categories } from 'modules/Editor/definitions/types';
 import useWindowDimensions from 'hooks/useWindowDimensions'
+import { TramRounded } from '@mui/icons-material';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 export type ArcAction = 'Bold' | 'FontChange' | 'RemoveBG' | Categories;
 interface ArcButton {
@@ -28,13 +30,16 @@ export function RightMenu() {
     selectedRenderMode,
     selectedObjectsConfig,
     selectedCategory,
+    bottomMenu,
     onSelectCategory,
+    onSelectBottomMenuType,
     getImagesFilters,
     removeImageBackground,
     onBold,
     onSelectSubCategory,
     onDraw,
   } = useContext(EditorContext);
+  const{bottomMenuVisibility} = useEditorActions();
 
   useEffect(() => {
     if (selectedRenderMode === '3DMODE') {
@@ -335,6 +340,11 @@ export function RightMenu() {
   //   rightArcButtons = temp;
   // }
   const [showButtons, setShowButtons] = useState(false);
+  const handleBottonMenuVisibility = () => {
+    bottomMenuVisibility('HorizontalMenu');
+    onSelectBottomMenuType('HorizontalMenu');
+  };
+
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
@@ -359,7 +369,7 @@ export function RightMenu() {
   }, [getActionsByType, rightArcButtons]);
 
   return (
-    <Box  display={'flex'} flexDirection={'column'} alignItems={'center'}>
+    <Box display={bottomMenu === 'CircularMenu' ? 'flex' : 'none'} flexDirection={'column'} alignItems={'center'}>
       <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 ? bgImage : undefined}>
         {showButtons &&
           getArcButtons.map((btn, index) => (
@@ -387,6 +397,7 @@ export function RightMenu() {
         display={'flex'}
         justifyContent={'center'}
         className={classes.moreButton}
+        onClick={handleBottonMenuVisibility}
       >+</Box>}
     </Box>
 

@@ -2,6 +2,7 @@ import React, {LegacyRef, createRef} from 'react';
 import {
   BorderStyle,
   Categories,
+  BottomMenuType,
   DrawOptions,
   ElementTypes,
   ObjectConfig,
@@ -29,6 +30,7 @@ type State = {
   elementType?: ElementTypes;
   isFirstUse: boolean;
   canvasColor: string;
+  bottomMenu?: BottomMenuType;
   onSelectSvgIcon: (svgString: string) => void;
   onSelectFistSide: (side: keyof typeof SideTypes) => void;
   onSetGameManager: (gameManager: GameManager) => void;
@@ -36,6 +38,7 @@ type State = {
   onSetSelectedModelType: (modelType: ModelType) => void;
   onSetSelectedSide: (side: keyof typeof SideTypes) => void;
   onSelectCategory: (newCategory: Categories | undefined) => void;
+  onSelectBottomMenuType: (newType: BottomMenuType | undefined) => void,
   onSelectSubCategory: (newCategory: SubCategories | undefined) => void;
   removeImageBackground: () => void;
   onInit2DEditor: () => void;
@@ -71,6 +74,7 @@ const EditorContext = React.createContext<State>({
   selectedObjectsConfig: DefualtSelectedObjectsConfig,
   isFirstUse: false,
   canvasColor: '#fff',
+  bottomMenu: 'CircularMenu',
   onSelectSvgIcon: () => {},
   onSelectFistSide: (side: keyof typeof SideTypes) => {},
   onSetGameManager: (gameManager: GameManager) => {},
@@ -78,6 +82,7 @@ const EditorContext = React.createContext<State>({
   onSetSelectedModelType: (modelType: ModelType) => {},
   onSetSelectedSide: (side: keyof typeof SideTypes) => {},
   onSelectCategory: (newCategory: Categories | undefined) => {},
+  onSelectBottomMenuType: (newType: BottomMenuType | undefined) => {},
   onSelectSubCategory: (newSubCategory: SubCategories | undefined) => {},
   removeImageBackground: () => {},
   onInit2DEditor: () => {},

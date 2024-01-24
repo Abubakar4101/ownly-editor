@@ -1,23 +1,35 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import { AppBar, Box, Button, IconButton, Badge, Select, MenuItem, Avatar } from '@mui/material';
+import { AppBar, Fab, Box, Button, IconButton, Badge, Select, MenuItem, Avatar } from '@mui/material';
 import { useStyles } from './styles';
 import { ShoppingBasket, Redo, Undo } from '@mui/icons-material';
 import { ReactComponent as BackIcon } from './back.svg';
 import { ReactComponent as Logo } from './ownly.svg';
 import EditorContext from '../../../modules/Editor/views/EditorView/context/EditorContext';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import clsx from "clsx";
+import { ReactSVG } from 'react-svg';
+import { modelsConfigs } from 'modules/Editor/views/EditorView/Editor/configs';
+
+
 interface Props {
   children: React.ReactNode;
   onChangeCanvasColor: (color: string) => void;
 }
 
+
+
 const MobileHeader = (props: Props) => {
   const { children } = props;
-  const {onChangeCanvasColor} = props;
+  const { onChangeCanvasColor } = props;
   const classes = useStyles();
-  const { onSubmitData } = useContext(EditorContext);
+  const { onSubmitData, selectedSide, selectedModelType, onSetSelectedSide } = useContext(EditorContext);
+
+  const availableSides = useMemo(() => {
+    const { sides } = modelsConfigs[selectedModelType];
+    return sides;
+  }, [selectedModelType]);
 
   const temp = [
     {
@@ -92,21 +104,35 @@ const MobileHeader = (props: Props) => {
         </Box>
       </Box>
       <Box height={'100%'} display={'flex'} justifyContent={'space-between'}>
-        <Box display={'flex'} justifyContent={'center'} className={classes.selectedItem}>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            defaultValue={1}
-            variant="standard"
-            onChange={() => { }}
-            className={classes.sizeSelect}
-            style={{ margin: '5px 10px 0 10px' }}
-          >
-            <MenuItem value={1}>
-              <img src='./assets/images/tshirt.png' width={"30px"} style={{ pointerEvents: "none" }}></img>
-            </MenuItem>
-          </Select>
-        </Box>
+
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          defaultValue={'FRONT'}
+          variant="standard"
+          onChange={() => { }}
+          className={classes.sizeSelect}
+          style={{ margin: '0 0 0 20px' }}
+        >
+          {availableSides.map(side => {
+            return (
+              <MenuItem key={side.id} value={side.id}>
+                <Fab
+                  className={clsx(classes.sideBut, { selected: selectedSide === side.id })}
+                  color="primary"
+                  aria-label="water"
+                  size="large"
+                  variant="circular"
+                  onClick={() => {
+                    onSetSelectedSide(side.id);
+                  }}
+                >
+                  <ReactSVG src={side.iconSrc} />
+                </Fab>
+              </MenuItem>
+            );
+          })}
+        </Select>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
