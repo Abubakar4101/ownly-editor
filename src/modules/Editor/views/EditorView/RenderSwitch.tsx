@@ -9,6 +9,7 @@ import {styled} from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import {ShoppingBasket, Redo, Undo} from '@mui/icons-material';
 import EditorContext from './context/EditorContext';
+import { landscapeOnly } from 'hooks/breakspoints';
 
 const MaterialUISwitch = styled(Switch)(({theme}) => ({
   width: 76,
@@ -16,6 +17,9 @@ const MaterialUISwitch = styled(Switch)(({theme}) => ({
   padding: 0,
   borderRadius: '40px',
   margin: '8px 2px 0px 0px',
+  [landscapeOnly]: {
+    transform: 'rotateZ(90deg)',
+  },
   // backgroundColor: "#282729 !im",
   '& .MuiSwitch-switchBase': {
     margin: 0,
@@ -41,6 +45,9 @@ const MaterialUISwitch = styled(Switch)(({theme}) => ({
   },
   '& .MuiSwitch-thumb': {
     backgroundColor: '#8783E1',
+    [landscapeOnly]: {
+      transform: 'rotateZ(-90deg)',
+    },
     width: 31.2,
     height: 31.28,
     '&:before': {
@@ -62,6 +69,7 @@ const MaterialUISwitch = styled(Switch)(({theme}) => ({
     backgroundColor: '#282729',
     border: '2px solid #8783E1',
     borderRadius: '40px',
+    
   },
 }));
 

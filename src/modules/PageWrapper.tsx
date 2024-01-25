@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function PageWrapper(props: Props) {
-  const {children, height} = props;
+  const {children, height: customHeight} = props;
   const theme = useTheme();
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
@@ -23,7 +23,7 @@ export default function PageWrapper(props: Props) {
       flex: '1 1 auto',
       overflow: 'hidden',
       [theme.breakpoints.up('lg')]: {
-        paddingTop: height || TopbarHeight,
+        paddingTop: customHeight || TopbarHeight,
       },
       [theme.breakpoints.down('lg')]: {
         paddingTop: '64px',
@@ -32,7 +32,7 @@ export default function PageWrapper(props: Props) {
     },
   }));
   const classes = useStyles();
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
 
   return (
     <div className={classes.root}>
@@ -48,7 +48,7 @@ export default function PageWrapper(props: Props) {
           padding: '0px 8px',
         }}
       >
-        <Box sx={{minHeight: (width ?? 0) > 700 ? 'calc(100vh - 100px)' : ''}}>{children}</Box>
+        <Box sx={{minHeight: ((width ?? 0) > 700 || (height ?? 0) < 450) ? 'calc(100vh - 100px)' : ''}}>{children}</Box>
         {/* <Footer /> */}
       </Container>
       {/* </PageWrapper> */}

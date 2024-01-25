@@ -73,7 +73,7 @@ const EditorContext = React.createContext<State>({
   selectedSide: 'FRONT',
   selectedObjectsConfig: DefualtSelectedObjectsConfig,
   isFirstUse: false,
-  canvasColor: '#fff',
+  canvasColor: '#FFFFFF',
   bottomMenu: 'CircularMenu',
   onSelectSvgIcon: () => {},
   onSelectFistSide: (side: keyof typeof SideTypes) => {},

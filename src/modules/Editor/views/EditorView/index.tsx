@@ -22,7 +22,7 @@ function EditorView() {
   const [leftArcMenuState, setLeftArcMenuState] = useState(true);
   const [rightArcMenuState, setRightArcMenuState] = useState(true);
   const classes = useStyles();
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
 
   const {
     container,
@@ -87,7 +87,7 @@ function EditorView() {
       // return <></>;
       default:
       case 'Draw':
-        return (width ?? 0) > 700 ? <LeftArcMenu onChangeCanvasColor={onChangeCanvasColor} /> : null;
+        return (width ?? 0) > 700 && (height ?? 0) > 450 ? <LeftArcMenu onChangeCanvasColor={onChangeCanvasColor} /> : null;
       }
   }, [onChangeCanvasColor, selectedCategory]);
 
@@ -205,19 +205,19 @@ function EditorView() {
         }}
       >
         <Header onChangeCanvasColor={onChangeCanvasColor}>{!isFirstUse && <RenderSwitch />}</Header>
-        {((width ?? 0) <= 700 && !isFirstUse) && <RenderSwitch />}
+        {((width ?? 0) <= 700 || (height ?? 0) <= 450)  && !isFirstUse && <RenderSwitch />}
         <Box className={clsx(classes.editorWrraper, {isFirstUse: isFirstUse})}>
           <>
             {selectedCategory !== 'PrintingTypes' && true &&(
               <Box
-                height={(width ?? 0) > 700 ? '100%' : 0}
+                height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : 0}
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'flex-start'}
                 minWidth={'360px'}
               >
                 {true && renderLeftSideMenu}
-                {!isFirstUse &&  (width ?? 0) > 700 && (
+                {!isFirstUse &&  (width ?? 0) > 700 && (height ?? 0) > 450 &&  (
                   <Box display={'flex'} alignItems={'center'} paddingLeft={'15px'} zIndex={111}>
                     <Box
                       display={'flex'}
@@ -242,7 +242,7 @@ function EditorView() {
           </>
           <>
             <Editor />
-            {selectedCategory !== 'PrintingTypes' && (!isFirstUse && (width ?? 0) > 700) && (
+            {selectedCategory !== 'PrintingTypes' && (!isFirstUse && (width ?? 0) > 700) && (height ?? 0) > 450 && (
               <Box display={'flex'} alignItems={'center'}>
                 <Box
                   display={'flex'}
@@ -264,10 +264,10 @@ function EditorView() {
 
           {selectedCategory !== 'PrintingTypes' && !isFirstUse &&  (
             <Box
-              height={'100%'}
+              height={(width ?? 0) > 700 && (height ?? 0) < 450 ? 0 : '100%'}
               display={'flex'}
               alignItems={'center'}
-              justifyContent={(width ?? 0) > 700 ? 'flex-end' : 'center'}
+              justifyContent={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'flex-end' : 'center'}
               minWidth={'360px'}
             >
               {rightArcMenuState && renderRightSideMenu}

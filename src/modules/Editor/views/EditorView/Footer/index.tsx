@@ -14,7 +14,7 @@ import useEditorActions from 'modules/Editor/actions/useEditorActions';
 function Footer() {
   const { selectedRenderMode, isFirstUse, bottomMenu, onSelectBottomMenuType } = useContext(EditorContext);
   const [priceCollapse, setPriceCollapse] = React.useState(true);
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const classes = useStyles();
   const handleClickCollapse = (e: any) => {
     setPriceCollapse(!priceCollapse); // Un-commented this line
@@ -27,7 +27,7 @@ function Footer() {
   }
   return (
     <Box className={classes.footer}>
-      {(width ?? 0) > 700 && <Box alignItems={'flex-end'} style={{ pointerEvents: 'none', marginTop: '100%' }}>
+      {(width ?? 0) > 700 && (height ?? 0) > 450 && <Box alignItems={'flex-end'} style={{ pointerEvents: 'none', marginTop: '100%' }}>
         <Box className={classes.priceWrapper}>
           <Box
             display={'flex'}
@@ -94,32 +94,33 @@ function Footer() {
           </Box>
         </Box>
       </Box>}
-      {(width ?? 0) <= 700 && (
+      <Box display={'flex'} className={classes.bottomMenuWrapper}>
+        {((width ?? 0) <= 700 || (height ?? 0) <= 450) && (
+          <Box
+            display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+            className={classes.leftBottom}
+            justifyContent={'center'}
+            flexDirection={'column'}
+            onClick={e => handleHorizontalMenu(e)}
+          >
+            <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
+          </Box>
+        )}
         <Box
-          display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
-          className={classes.leftBottom}
-          justifyContent={'center'}
+          display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
+          alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}
           flexDirection={'column'}
-          onClick={e => handleHorizontalMenu(e)}
+          justifyContent={'flex-end'}
+          overflow={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'hidden' : 'scroll'}
+          className={classes.actionMenu}
         >
-          <img src='./assets/images/tshirt.png' width={'60px'} style={{ pointerEvents: 'none' }} alt="t-shirt" />
+
+          {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
+          <ActionMenu />
         </Box>
-      )}
 
-      <Box
-        display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
-        alignItems={(width ?? 0) > 700 ? 'center' : 'flex-start'}
-        flexDirection={'column'}
-        justifyContent={'flex-end'}
-        overflow={(width ?? 0) > 700 ? 'hidden' : 'scroll'}
-        className={classes.actionMenu}
-      >
-
-        {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && <SidesFooter />}
-        <ActionMenu />
       </Box>
-
-      {(width ?? 0) > 700 && <Box className={classes.infoWrapper}>
+      {((width ?? 0) > 650 || (height ?? 0) <= 450) && <Box className={classes.infoWrapper}>
         <Fab color="primary" aria-label="water" size="medium" className={classes.infoBut}>
           <InvertColorsOutlined />
         </Fab>

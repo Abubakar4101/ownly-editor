@@ -1,5 +1,6 @@
 import { Height } from '@mui/icons-material';
 import {makeStyles} from '@mui/styles';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   '@keyframes rightfadeIn': {
@@ -39,19 +40,25 @@ export const useStyles = makeStyles((theme: any) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('700')]: {
+    [mobileAndLandscape]: {
       height: '300px',
       width: '300px',
       flexDirection: 'row',
-      position: 'fixed',
+      position: 'absolute',
       bottom: -35,
       transformOrigin: 'bottom center',
       animation: '$bottomSlide 0.5s ease-in-out',
     },
-    '@media (min-height: 601px) and (max-height: 800px)': {
+    [landscapeOnly]: {
       height: '300px',
-      paddingTop: '40px',
-      paddingBottom: '40px',
+      width: '200px',
+      flexDirection: 'row',
+      position: 'fixed',
+      top: '-15vh',
+      left: '90vw',
+      transform: 'rotateZ(-90deg)',
+      transformOrigin: 'bottom center',
+      animation: '$bottomSlide 0.5s ease-in-out',
     },
     '@media (min-height: 1024px) and (max-height: 3000px)': {
       paddingTop: '40px',

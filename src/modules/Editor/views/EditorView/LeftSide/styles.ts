@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
 import { Translate } from '@mui/icons-material';
+import { mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   rightSideWrapper: {
@@ -18,7 +19,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       // width: '100%',
     },
     // padding: '16px',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       width: '375px',
       // minWidth: '330px',
       maxWidth: '90vw',
@@ -57,7 +58,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   translateAnimation: {
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       animation: '$translateAnimation 1s ease-in-out',
     }
   },

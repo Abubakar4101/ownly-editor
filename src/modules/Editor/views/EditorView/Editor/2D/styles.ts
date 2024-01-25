@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -14,7 +15,6 @@ export const useStyles = makeStyles((theme: any) => ({
     '&.printingTypes': {
       width: '40vw',
     },
-    
   },
   bkWrrapper: {
     width: '100%',
@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme: any) => ({
     // margin: 'auto',
     background: '#ffffff00',
     position: 'relative',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       display: 'none',
     },
   },

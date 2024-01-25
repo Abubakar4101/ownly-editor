@@ -74,10 +74,10 @@ export const DefualtSelectedObjectsConfig: ObjectConfig = {
 const X_API_KEY = process.env.REACT_APP_X_API_KEY;
 
 const useEditorActions = () => {
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
   const [isFirstUse, setIsFirstUse] = useState<boolean>(true);
-  const [canvasColor, setCanvasColor] = useState<string>("#FFF");
+  const [canvasColor, setCanvasColor] = useState<string>("#FFFFFF");
   const [fabricCanvas, setFabricCanvas] = useState<Canvas>();
   const [gameManager, setGameManager] = useState<GameManager>();
   const [selectedSide, setSelectedSide] =
@@ -104,7 +104,7 @@ const useEditorActions = () => {
   const [selectedCategory, setSelectedCategory] = useState<
     Categories | undefined
   >();
-  const [bottomMenu, setBottomMenu] = useState<BottomMenuType | undefined>((width ?? 0) > 700 ? 'HorizontalMenu' : 'CircularMenu');
+  const [bottomMenu, setBottomMenu] = useState<BottomMenuType | undefined>((width ?? 0) > 700 && (height ?? 0) > 450 ? 'HorizontalMenu' : 'CircularMenu');
   const [isFabricActonsReady, setIsFabricActonsReady] =
     useState<boolean>(false);
 
@@ -216,7 +216,7 @@ const useEditorActions = () => {
         return;
       }
 
-      if (aObject?.type !== "activeSelection" && (width ?? 0) > 700) {
+      if (aObject?.type !== "activeSelection" && (width ?? 0) > 700 && (height ?? 0) > 450) {
         selectedElementType(aObject?.type as ElementTypes);
         if (aObject?.type) {
           setTimeout(() => {

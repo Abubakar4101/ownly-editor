@@ -49,7 +49,7 @@ function Editor3D(props: Props) {
   } = useContext(EditorContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const classes = useStyles();
-  const {width} = useWindowDimensions()
+  const {width, height} = useWindowDimensions()
   const studioSceneHandlers = useMemo(() => {
     return {
       onDrop: () => {},
@@ -90,8 +90,8 @@ function Editor3D(props: Props) {
         alignItems: 'center',
       }}
       display={'flex'}
-      width={(width ?? 0) > 700 ? '100%' : '90vw'}
-      height={'100%'}
+      width={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '90vw'}
+      height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '50vh'}
     >
       <GmContext.Provider value={gameManager}>
         <canvas

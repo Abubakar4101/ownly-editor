@@ -34,9 +34,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     border: `1px solid #8783E1 !important`,
     borderWidth: '1px !important',
     borderRadius: '12px !important',
-    '&.selected': {
-      background: '#6561c24d !important',
-      boxShadow: '0px 0px 15px 5px #6561C2 !important',
-    },
+    
   },
 }));

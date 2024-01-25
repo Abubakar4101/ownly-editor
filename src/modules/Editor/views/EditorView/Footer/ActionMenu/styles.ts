@@ -1,5 +1,6 @@
-import {makeStyles} from '@mui/styles';
-import {Theme} from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material';
+import { mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   actionMenu: {
@@ -12,12 +13,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: '10px 16px',
     width: '720px',
     height: '90px',
-    
     pointerEvents: 'all',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       justifySelf: 'flex-start',
     },
-
     '&.isSubMenu': {
       width: '810px',
       height: '90px',

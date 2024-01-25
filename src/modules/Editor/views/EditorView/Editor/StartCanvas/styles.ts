@@ -1,5 +1,6 @@
 import { Margin } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
+import { mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -26,7 +27,7 @@ export const useStyles = makeStyles((theme: any) => ({
     alignItems: 'flex-start',
     background: '#ffffff00',
     justifyContent: 'center',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       height: '70vh',
     }
     
@@ -41,7 +42,7 @@ export const useStyles = makeStyles((theme: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       height: '50vh',
     }
   },
@@ -56,7 +57,7 @@ export const useStyles = makeStyles((theme: any) => ({
     // margin: 'auto',
     background: '#ffffff00',
     position: 'relative',
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       display: 'none',
     }
   },

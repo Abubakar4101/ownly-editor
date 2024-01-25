@@ -23,7 +23,7 @@ interface ArcButton {
 
 export function RightMenu() {
   const [selected, setSelected] = useState<string | null>(null);
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const {
     elementType,
@@ -201,42 +201,42 @@ export function RightMenu() {
   const rightArcButtons: ArcButton[] = [
     {
       id: 0,
-      degree: (width ?? 0) > 700 ? '-20' : '0',
-      transValue: (width ?? 0) > 700 ? '22' : '85',
+      degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-20' : '0',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '22' : '85',
       iconSrc: 'assets/arcMenu/cloud-up.svg',
-      rotateValue: (width ?? 0) > 700 ? '1' : '0',
+      rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '1' : '0',
       buttonText: 'UPload image',
     },
     {
       id: 1,
-      degree: (width ?? 0) > 700 ? '-10' : '0',
-      transValue: (width ?? 0) > 700 ? '54' : '45',
+      degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-10' : '0',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : '45',
       iconSrc: 'assets/arcMenu/shape.svg',
-      rotateValue: (width ?? 0) > 700 ? '7' : '7',
+      rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '7' : '7',
       buttonText: 'Add Shape',
     },
     {
       id: 2,
       degree: '0',
-      transValue: (width ?? 0) > 700 ? '72' : '20',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '72' : '20',
       iconSrc: 'assets/arcMenu/text.svg',
       rotateValue: '0',
       buttonText: 'Add Text',
     },
     {
       id: 3,
-      degree: (width ?? 0) > 700 ? '10' : '0',
-      transValue: (width ?? 0) > 700 ? '71' : '45',
+      degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '10' : '0',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '71' : '45',
       iconSrc: 'assets/arcMenu/pencil.svg',
-      rotateValue: (width ?? 0) > 700 ? '12' : '12',
+      rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '12' : '12',
       buttonText: 'Pencil',
     },
     {
       id: 4,
-      degree: (width ?? 0) > 700 ? '20' : '0',
-      transValue: (width ?? 0) > 700 ? '54' : '85',
+      degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '20' : '0',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : '85',
       iconSrc: 'assets/arcMenu/mySavedImage.svg',
-      rotateValue: (width ?? 0) > 700 ? '-15' : '-15',
+      rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-15' : '-15',
       buttonText: 'My Saved image',
     },
   ];
@@ -370,7 +370,7 @@ export function RightMenu() {
 
   return (
     <Box display={bottomMenu === 'CircularMenu' ? 'flex' : 'none'} flexDirection={'column'} alignItems={'center'}>
-      <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 ? bgImage : undefined}>
+      <Box display={'flex'} alignContent={'end'} className={classes.arcMenu} style={(width ?? 0) > 700 && (height ?? 0) > 450 ? bgImage : undefined}>
         {showButtons &&
           getArcButtons.map((btn, index) => (
             <RightArcButton
@@ -392,7 +392,7 @@ export function RightMenu() {
 
       </Box>
 
-      {(width ?? 0) <= 700 && <Box width={100} height={100}
+      {((width ?? 0) <= 700 || (height ?? 0) <= 450) && <Box width={100} height={100}
         borderRadius={'50%'}
         display={'flex'}
         justifyContent={'center'}

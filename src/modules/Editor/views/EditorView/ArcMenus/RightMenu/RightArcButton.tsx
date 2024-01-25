@@ -18,7 +18,7 @@ interface Props {
   onClick: () => void;
 }
 export default function RightArcButton(props: Props) {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const {
     selected,
     activated,
@@ -34,7 +34,7 @@ export default function RightArcButton(props: Props) {
   const buttonPosition = {
     transform: `rotate(${degree}deg)`,
     transformOrigin: 'top left',
-    translate: (width ?? 0) > 700 ? `${transValue}px 0px` : `0px ${transValue}px`,
+    translate: (width ?? 0) > 700 && (height ?? 0) > 450 ? `${transValue}px 0px` : `0px ${transValue}px`,
   };
   const rotateSVG = {
     transform: `rotate(${rotateValue}deg)`,
@@ -64,7 +64,7 @@ export default function RightArcButton(props: Props) {
           )}
         </Box>
       </Button>
-      {(width ?? 0) > 700 && (
+      {(width ?? 0) > 700 && (height ?? 0) > 450 && (
         <div className={clsx(classes.selectedText, classes.animatedButton)}>
           {buttonText}
         </div>

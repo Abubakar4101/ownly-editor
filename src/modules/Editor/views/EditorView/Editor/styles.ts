@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -9,7 +10,7 @@ export const useStyles = makeStyles((theme: any) => ({
   editorTab: {
     position: 'relative',
     height: 'calc(100%)',
-    width: 'calc(100vw - 1000px)',
+    width: 'calc(100%)',
     '&.rightSideMenu': {
       width: 'calc(100vw - 700px)',
     },
