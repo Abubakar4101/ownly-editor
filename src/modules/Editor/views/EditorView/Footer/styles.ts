@@ -96,7 +96,7 @@ export const useStyles = makeStyles((theme: any) => ({
     pointerEvents: 'none',
   },
   actionMenu: {
-    [theme.breakpoints.down(700)]: {
+    [mobileAndLandscape]: {
       pointerEvents: 'none',
       transform: 'translate(0, 0)',
       transformOrigin: 'bottom center',

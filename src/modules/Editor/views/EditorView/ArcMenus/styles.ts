@@ -41,10 +41,10 @@ export const useStyles = makeStyles((theme: any) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     [mobileAndLandscape]: {
+      position: 'fixed',
       height: '300px',
       width: '300px',
       flexDirection: 'row',
-      position: 'absolute',
       bottom: -35,
       transformOrigin: 'bottom center',
       animation: '$bottomSlide 0.5s ease-in-out',
