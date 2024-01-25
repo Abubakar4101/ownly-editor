@@ -113,5 +113,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.palette.grey[500],
       borderRadius: theme.shape.borderRadius,
     },
+    overflow: 'scroll',
   },
 }));
