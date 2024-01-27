@@ -16,6 +16,8 @@ import clsx from 'clsx';
 import SearchBox from 'shared/components/SearchBox';
 import {RenderMode} from 'modules/Editor/definitions/types';
 import EditorContext from '../../context/EditorContext';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 export const FontFamilies = [
   {id: 'arial', name: 'Arial'},
@@ -36,10 +38,11 @@ export const FontFamilies = [
 
 function TextStyles() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const {selectedObjectsConfig, elementType, onChangeFontFamily, onAddText} =
+  const {selectedObjectsConfig, elementType, onSelectCategory, onChangeFontFamily, onAddText} =
     useContext(EditorContext);
-
+  const {width, height} = useWindowDimensions();
   const classes = useStyles();
+  const {onSetRightMenu} = useEditorActions();
 
   const handleOnSelectFontFamily = useCallback(
     (fontFamilyId: string) => {
@@ -64,6 +67,9 @@ function TextStyles() {
             })}
             onClick={() => {
               handleOnSelectFontFamily(fontFamily.id);
+              (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+              onSetRightMenu(true)
+
             }}
           >
             <Typography variant={'subtitle1'} style={{fontFamily: fontFamily.id}} gutterBottom>

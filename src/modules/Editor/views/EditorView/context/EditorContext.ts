@@ -31,6 +31,7 @@ type State = {
   isFirstUse: boolean;
   canvasColor: string;
   bottomMenu?: BottomMenuType;
+  showRightMenu?: boolean;
   onSelectSvgIcon: (svgString: string) => void;
   onSelectFistSide: (side: keyof typeof SideTypes) => void;
   onSetGameManager: (gameManager: GameManager) => void;
@@ -39,6 +40,7 @@ type State = {
   onSetSelectedSide: (side: keyof typeof SideTypes) => void;
   onSelectCategory: (newCategory: Categories | undefined) => void;
   onSelectBottomMenuType: (newType: BottomMenuType | undefined) => void,
+  setShowRightMenu: (show: boolean) => void;
   onSelectSubCategory: (newCategory: SubCategories | undefined) => void;
   removeImageBackground: () => void;
   onInit2DEditor: () => void;
@@ -75,6 +77,8 @@ const EditorContext = React.createContext<State>({
   isFirstUse: false,
   canvasColor: '#FFFFFF',
   bottomMenu: 'CircularMenu',
+  showRightMenu: false,
+  setShowRightMenu: (show: boolean) => {},
   onSelectSvgIcon: () => {},
   onSelectFistSide: (side: keyof typeof SideTypes) => {},
   onSetGameManager: (gameManager: GameManager) => {},

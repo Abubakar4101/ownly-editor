@@ -76,6 +76,18 @@ export const useStyles = makeStyles((theme: any) => ({
       right: '-20vw'
     }
   },
+  subBottomMenuWrapper: {
+    [mobileAndLandscape]: {
+      overflowX: 'scroll',
+      overflowY: 'hidden',
+    },
+    [landscapeOnly]: {
+      position: 'absolute',
+      left: '50%',
+      bottom: '-7%',
+      transform: 'translate(-50%, 0)',
+    }
+  },
   leftBottom: {
     [mobileAndLandscape]: {
       backgroundColor: '#282729',
@@ -105,5 +117,47 @@ export const useStyles = makeStyles((theme: any) => ({
     [landscapeOnly]: {
       width: '34vw'
     }
-  }
+  },
+  subActionMenuWrapper:{
+    [mobileAndLandscape]: {
+      pointerEvents: 'none',
+      transform: 'translate(0, 0)',
+      transformOrigin: 'bottom center',
+      animation: '$bottomSlide 1.5s ease-in-out',
+    },
+    [landscapeOnly]: {
+      width: '60vw'
+    }
+
+  },
+  subActionMenu: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: theme.palette.primary.dark,
+    borderRadius: '32px',
+    border: `1px solid ${theme.palette.grey[100]}`,
+    minWidth: '400px',
+    padding: '10px 16px',
+    width: '720px',
+    height: '90px',
+    pointerEvents: 'all',
+    [mobileAndLandscape]: {
+      justifySelf: 'flex-start',
+      minWidth: '460px',
+      width: '780px',
+    },
+    '&.isSubMenu': {
+      height: '90px',
+      padding: '0px',
+      borderRadius: '225px 50px 50px 240px / 150px 25px 25px 137px',
+      // background: `radial-gradient(120px at 0 120px, ${theme.palette.common.black} 98%, ${theme.palette.primary.dark} 0) 0 -120px`,
+    },
+    transition: 'width 0.5s ease-in-out', // Transition property for width
+  },
+  moreButton:{
+    backgroundColor: `${theme.palette.primary.main} !important`,
+    color: 'white !important',
+    fontSize: '40px !important',
+    cursor: 'pointer',
+  },
 }));

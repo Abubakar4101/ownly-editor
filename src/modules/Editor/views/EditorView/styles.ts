@@ -9,7 +9,6 @@ export const useStyles = makeStyles((theme: any) => ({
     justifyContent: 'center',
     marginInline: '16px',
     [landscapeOnly]: {
-      zIndex: 100,
       position: 'absolute',
       top: '30vh',
       left: '-40vw',

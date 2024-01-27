@@ -15,7 +15,7 @@ import Filters from './Filters';
 
 function LeftSide() {
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
-  const {selectedCategory} = useContext(EditorContext);
+  const {selectedCategory, showRightMenu} = useContext(EditorContext);
 
   const classes = useStyles();
 
@@ -49,8 +49,8 @@ function LeftSide() {
         false;
     }
   }, [selectedCategory]);
-
-  return (
+ 
+  return showRightMenu ? (
     <Box
       className={clsx(
         classes.rightSideWrapper,
@@ -63,7 +63,7 @@ function LeftSide() {
     >
       {renderTab}
     </Box>
-  );
+  ): null
 }
 
 export default LeftSide;

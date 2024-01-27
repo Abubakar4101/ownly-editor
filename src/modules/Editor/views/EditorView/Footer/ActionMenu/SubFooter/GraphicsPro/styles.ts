@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   penButton: {
     cursor: 'pointer',
-    margin: '8px 16px',
+    margin: '10px 16px 0px',
     '&:hover': {
       transition: `.1s ease-in-out`,
       transform: `translate(0px, -10px)`,

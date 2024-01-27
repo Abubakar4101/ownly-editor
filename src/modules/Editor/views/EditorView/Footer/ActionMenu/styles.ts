@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
-import { mobileAndLandscape } from 'hooks/breakspoints';
+import { mobileAndLandscape, landscapeOnly } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   actionMenu: {
@@ -16,12 +16,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     pointerEvents: 'all',
     [mobileAndLandscape]: {
       justifySelf: 'flex-start',
+      minWidth: '460px',
+      width: '780px',
     },
     '&.isSubMenu': {
       width: '810px',
       height: '90px',
       padding: '0px',
       borderRadius: '225px 50px 50px 240px / 150px 25px 25px 137px',
+    
       // background: `radial-gradient(120px at 0 120px, ${theme.palette.common.black} 98%, ${theme.palette.primary.dark} 0) 0 -120px`,
     },
     transition: 'width 0.5s ease-in-out', // Transition property for width
@@ -40,8 +43,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     margin: '4px',
     minWidth: '25px',
+    [landscapeOnly] : {
+      transform: 'rotate(-90deg)'
+    }
   },
   secondaryColor: {
     color: ` ${theme.palette.secondary}`,
+  }, 
+  moreButton:{
+    backgroundColor: `${theme.palette.primary.main} !important`,
+    color: 'white !important',
+    fontSize: '40px !important',
+    cursor: 'pointer',
   },
 }));

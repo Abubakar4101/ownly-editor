@@ -105,6 +105,7 @@ const useEditorActions = () => {
     Categories | undefined
   >();
   const [bottomMenu, setBottomMenu] = useState<BottomMenuType | undefined>((width ?? 0) > 700 && (height ?? 0) > 450 ? 'HorizontalMenu' : 'CircularMenu');
+  const [showRightMenu, setShowRightMenu] = useState<boolean>(true)
   const [isFabricActonsReady, setIsFabricActonsReady] =
     useState<boolean>(false);
 
@@ -216,27 +217,32 @@ const useEditorActions = () => {
         return;
       }
 
-      if (aObject?.type !== "activeSelection" && (width ?? 0) > 700 && (height ?? 0) > 450) {
+      if (aObject?.type !== "activeSelection") {
         selectedElementType(aObject?.type as ElementTypes);
         if (aObject?.type) {
-          setTimeout(() => {
+          setTimeout(() => { 
             switch (aObject?.type as ElementTypes) {
               case "i-text":
-                setSelectedCategory("Texts");
+                (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
+                setSelectedCategory("Texts")
                 break;
               case "image":
-                setSelectedCategory("Uploads");
+                (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
+                setSelectedCategory("Uploads")
                 break;
               case "rect":
               case "circle":
               case "triangle":
               case "polygon":
-                setSelectedCategory("Graphics");
+                (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
+                setSelectedCategory("Graphics")
                 break;
               case "path":
                 if((aObject as any)["customId"] ){
-                  setSelectedCategory("Graphics");
+                  (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
+                  setSelectedCategory("Graphics")
                 }else{
+                  (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
                   setSelectedCategory("Draw");
                 }
                 break;
@@ -474,6 +480,8 @@ const useEditorActions = () => {
     fabricCanvasInstance.on("mouse:up", (e) => {
       if(fabricCanvasInstance.isDrawingMode && (fabricCanvasInstance as any)['category'] === "Draw"){
         fabricCanvasInstance.isDrawingMode = false;
+        onSetRightMenu(true);
+                setShowRightMenu(true);
       }
     });
     
@@ -1293,6 +1301,11 @@ const useEditorActions = () => {
     },
     []
   );
+  const onSetRightMenu = useCallback(
+    (show: boolean) => {
+      setShowRightMenu(show);
+    },[]
+  );
   const bottomMenuVisibility = useCallback(
     (menu: BottomMenuType) => {
       // if (!fabricCanvas) {
@@ -1352,6 +1365,9 @@ const useEditorActions = () => {
     isFirstUse,
     selectedRenderMode,
     canvasColor,
+    showRightMenu,
+    setShowRightMenu,
+    onSetRightMenu,
     onSelectSvgIcon,
     onChangeCanvasColor,
     setBottomMenu,

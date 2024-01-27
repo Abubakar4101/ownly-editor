@@ -1,14 +1,16 @@
-import React, {useEffect, useState, useContext, useCallback, useMemo} from 'react';
-import {Redirect} from 'react-router-dom';
-import {TestType, Categories} from '../../../../definitions/types/index';
-import {Button, Box, IconButton, Fab, Typography} from '@mui/material';
-import {useStyles} from './styles';
-import {InfoOutlined, InvertColorsOutlined, ArrowBackIos} from '@mui/icons-material';
+import React, { useEffect, useState, useContext, useCallback, useMemo } from 'react';
+import { Redirect } from 'react-router-dom';
+import { TestType, Categories } from '../../../../definitions/types/index';
+import { Button, Box, IconButton, Fab, Typography } from '@mui/material';
+import { useStyles } from './styles';
+import { InfoOutlined, InvertColorsOutlined, ArrowBackIos } from '@mui/icons-material';
 import ActionButton from './ActionButton';
 import EditorContext from '../../context/EditorContext';
 import clsx from 'clsx';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import SubFooter from './SubFooter';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 interface Action {
   id: Categories;
@@ -19,38 +21,41 @@ interface Action {
 
 function ActionMenu() {
   const classes = useStyles();
-  const {selectedCategory, onSelectCategory, getSelectedObjects} = useContext(EditorContext);
+  const { selectedCategory, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
+  const { width, height } = useWindowDimensions();
+  const{bottomMenuVisibility, onSetRightMenu} = useEditorActions();
+
 
   const Actions: Action[] = [
     {
       id: 'Uploads',
       name: 'Uploads',
       iconSrc: 'assets/icons/uploads.svg',
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       id: 'Texts',
       name: 'Texts',
       iconSrc: 'assets/icons/text.svg',
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       id: 'Elements',
       name: 'Elements',
       iconSrc: 'assets/icons/elements.svg',
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       id: 'Graphics',
       name: 'Graphics',
       iconSrc: 'assets/icons/graphics.svg',
-      onClick: () => {},
+      onClick: () => { },
     },
     {
       id: 'Draw',
       name: 'Draw',
       iconSrc: 'assets/icons/draw.svg',
-      onClick: () => {},
+      onClick: () => { },
     },
   ];
 
@@ -68,20 +73,22 @@ function ActionMenu() {
 
   const renderFooterMenu = useMemo(() => {
     if (
+      (((width ?? 0) > 700 && (height ?? 0) > 450) || (width ?? 0) < 650) &&
       selectedCategory &&
       isSubMenu &&
       (selectedCategory === 'Draw' || getSelectedObjects().length)
     ) {
       return (
-        <Box className={clsx(classes.actionMenu, {isSubMenu: true})}>
+        <Box className={clsx(classes.actionMenu, { isSubMenu: true })}>
           <Box
             display={'flex'}
             justifyContent={'flex-start'}
             alignItems={'center'}
-            position={'relative'}
+            position={'fixed'}
+            
             width={'70px'}
             height={'90px'}
-            style={{backgroundColor: '#24232500'}}
+            style={{ backgroundColor: '#24232500' }}
           >
             <img src="./footer/backButton.png" height={'100%'}></img>
             <Box
@@ -90,12 +97,12 @@ function ActionMenu() {
               display={'flex'}
               justifyContent={'center'}
               alignItems={'center'}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
               onClick={() => {
                 onSelectCategory(undefined);
               }}
             >
-              <ArrowBackIos color="secondary" style={{fontSize: '8px'}} />
+              <ArrowBackIos color="secondary" style={{ fontSize: '8px' }} />
               <Typography
                 ml={0.6}
                 color={'white'}
@@ -114,13 +121,19 @@ function ActionMenu() {
       );
     } else {
       return (
-        <Box className={clsx(classes.actionMenu, {isSubMenu: false})}>
+        <Box className={clsx(classes.actionMenu, { isSubMenu: false })}>
           <Box ml={2}>
             <ActionButton
               name="Template"
               iconSrc="assets/icons/templates.svg"
               onClick={() => {
-                onSelectCategory('Templates');
+                if (selectedCategory === 'Templates') {
+                  onSelectCategory(undefined);
+                } else {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  onSelectCategory('Templates');
+                }
               }}
               selected={selectedCategory === 'Templates'}
             />
@@ -137,6 +150,8 @@ function ActionMenu() {
                     if (selectedCategory === action.id) {
                       onSelectCategory(undefined);
                     } else {
+                      onSetRightMenu(true);
+                  setShowRightMenu(true);
                       onSelectCategory(action.id);
                     }
                     action.onClick();
@@ -152,11 +167,23 @@ function ActionMenu() {
               name="Printing Types"
               iconSrc="assets/icons/printingTypes.svg"
               onClick={() => {
+                onSetRightMenu(true);
+                  setShowRightMenu(true);
                 onSelectCategory('PrintingTypes');
               }}
               selected={selectedCategory === 'PrintingTypes'}
             />
           </Box>
+          {((width ?? 0) <= 700 || (height ?? 0) <= 450) && <Box width={60} height={60}
+            borderRadius={'50%'}
+            display={'flex'}
+            justifyContent={'center'}
+            className={classes.moreButton}
+            onClick={() => {
+              bottomMenuVisibility('CircularMenu');
+              onSelectBottomMenuType('CircularMenu');
+            }}
+          >+</Box>}
         </Box>
       );
     }

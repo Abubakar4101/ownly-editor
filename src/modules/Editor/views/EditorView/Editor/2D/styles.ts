@@ -39,6 +39,7 @@ export const useStyles = makeStyles((theme: any) => ({
     width: '100%',
     height: '100%',
     margin: 'auto',
+    
   },
   sideWrapper: {
     width: '100px',

@@ -22,7 +22,7 @@ function SubFooter() {
     switch (selectedCategory) {
       case 'Draw':
         return (
-          <Box className={clsx(classes.subFooterWrapper)}>
+          <Box className={clsx(classes.subFooterWrapper, {draw: true})}>
             <DrawMenu />
           </Box>
         );

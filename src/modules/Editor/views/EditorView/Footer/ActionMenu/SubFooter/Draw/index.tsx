@@ -6,12 +6,14 @@ import BorderWight, {WightsOptions} from './BorderWight';
 import PrintingSettings from './PrintingSettings';
 import PensSection from './PensSection';
 import EditorContext from '../../../../context/EditorContext';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 type Tabs = 'TextStyles' | 'Heading';
 export type PenTypes = 'Pencil' | 'Circle' | 'Marker' | 'Easer';
 
 function Draw() {
-  const {fabricCanvas, onDraw, cancelDrawing, isDrawingMode} = useContext(EditorContext);
+  const {fabricCanvas, onDraw, showRightMenu, setShowRightMenu,cancelDrawing, isDrawingMode} = useContext(EditorContext);
+  const {onSetRightMenu} =  useEditorActions();
   const [selectedPenType, setselectedPenType] = useState<PenTypes | undefined>(
     isDrawingMode() ? 'Pencil' : undefined,
   );

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Box, IconButton, Fab, Typography } from '@mui/material';
 import { useStyles } from './styles';
-import { InfoOutlined, InvertColorsOutlined } from '@mui/icons-material';
+import { ArrowBackIos, InfoOutlined, InvertColorsOutlined } from '@mui/icons-material';
 import ActionMenu from './ActionMenu';
 import EditorContext from '../context/EditorContext';
 import SubFooter from './SubFooter';
@@ -9,10 +9,11 @@ import SidesFooter from './SidesFooterHori';
 import { ReactSVG } from 'react-svg';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import useEditorActions from 'modules/Editor/actions/useEditorActions';
+import clsx from 'clsx';
 
 
 function Footer() {
-  const { selectedRenderMode, isFirstUse, bottomMenu, onSelectBottomMenuType } = useContext(EditorContext);
+  const { selectedRenderMode, isFirstUse, bottomMenu, getSelectedObjects, onSelectBottomMenuType, onSelectCategory, selectedCategory, showRightMenu } = useContext(EditorContext);
   const [priceCollapse, setPriceCollapse] = React.useState(true);
   const { width, height } = useWindowDimensions();
   const classes = useStyles();
@@ -22,9 +23,19 @@ function Footer() {
   };
 
   const handleHorizontalMenu = (e: any) => {
-    console.log('clicked');
     onSelectBottomMenuType('CircularMenu');
   }
+  const isSubMenu = useMemo(() => {
+    if (
+      selectedCategory === 'Texts' ||
+      selectedCategory === 'Draw' ||
+      selectedCategory === 'Graphics'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [selectedCategory]);
   return (
     <Box className={classes.footer}>
       {(width ?? 0) > 700 && (height ?? 0) > 450 && <Box alignItems={'flex-end'} style={{ pointerEvents: 'none', marginTop: '100%' }}>
@@ -118,8 +129,64 @@ function Footer() {
           {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
           <ActionMenu />
         </Box>
-
       </Box>
+      {
+        (selectedCategory === 'Draw' || !showRightMenu) && (width ?? 0) > 650 && (height ?? 0) < 450 && <Box display={'flex'} className={classes.subBottomMenuWrapper}>
+          <Box
+            display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
+            alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}
+            flexDirection={'column'}
+            justifyContent={'flex-end'}
+            overflow={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'hidden' : 'scroll'}
+            className={classes.actionMenu}
+          >
+
+            {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
+            {selectedCategory &&
+            isSubMenu &&
+              (selectedCategory === 'Draw' || getSelectedObjects().length) && <Box width={selectedCategory === 'Draw' ? '680px' : (selectedCategory === 'Graphics' ? '810px' : '850px')} className={clsx(classes.subActionMenu, { isSubMenu: true})}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'flex-start'}
+                  alignItems={'center'}
+                  position={'fixed'}
+
+                  width={'70px'}
+                  height={'90px'}
+                  style={{ backgroundColor: '#24232500' }}
+                >
+                  <img src="./footer/backButton.png" height={'100%'}></img>
+                  <Box
+                    position={'absolute'}
+                    width={'100%'}
+                    display={'flex'}
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      onSelectCategory(undefined);
+                    }}
+                  >
+                    <ArrowBackIos color="secondary" style={{ fontSize: '8px' }} />
+                    <Typography
+                      ml={0.6}
+                      color={'white'}
+                      width={'38px'}
+                      fontSize={'9px'}
+                      fontWeight={600}
+                      lineHeight={'10px'}
+                      variant="caption"
+                    >
+                      Back to menu
+                    </Typography>
+                  </Box>
+                </Box>
+                <SubFooter />
+              </Box>}
+          </Box>
+
+        </Box>
+      }
       {((width ?? 0) > 650 || (height ?? 0) <= 450) && <Box className={classes.infoWrapper}>
         <Fab color="primary" aria-label="water" size="medium" className={classes.infoBut}>
           <InvertColorsOutlined />

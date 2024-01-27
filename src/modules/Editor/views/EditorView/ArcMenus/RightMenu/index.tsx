@@ -8,7 +8,7 @@ import RightArcButton from './RightArcButton';
 import EditorContext from '../../context/EditorContext';
 import { Categories } from 'modules/Editor/definitions/types';
 import useWindowDimensions from 'hooks/useWindowDimensions'
-import { TramRounded } from '@mui/icons-material';
+import { TramRounded, Tune } from '@mui/icons-material';
 import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 export type ArcAction = 'Bold' | 'FontChange' | 'RemoveBG' | Categories;
@@ -34,12 +34,13 @@ export function RightMenu() {
     onSelectCategory,
     onSelectBottomMenuType,
     getImagesFilters,
+    setShowRightMenu,
     removeImageBackground,
     onBold,
     onSelectSubCategory,
     onDraw,
   } = useContext(EditorContext);
-  const{bottomMenuVisibility} = useEditorActions();
+  const{bottomMenuVisibility, onSetRightMenu} = useEditorActions();
 
   useEffect(() => {
     if (selectedRenderMode === '3DMODE') {
@@ -73,6 +74,8 @@ export function RightMenu() {
             name: 'Font Change',
             iconSrc: 'assets/arcMenu/text.svg',
             onClick: () => {
+              onSetRightMenu(true);
+                setShowRightMenu(true);
               onSelectSubCategory('TextStyles');
             },
           },
@@ -81,18 +84,20 @@ export function RightMenu() {
             name: 'Upload Images',
             iconSrc: 'assets/arcMenu/cloud-up.svg',
             onClick: () => {
-              selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+                onSelectCategory('Uploads');
             },
+            
           },
           {
             id: 'Draw',
             name: 'Draw',
             iconSrc: 'assets/arcMenu/pencil.svg',
             onClick: () => {
-              // setTimeout(() => {
-                selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
-              onDraw();
-              // }, 1000);
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+                onSelectCategory('Draw');
             },
           },
           {
@@ -109,6 +114,8 @@ export function RightMenu() {
             name: 'Remove Background',
             iconSrc: 'assets/arcMenu/removeBg.svg',
             onClick: () => {
+              onSetRightMenu(true);
+                setShowRightMenu(true);
               removeImageBackground();
             },
           },
@@ -117,8 +124,11 @@ export function RightMenu() {
             name: 'Add Color Filters',
             iconSrc: 'assets/arcMenu/colorFilters.svg',
             onClick: () => {
-              selectedCategory === 'Filters' ? onSelectCategory(undefined) : onSelectCategory('Filters');
-              // getImagesFilters();
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Filters');
+              
             },
           },
           {
@@ -126,7 +136,11 @@ export function RightMenu() {
             name: 'Upload Images',
             iconSrc: 'assets/arcMenu/cloud-up.svg',
             onClick: () => {
-              selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Uploads');
+              
             },
           },
           {
@@ -134,7 +148,11 @@ export function RightMenu() {
             name: 'Draw',
             iconSrc: 'assets/arcMenu/pencil.svg',
             onClick: () => {
-              selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Draw');
+              
               onDraw();
             },
           },
@@ -152,7 +170,11 @@ export function RightMenu() {
             name: 'Upload Images',
             iconSrc: 'assets/arcMenu/cloud-up.svg',
             onClick: () => {
-              selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Uploads');
+              
             },
           },
           {
@@ -160,7 +182,11 @@ export function RightMenu() {
             name: 'Add Shape',
             iconSrc: 'assets/arcMenu/shape.svg',
             onClick: () => {
-              selectedCategory === 'Graphics' ? onSelectCategory(undefined) : onSelectCategory('Graphics');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Graphics');
+              
             },
           },
           {
@@ -168,7 +194,11 @@ export function RightMenu() {
             name: 'Add Text',
             iconSrc: 'assets/arcMenu/text.svg',
             onClick: () => {
-              selectedCategory === 'Texts' ? onSelectCategory(undefined) : onSelectCategory('Texts');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+
+                onSelectCategory('Texts');
+            
             },
           },
           {
@@ -176,7 +206,10 @@ export function RightMenu() {
             name: 'Pencil1',
             iconSrc: 'assets/arcMenu/pencil.svg',
             onClick: () => {
-              selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+                onSetRightMenu(true);
+                setShowRightMenu(true);
+                onSelectCategory('Draw');
+              
               onDraw();
             },
           },

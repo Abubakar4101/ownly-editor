@@ -1,11 +1,13 @@
 import {makeStyles} from '@mui/styles';
 import {Theme} from '@mui/material';
+import { landscapeOnly } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   topMenuWrapper: {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    
   },
   penButton: {
     cursor: 'pointer',
@@ -68,4 +70,4 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderColor: '#FFFFFF',
     },
   },
-}));
+})); 

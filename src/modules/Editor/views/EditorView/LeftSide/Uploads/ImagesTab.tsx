@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import SearchBox from 'shared/components/SearchBox';
 import {RenderMode} from 'modules/Editor/definitions/types';
 import EditorContext from '../../context/EditorContext';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 export interface Image {
   id: string;
@@ -19,7 +21,10 @@ interface Props {
 function ImagesTab(props: Props) {
   const {allImages} = props;
   const classes = useInStyles();
-  const {onUploadImage} = useContext(EditorContext);
+  const {onUploadImage, onSelectCategory} = useContext(EditorContext);
+  const {width, height} = useWindowDimensions();
+  const {onSetRightMenu} = useEditorActions();
+
 
   const onSelectImage = useCallback(
     (imgSrc: string) => {
@@ -47,6 +52,8 @@ function ImagesTab(props: Props) {
               }}
               onClick={() => {
                 onSelectImage(img.src);
+                (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+                onSetRightMenu(true)
               }}
             />
           </Box>

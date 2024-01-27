@@ -7,6 +7,8 @@ import SearchBox from 'shared/components/SearchBox';
 import {ReactSVG} from 'react-svg';
 import {RenderMode, ShapeTypes} from 'modules/Editor/definitions/types';
 import EditorContext from '../../context/EditorContext';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 interface Shape {
   id: ShapeTypes;
@@ -27,9 +29,12 @@ const Shapes: Shape[] = [
 
 function ShapesTab() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const {drawShapeById} = useContext(EditorContext);
+  const {drawShapeById, onSelectCategory} = useContext(EditorContext);
+  const {width, height} = useWindowDimensions();
 
   const classes = useStyles();
+  const {onSetRightMenu} = useEditorActions();
+
 
   return (
     <Box className={classes.shapesTab}>
@@ -40,6 +45,8 @@ function ShapesTab() {
             className={classes.shapeButt}
             onClick={() => {
               drawShapeById(shape.id);
+              (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+              onSetRightMenu(true)
             }}
           >
             <ReactSVG src={`./assets/icons/graphics/shapes/${shape.src}.svg`} height={'62px'} />

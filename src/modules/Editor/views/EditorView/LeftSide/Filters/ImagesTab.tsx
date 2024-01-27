@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useInStyles} from './styles';
 import {Box, Switch, Button, FormControl, FilledInput, TextField, Input, Fab} from '@mui/material';
 import {ShoppingBasket, Redo, Undo, KeyboardArrowRight} from '@mui/icons-material';
 import clsx from 'clsx';
 import SearchBox from 'shared/components/SearchBox';
 import {RenderMode} from 'modules/Editor/definitions/types';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import EditorContext from '../../context/EditorContext';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 export interface Image {
   id: fabric.IGrayscaleFilter;
@@ -21,6 +24,10 @@ interface Props {
 function ImagesTab(props: Props) {
   const {allImages, selectedImage, onSelectImage} = props;
   const classes = useInStyles();
+  const {width, height} =useWindowDimensions();
+  const {onSelectCategory} = useContext(EditorContext);
+  const {onSetRightMenu} = useEditorActions();
+
 
   return (
     <Box className="furniture">
@@ -39,6 +46,8 @@ function ImagesTab(props: Props) {
               alt={`Image ${index}`}
               onClick={() => {
                 onSelectImage(img);
+                (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+                onSetRightMenu(true)
               }}
               // draggable
               // onDragStart={e => {

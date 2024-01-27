@@ -7,12 +7,18 @@ import SearchBox from 'shared/components/SearchBox';
 import {RenderMode} from 'modules/Editor/definitions/types';
 import EmojiPicker, {Theme} from 'emoji-picker-react';
 import EditorContext from '../../context/EditorContext';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
+
 
 function IconsTab() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const {onSelectSvgIcon} = useContext(EditorContext);
+  const {onSelectSvgIcon, onSelectCategory} = useContext(EditorContext);
+  const {width, height} = useWindowDimensions();
 
   const classes = useStyles();
+  const {onSetRightMenu} = useEditorActions();
+
 
   // Function to convert image URL to base64
   const imageUrlToBase64 = useCallback((imageUrl: string) => {
@@ -38,6 +44,8 @@ function IconsTab() {
       imageUrlToBase64(IconString).then((base64: any) => {
         // console.log('base64', base64);
         onSelectSvgIcon(base64);
+        (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+        onSetRightMenu(true);
       });
     },
     [imageUrlToBase64, onSelectSvgIcon],

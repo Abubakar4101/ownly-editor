@@ -1,6 +1,6 @@
 import { Margin } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
-import { mobileAndLandscape } from 'hooks/breakspoints';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   switchWrraper: {
@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme: any) => ({
     [mobileAndLandscape]: {
       height: '70vh',
     }
-    
+
 
   },
   drawnWrrapper: {
@@ -42,9 +42,13 @@ export const useStyles = makeStyles((theme: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    [mobileAndLandscape]: {
+    [theme.breakpoints.down(700)]: {
       height: '50vh',
+    },
+    [landscapeOnly]: {
+      height: '65vh'
     }
+
   },
   canvasWrrapper: {
     width: '100%',
@@ -85,6 +89,7 @@ export const useStyles = makeStyles((theme: any) => ({
     '&.selected': {
       backgroundColor: '#83E19866',
     },
+
   },
   rightSleeve: {
     top: '15%',

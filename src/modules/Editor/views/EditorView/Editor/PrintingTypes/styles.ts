@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import { mobileAndLandscape } from 'hooks/breakspoints';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: any) => ({
   printingTypesWrraper: {
@@ -14,12 +14,24 @@ export const useStyles = makeStyles((theme: any) => ({
     border: '1px solid #4D4D4D',
     background: '#282729',
     backdropFilter: 'blur(25px)',
-    [mobileAndLandscape]: {
+    [theme.breakpoints.down(700)]: {
+      position: 'absolute',
+      top: '60%',
+      left: '50%',
+      zIndex: 99,
+      width: '450px',
+      maxWidth: '90vw',
+      maxHeight: '30vh',
+      minHeight: '30vh',
+      padding: '10px',
+      transform: 'translate(-50%, -50%)'
+    },
+    [landscapeOnly]: {
       width: '450px',
       // minWidth: '330px',
       maxWidth: '90vw',
-      maxHeight: '70%',
-      minHeight: '70%',
+      maxHeight: '60vh',
+      minHeight: '60vh',
       padding: '10px',
       // margin: '0px 1vw',
       position: 'absolute',

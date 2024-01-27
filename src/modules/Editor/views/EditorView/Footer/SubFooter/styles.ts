@@ -1,5 +1,6 @@
 import {makeStyles} from '@mui/styles';
 import {Theme} from '@mui/material';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   subFooterWrapper: {
@@ -22,6 +23,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: '95px',
       minHeight: '0px',
     },
+    [mobileAndLandscape]:{
+      justifyContent: 'end',
+    },
+    [landscapeOnly]: {
+      border: 'none',
+
+    }
+
   },
   subFooter: {
     width: '684px',

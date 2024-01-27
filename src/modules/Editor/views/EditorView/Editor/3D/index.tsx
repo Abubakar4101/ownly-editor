@@ -90,8 +90,8 @@ function Editor3D(props: Props) {
         alignItems: 'center',
       }}
       display={'flex'}
-      width={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '90vw'}
-      height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '50vh'}
+      width={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : (width ?? 0) >= 650 && (height ?? 0) <= 450 ? '50vw' : '90vw'}
+      height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '55vh'}
     >
       <GmContext.Provider value={gameManager}>
         <canvas

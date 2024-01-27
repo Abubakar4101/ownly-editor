@@ -25,5 +25,8 @@ export const useStyles = makeStyles((theme: any) => ({
     },
     display: 'flex',
     justifyContent: 'center',
+    [landscapeOnly]: {
+      top: '-17%',
+    }
   },
 }));

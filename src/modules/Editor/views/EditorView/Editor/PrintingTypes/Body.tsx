@@ -1,12 +1,13 @@
-import React, {useEffect, useMemo, useState, useContext} from 'react';
-import {useStyles} from './styles';
-import {Box, Typography, Button, TextField, Divider} from '@mui/material';
-import {ShoppingBasket, Redo, Undo} from '@mui/icons-material';
+import React, { useEffect, useMemo, useState, useContext } from 'react';
+import { useStyles } from './styles';
+import { Box, Typography, Button, TextField, Divider } from '@mui/material';
+import { ShoppingBasket, Redo, Undo } from '@mui/icons-material';
 import Header from 'shared/components/Header';
-import {RenderMode} from 'modules/Editor/definitions/types';
+import { RenderMode } from 'modules/Editor/definitions/types';
 import clsx from 'clsx';
-import {ReactSVG} from 'react-svg';
-import {PrintingTypes} from './index';
+import { ReactSVG } from 'react-svg';
+import { PrintingTypes } from './index';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 interface Props {
   selectedType: PrintingTypes;
@@ -14,18 +15,18 @@ interface Props {
 }
 
 function BodyTab(props: Props) {
-  const {selectedType, onSelectType} = props;
-
+  const { selectedType, onSelectType } = props;
+  const { width, height } = useWindowDimensions();
   const classes = useStyles();
 
   return (
     <Box className={clsx(classes.bodyWrraper)}>
-      <Box className={clsx(classes.leftBody)}>
+      {(((width ?? 0) > 700) && ((height ?? 0) > 450)) && <Box className={clsx(classes.leftBody)}>
         <img width={'80%'} src="./assets/printingTypes/image.png"></img>
         <Box mt={4} width={'77%'}>
           <Typography
             variant={'body1'}
-            style={{color: '#CACCD2', fontFamily: 'Duplet Rounded', fontWeight: 700}}
+            style={{ color: '#CACCD2', fontFamily: 'Duplet Rounded', fontWeight: 700 }}
             gutterBottom
           >
             {selectedType}
@@ -45,70 +46,76 @@ function BodyTab(props: Props) {
             }
           </Typography>
         </Box>
-      </Box>
+      </Box>}
       <Divider orientation="vertical" variant="fullWidth" flexItem className={classes.divider} />
       <Box className={clsx(classes.rightBody)}>
         <Box ml={2} mt={2}>
           <Typography
             variant={'caption'}
             className={classes.printingTypesText}
-            style={{textTransform: 'uppercase'}}
+            style={{ textTransform: 'uppercase' }}
             gutterBottom
           >
             {'General'}
           </Typography>
-          <Box mt={0.8} display={'flex'}>
-            <Button
-              className={clsx(classes.printingTypesBut, {selected: selectedType === 'DTG'})}
-              variant="outlined"
-              startIcon={
-                <ReactSVG
-                  style={{marginTop: '4px'}}
-                  src={'./assets/printingTypes/printing-page.svg'}
-                />
-              }
-              endIcon={
-                <ReactSVG
-                  src={
-                    selectedType === 'DTG'
-                      ? './assets/printingTypes/switchSelected.svg'
-                      : './assets/printingTypes/switchUnselected.svg'
-                  }
-                />
-              }
-              onClick={() => {
-                onSelectType('DTG');
-              }}
-            >
-              DTG
-            </Button>
-            <Button
-              className={clsx(classes.printingTypesBut, {selected: selectedType === 'UV'})}
-              variant="outlined"
-              startIcon={
-                <ReactSVG
-                  style={{marginTop: '4px'}}
-                  src={'./assets/printingTypes/printing-page.svg'}
-                />
-              }
-              endIcon={
-                <ReactSVG
-                  src={
-                    selectedType === 'UV'
-                      ? './assets/printingTypes/switchSelected.svg'
-                      : './assets/printingTypes/switchUnselected.svg'
-                  }
-                />
-              }
-              onClick={() => {
-                onSelectType('UV');
-              }}
-            >
-              UV
-            </Button>
+          <Box mt={0.8} display={'flex'} padding={'2%'} justifyContent={(((width ?? 0) < 700) || ((height ?? 0) < 450)) ? 'center' : 'flex-start'} alignItems={(((width ?? 0) < 700) || ((height ?? 0) < 450)) ? 'center': 'flex-start'}>
+            <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
+              <Button
+                className={clsx(classes.printingTypesBut, { selected: selectedType === 'DTG' })}
+                variant="outlined"
+                startIcon={
+                  <ReactSVG
+                    style={{ marginTop: '4px' }}
+                    src={'./assets/printingTypes/printing-page.svg'}
+                  />
+                }
+                endIcon={
+                  <ReactSVG
+                    src={
+                      selectedType === 'DTG'
+                        ? './assets/printingTypes/switchSelected.svg'
+                        : './assets/printingTypes/switchUnselected.svg'
+                    }
+                  />
+                }
+                onClick={() => {
+                  onSelectType('DTG');
+                }}
+              >
+                DTG
+              </Button>
+              {(((width ?? 0) < 700) || ((height ?? 0) < 450)) && <img width={'50%'} src="./assets/printingTypes/image.png"></img>}
+            </Box>
+            <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
+              <Button
+                className={clsx(classes.printingTypesBut, { selected: selectedType === 'UV' })}
+                variant="outlined"
+                startIcon={
+                  <ReactSVG
+                    style={{ marginTop: '4px' }}
+                    src={'./assets/printingTypes/printing-page.svg'}
+                  />
+                }
+                endIcon={
+                  <ReactSVG
+                    src={
+                      selectedType === 'UV'
+                        ? './assets/printingTypes/switchSelected.svg'
+                        : './assets/printingTypes/switchUnselected.svg'
+                    }
+                  />
+                }
+                onClick={() => {
+                  onSelectType('UV');
+                }}
+              >
+                UV
+              </Button>
+              {(((width ?? 0) < 700) || ((height ?? 0) < 450)) && <img width={'50%'} src="./assets/printingTypes/image.png"></img>}
+            </Box>
           </Box>
         </Box>
-        <Box className={clsx(classes.printingTypesContent)}>
+        {(((width ?? 0) > 700) && ((height ?? 0) > 450)) && <Box className={clsx(classes.printingTypesContent)}>
           <Box className={clsx(classes.printingTypesContentBlur)}></Box>
           <Box className={clsx(classes.printingTypesContentMsg)}>
             <Typography
@@ -133,7 +140,7 @@ function BodyTab(props: Props) {
               </Button>
             </Box>
           </Box>
-        </Box>
+        </Box>}
       </Box>
     </Box>
   );
