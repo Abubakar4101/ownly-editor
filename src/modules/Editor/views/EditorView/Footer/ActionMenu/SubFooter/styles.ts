@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     '&.graphics': {
       height: '95px',
       minHeight: '0px',
+      
     },
     [landscapeOnly]: {
       '&.draw': {

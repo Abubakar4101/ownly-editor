@@ -13,7 +13,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     border: `1px solid ${theme.palette.grey[100]}`,
     minWidth: '400px',
     minHeight: '80px',
-    padding: '8px 14px',
     marginBottom: '.5em',
     '&.text': {
       height: '64px',
@@ -23,13 +22,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: '95px',
       minHeight: '0px',
     },
-    [mobileAndLandscape]:{
-      justifyContent: 'end',
+    '&.draw': {
+      [theme.breakpoints.down(700)]: {
+        position: 'relative',
+        bottom: '10%'
+      }
     },
-    [landscapeOnly]: {
+    [mobileAndLandscape]:{
+      borderRadius: '0px',
       border: 'none',
 
-    }
+    },
 
   },
   subFooter: {

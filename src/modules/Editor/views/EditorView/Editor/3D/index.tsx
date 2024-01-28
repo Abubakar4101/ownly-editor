@@ -91,7 +91,7 @@ function Editor3D(props: Props) {
       }}
       display={'flex'}
       width={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : (width ?? 0) >= 650 && (height ?? 0) <= 450 ? '50vw' : '90vw'}
-      height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : '55vh'}
+      height={(width ?? 0) > 700 && (height ?? 0) > 450 ? '100%' : (width ?? 0) >= 650 && (height ?? 0) <= 450 ? '60vh' : '45vh'}
     >
       <GmContext.Provider value={gameManager}>
         <canvas

@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: any) => ({
     position: 'fixed',
     right: '5vw',
     left: '5vw',
+    [theme.breakpoints.down(700)]: {
+      right: '0px',
+      left: '0px',
+    },
     bottom: '0px',
     minHeight: '200px',
     display: 'flex',
@@ -72,14 +76,17 @@ export const useStyles = makeStyles((theme: any) => ({
     [landscapeOnly]: {
       position: 'absolute',
       transform: 'rotate(90deg)',
-      top: '2vh',
-      right: '-20vw'
+      right: '-24%',
+      top: '0%'
     }
   },
   subBottomMenuWrapper: {
     [mobileAndLandscape]: {
       overflowX: 'scroll',
       overflowY: 'hidden',
+    },
+    '&.isSubMenu': {
+      animation: '$bottomSlide 3s ease-in-out',
     },
     [landscapeOnly]: {
       position: 'absolute',
@@ -92,6 +99,7 @@ export const useStyles = makeStyles((theme: any) => ({
     [mobileAndLandscape]: {
       backgroundColor: '#282729',
       height: '90px',
+      zIndex:'90',
       border: '1px solid #707070',
       padding: '10px',
       transform: 'translate(0, 0)',
@@ -99,6 +107,7 @@ export const useStyles = makeStyles((theme: any) => ({
       pointerEvents: 'all',
       transformOrigin: 'left center',
       animation: '$leftSlide 1s ease-in-out',
+      position: 'fixed'
     },
   },
   bottomLeftPic: {
@@ -108,14 +117,14 @@ export const useStyles = makeStyles((theme: any) => ({
     pointerEvents: 'none',
   },
   actionMenu: {
-    [mobileAndLandscape]: {
+    [mobileAndLandscape]: { 
       pointerEvents: 'none',
-      transform: 'translate(0, 0)',
       transformOrigin: 'bottom center',
       animation: '$bottomSlide 1.5s ease-in-out',
     },
+    
     [landscapeOnly]: {
-      width: '34vw'
+      width: '43vw'
     }
   },
   subActionMenuWrapper:{
@@ -147,9 +156,9 @@ export const useStyles = makeStyles((theme: any) => ({
       width: '780px',
     },
     '&.isSubMenu': {
-      height: '90px',
-      padding: '0px',
-      borderRadius: '225px 50px 50px 240px / 150px 25px 25px 137px',
+      height: '120px',
+      borderRadius: '20px 20px 0px 0px',
+      border: '2px solid #3A3862'
       // background: `radial-gradient(120px at 0 120px, ${theme.palette.common.black} 98%, ${theme.palette.primary.dark} 0) 0 -120px`,
     },
     transition: 'width 0.5s ease-in-out', // Transition property for width

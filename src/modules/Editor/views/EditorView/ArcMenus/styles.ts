@@ -1,4 +1,5 @@
 import { Height } from '@mui/icons-material';
+import zIndex from '@mui/material/styles/zIndex';
 import {makeStyles} from '@mui/styles';
 import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
@@ -43,9 +44,9 @@ export const useStyles = makeStyles((theme: any) => ({
     [theme.breakpoints.down(700)]: {
       position: 'fixed',
       height: '300px',
-      width: '300px',
+      width: '230px',
       flexDirection: 'row',
-      bottom: -35,
+      bottom: 0,
       transformOrigin: 'bottom center',
       animation: '$bottomSlide 0.5s ease-in-out',
     },
@@ -56,9 +57,10 @@ export const useStyles = makeStyles((theme: any) => ({
       justifyContent: 'center',
       alignItems: 'flex-end',
       position: 'absolute',
-      gap: '5%',
+      gap: '1%',
       top: '-20%',
-      left: '100%',
+      left: '95%',
+      zIndex: 99,
       transform: 'rotateZ(-90deg) translate(0, -35%)',
       transformOrigin: 'bottom center',
       animation: '$bottomSlide 0.5s ease-in-out',
@@ -82,6 +84,10 @@ export const useStyles = makeStyles((theme: any) => ({
     position: 'fixed',
     bottom: -50,
     cursor: 'pointer',
+    borderRadius: '50%',
+    [landscapeOnly]: {
+      borderRadius: '20%',
+    }
   },
   
   leftArcMenu: {

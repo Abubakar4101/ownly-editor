@@ -34,10 +34,10 @@ export default function RightArcButton(props: Props) {
   const buttonPosition = {
     transform: `rotate(${degree}deg)`,
     transformOrigin: 'top left',
-    translate: (width ?? 0) > 700 && (height ?? 0) > 450 ? `${transValue}px 0px` : `0px ${transValue}px`,
+    translate: (width ?? 0) > 700 && (height ?? 0) > 450 ? `${transValue}px 0px` : `${transValue}`,
   };
   const rotateSVG = {
-    transform: `rotate(${rotateValue}deg)`,
+    transform: (width ?? 0) >= 650 && (height ?? 0) <= 450 ? 'rotate(90deg)': `rotate(${degree}deg)` ,
   };
 
   const handleClick = () => {

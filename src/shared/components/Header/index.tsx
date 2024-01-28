@@ -103,36 +103,30 @@ const MobileHeader = (props: Props) => {
             </Button>
           </Box>
         </Box>
-        <Box height={'100%'} display={'flex'} justifyContent={'space-between'}>
-
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            defaultValue={'FRONT'}
-            variant="standard"
-            onChange={() => { }}
-            className={classes.sizeSelect}
-            style={{ margin: '0 0 0 20px' }}
-          >
-            {availableSides.map(side => {
-              return (
-                <MenuItem key={side.id} value={side.id}>
-                  <Fab
-                    className={clsx(classes.sideBut, { selected: selectedSide === side.id })}
-                    color="primary"
-                    aria-label="water"
-                    size="large"
-                    variant="circular"
-                    onClick={() => {
-                      onSetSelectedSide(side.id);
-                    }}
-                  >
-                    <ReactSVG src={side.iconSrc} />
-                  </Fab>
-                </MenuItem>
-              );
-            })}
-          </Select>
+        <Box padding={'0 19px'} height={'calc(100% - 19px)'} display={'flex'} justifyContent={'space-between'}>
+          <Box className={classes.topLeftSideWrapper}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue={'FRONT'}
+              variant="standard"
+              onChange={() => { }}
+              className={classes.sizeSelect}
+            >
+              {availableSides.map(side => {
+                return (
+                  <MenuItem key={side.id} value={side.id}>
+                      <ReactSVG 
+                       className={clsx(classes.sideBut, { selected: selectedSide === side.id })}
+                       onClick={() => {
+                         onSetSelectedSide(side.id);
+                       }}
+                      src={side.iconSrc} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </Box>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -265,41 +259,40 @@ const MobileHeader = (props: Props) => {
               <Redo />
             </IconButton>
           </Box>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            defaultValue={'FRONT'}
-            variant="standard"
-            onChange={() => { }}
-            className={classes.sizeSelect}
-            style={{ margin: '0 0 0 20px' }}
-          >
-            {availableSides.map(side => {
-              return (
-                <MenuItem key={side.id} value={side.id}>
-                  <Fab
-                    className={clsx(classes.sideBut, { selected: selectedSide === side.id })}
-                    color="primary"
-                    aria-label="water"
-                    size="large"
-                    variant="circular"
-                    onClick={() => {
-                      onSetSelectedSide(side.id);
-                    }}
-                  >
-                    <ReactSVG src={side.iconSrc} />
-                  </Fab>
-                </MenuItem>
-              );
-            })}
-          </Select>
+          <Box className={classes.topLeftSideWrapper}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue={'FRONT'}
+              variant="standard"
+              onChange={() => { }}
+              className={classes.sizeSelect}
+            >
+              {availableSides.map(side => {
+                return (
+                  <MenuItem key={side.id} value={side.id}>
+                      <ReactSVG 
+                       className={clsx(classes.sideBut, { selected: selectedSide === side.id })}
+                       onClick={() => {
+                         onSetSelectedSide(side.id);
+                       }}
+                      src={side.iconSrc} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </Box>
           <Box display={'flex'} p={1.3} mr={2}>
             <Button
               variant="contained"
               className={classes.submitButton}
               onClick={onSubmitData}
             >
-              Done
+              Done & Order 
+              <ReactSVG
+              src={'assets/icons/bin.svg'}
+              style={{marginLeft: '4px'}}
+            />
             </Button>
           </Box>
         </Box>

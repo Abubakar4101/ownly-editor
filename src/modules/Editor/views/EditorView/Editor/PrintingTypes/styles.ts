@@ -27,11 +27,11 @@ export const useStyles = makeStyles((theme: any) => ({
       transform: 'translate(-50%, -50%)'
     },
     [landscapeOnly]: {
-      width: '450px',
+      width: '690px',
       // minWidth: '330px',
       maxWidth: '90vw',
-      maxHeight: '60vh',
-      minHeight: '60vh',
+      maxHeight: '90vh',
+      minHeight: '90vh',
       padding: '10px',
       // margin: '0px 1vw',
       position: 'absolute',

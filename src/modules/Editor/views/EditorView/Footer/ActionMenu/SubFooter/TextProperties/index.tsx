@@ -58,7 +58,8 @@ function TextProperties() {
   ];
 
   return (
-    <Box display={'flex'} flexDirection={'row'} justifyContent={'flex-start'}>
+    <Box display={'flex'} flexDirection={'row'} justifyContent={'flex-start'} 
+    marginLeft={'70px'}>
       <Box
         mr={0.5}
         display={'flex'}

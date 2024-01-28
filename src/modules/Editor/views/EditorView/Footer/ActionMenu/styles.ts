@@ -10,21 +10,23 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '32px',
     border: `1px solid ${theme.palette.grey[100]}`,
     minWidth: '400px',
-    padding: '10px 16px',
+    padding: '10px 16px', 
     width: '720px',
     height: '90px',
     pointerEvents: 'all',
+    [theme.breakpoints.down(700)]: {
+      marginLeft: '80px',
+    },
     [mobileAndLandscape]: {
       justifySelf: 'flex-start',
       minWidth: '460px',
-      width: '780px',
+      width: '720px',
+      borderRadius: '0px',
     },
     '&.isSubMenu': {
-      width: '810px',
+      width: '780px',
       height: '90px',
-      padding: '0px',
-      borderRadius: '225px 50px 50px 240px / 150px 25px 25px 137px',
-    
+      padding: '0px',    
       // background: `radial-gradient(120px at 0 120px, ${theme.palette.common.black} 98%, ${theme.palette.primary.dark} 0) 0 -120px`,
     },
     transition: 'width 0.5s ease-in-out', // Transition property for width

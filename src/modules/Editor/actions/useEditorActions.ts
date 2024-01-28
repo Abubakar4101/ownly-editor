@@ -278,9 +278,7 @@ const useEditorActions = () => {
     if (!containerInstance) {
       return;
     }
-
     setIsFabricActonsReady(false);
-    console.log("careate 2d canvas");
     const { clientHeight, clientWidth } = containerInstance;
     const grid = 50;
     const lines = [];
@@ -289,10 +287,16 @@ const useEditorActions = () => {
 
     const fabricCanvasInstance = new fabric.Canvas("canvas", {
       backgroundColor: "rgba(0, 0, 0, 0.0000001)",
-      height: clientHeight,
-      width: clientWidth,
       preserveObjectStacking: true,
     });
+    
+    const isLandscape = (width ?? 0) >= 650 && (height ?? 0) <= 450;
+    
+    const canvasWidth = isLandscape ? 330 : clientWidth;
+    const canvasHeight = isLandscape ? 220 : clientHeight;
+    
+    fabricCanvasInstance.setDimensions({ width: canvasWidth, height: canvasHeight });
+    
 
     if (sidesData[selectedSide]) {
       fabricCanvasInstance.loadFromJSON(sidesData[selectedSide], () => {

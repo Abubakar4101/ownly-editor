@@ -1,11 +1,14 @@
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
 import { Translate } from '@mui/icons-material';
-import { mobileAndLandscape } from 'hooks/breakspoints';
+import { landscapeOnly, mobileAndLandscape } from 'hooks/breakspoints';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   rightSideWrapper: {
     width: '375px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     // minWidth: '330px',
     maxWidth: '24vw',
     maxHeight: '100%',
@@ -19,7 +22,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
       // width: '100%',
     },
     // padding: '16px',
-    [mobileAndLandscape]: {
+    [landscapeOnly]: {
+      width: '690px',
+      // minWidth: '330px',
+      maxWidth: '100vw',
+      maxHeight: '85vh',
+      minHeight: '85vh',
+      position: 'absolute',
+      top: '57%',
+      left: '50%',
+      zIndex: 100,
+      transform: 'translate(-50%, -50%)'
+    },
+    [theme.breakpoints.down(700)]: {
       width: '375px',
       // minWidth: '330px',
       maxWidth: '90vw',
@@ -68,7 +83,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       top: '100%',
     },
     '100%': {
-      top: '50%',
+      top: '57%',
     },
   },
 

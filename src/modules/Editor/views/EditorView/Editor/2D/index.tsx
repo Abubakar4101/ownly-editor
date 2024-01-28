@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext, useMemo, useLayoutEffect } from 'react';
 import { useStyles } from './styles';
 import { Box, ClickAwayListener } from '@mui/material';
 import { OuterId } from 'modules/Editor/definitions/types';
@@ -11,14 +11,21 @@ import useWindowDimensions from '../../../../../../hooks/useWindowDimensions'
 import clsx from "clsx";
 
 function Editor2D() {
-  const { fabricContainer, selectedCategory, selectedModelType, selectedSide, canvasColor, onSelectCategory, onInit2DEditor } =
+  const { fabricContainer, selectedCategory, selectedModelType, selectedSide, canvasColor, onSelectCategory, onInit2DEditor, onApplyImage } =
     useContext(EditorContext);
   const classes = useStyles();
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
 
-  useEffect(() => {
-    onInit2DEditor();
-  }, []);
+  useLayoutEffect(() => {
+    onInit2DEditor();               
+  },[window.innerWidth]);
+
+
+
+  // useEffect(() => {
+  //   onInit2DEditor();
+  // }, [useWindowDimensions]);
+
 
   const getRatio = useMemo(() => {
     const selectedConfig = modelsConfigs[selectedModelType];
@@ -44,7 +51,7 @@ function Editor2D() {
             <SidesFooter />
           </div>
           {true && (
-            <div id="canvas-container" className={classes.drawnWrrapper} style={{ aspectRatio: getRatio, backgroundColor: canvasColor, boxShadow: `0px 0px 15px 5px ${canvasColor}` }}>
+            <div id="canvas-container" className={classes.drawnWrrapper} style={{ aspectRatio: ((width ?? 0) > 700 && (height ?? 0) > 450) || ((width ?? 0) <= 650) ? getRatio : '1.5', backgroundColor: canvasColor, boxShadow: `0px 0px 15px 5px ${canvasColor}` }}>
               <canvas id="canvas" className={classes.canvasWrrapper} ref={fabricContainer}></canvas>
             </div>
           )}

@@ -13,7 +13,8 @@ export const useStyles = makeStyles((theme: any) => ({
     height: 'calc(100%)',
     width: 'calc(100%)',
     '&.printingTypes': {
-      width: '40vw',
+      height: 'calc(100%)',
+      width: 'calc(100%)',
     },
   },
   bkWrrapper: {
@@ -21,7 +22,7 @@ export const useStyles = makeStyles((theme: any) => ({
     height: '100%',
     // marginTop: '4px',
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     background: '#ffffff00',
     justifyContent: 'center',
     position: 'absolute',
@@ -29,7 +30,6 @@ export const useStyles = makeStyles((theme: any) => ({
   },
   drawnWrrapper: {
     border: '2px dashed #00000045',
-    aspectRatio: '1 / 1.14',
     height: '100%',
     // background: 'linear-gradient(102.01deg, #FFFFFF -0.42%, rgba(255, 255, 255, 1) 102.23%)',
     boxShadow: '0px 0px 15px 5px #6561C2 !important',

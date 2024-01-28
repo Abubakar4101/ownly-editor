@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useCallback, useMemo } from 'react';
 import { Redirect } from 'react-router-dom';
-import { TestType, Categories } from '../../../../definitions/types/index';
+import { TestType, Categories, BottomMenuType } from '../../../../definitions/types/index';
 import { Button, Box, IconButton, Fab, Typography } from '@mui/material';
 import { useStyles } from './styles';
 import { InfoOutlined, InvertColorsOutlined, ArrowBackIos } from '@mui/icons-material';
@@ -23,7 +23,7 @@ function ActionMenu() {
   const classes = useStyles();
   const { selectedCategory, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
   const { width, height } = useWindowDimensions();
-  const{bottomMenuVisibility, onSetRightMenu} = useEditorActions();
+  const { bottomMenuVisibility, onSetRightMenu } = useEditorActions();
 
 
   const Actions: Action[] = [
@@ -59,6 +59,11 @@ function ActionMenu() {
     },
   ];
 
+  const handleBottonMenuVisibility = (menu: BottomMenuType) => {
+    bottomMenuVisibility(menu);
+    onSelectBottomMenuType(menu);
+  };
+
   const isSubMenu = useMemo(() => {
     if (
       selectedCategory === 'Texts' ||
@@ -76,115 +81,77 @@ function ActionMenu() {
       (((width ?? 0) > 700 && (height ?? 0) > 450) || (width ?? 0) < 650) &&
       selectedCategory &&
       isSubMenu &&
-      (selectedCategory === 'Draw' || getSelectedObjects().length)
+     (!( selectedCategory === 'Draw') &&
+      getSelectedObjects().length)
     ) {
       return (
-        <Box className={clsx(classes.actionMenu, { isSubMenu: true })}>
-          <Box
-            display={'flex'}
-            justifyContent={'flex-start'}
-            alignItems={'center'}
-            position={'fixed'}
-            
-            width={'70px'}
-            height={'90px'}
-            style={{ backgroundColor: '#24232500' }}
-          >
-            <img src="./footer/backButton.png" height={'100%'}></img>
-            <Box
-              position={'absolute'}
-              width={'100%'}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                onSelectCategory(undefined);
-              }}
-            >
-              <ArrowBackIos color="secondary" style={{ fontSize: '8px' }} />
-              <Typography
-                ml={0.6}
-                color={'white'}
-                width={'38px'}
-                fontSize={'9px'}
-                fontWeight={600}
-                lineHeight={'10px'}
-                variant="caption"
-              >
-                Back to menu
-              </Typography>
-            </Box>
-          </Box>
+        <Box
+          width={(selectedCategory === 'Graphics' ? '780px' : '850px')} className={clsx(classes.actionMenu, { isSubMenu: true })}>
           <SubFooter />
         </Box>
       );
     } else {
       return (
-        <Box className={clsx(classes.actionMenu, { isSubMenu: false })}>
-          <Box ml={2}>
-            <ActionButton
-              name="Template"
-              iconSrc="assets/icons/templates.svg"
-              onClick={() => {
-                if (selectedCategory === 'Templates') {
-                  onSelectCategory(undefined);
-                } else {
+        <>
+          <Box className={clsx(classes.actionMenu, { isSubMenu: false })}>
+            <Box ml={2}>
+              <ActionButton
+                name="Template"
+                iconSrc="assets/icons/templates.svg"
+                onClick={() => {
+                  if (selectedCategory === 'Templates') {
+                    onSelectCategory(undefined);
+                    handleBottonMenuVisibility('CircularMenu')
+
+                  } else {
+                    onSetRightMenu(true);
+                    setShowRightMenu(true);
+                    onSelectCategory('Templates');
+                  }
+                }}
+                selected={selectedCategory === 'Templates'}
+              />
+            </Box>
+
+            <Box m={'0px 28px'} gap={1}>
+              {Actions.map((action, index) => {
+                return (
+                  <ActionButton
+                    key={index}
+                    name={action.name}
+                    iconSrc={action.iconSrc}
+                    onClick={() => {
+                      if (selectedCategory === action.id) {
+                        onSelectCategory(undefined);
+                        handleBottonMenuVisibility('CircularMenu')
+
+                      } else {
+                        onSetRightMenu(true);
+                        setShowRightMenu(true);
+                        onSelectCategory(action.id);
+                      }
+                      action.onClick();
+                    }}
+                    selected={selectedCategory === action.id}
+                  />
+                );
+              })}
+            </Box>
+
+            <Box mr={2}>
+              <ActionButton
+                name="Printing Types"
+                iconSrc="assets/icons/printingTypes.svg"
+                onClick={() => {
                   onSetRightMenu(true);
                   setShowRightMenu(true);
-                  onSelectCategory('Templates');
-                }
-              }}
-              selected={selectedCategory === 'Templates'}
-            />
+                  onSelectCategory('PrintingTypes');
+                }}
+                selected={selectedCategory === 'PrintingTypes'}
+              />
+            </Box>
           </Box>
-
-          <Box m={'0px 28px'} gap={1}>
-            {Actions.map((action, index) => {
-              return (
-                <ActionButton
-                  key={index}
-                  name={action.name}
-                  iconSrc={action.iconSrc}
-                  onClick={() => {
-                    if (selectedCategory === action.id) {
-                      onSelectCategory(undefined);
-                    } else {
-                      onSetRightMenu(true);
-                  setShowRightMenu(true);
-                      onSelectCategory(action.id);
-                    }
-                    action.onClick();
-                  }}
-                  selected={selectedCategory === action.id}
-                />
-              );
-            })}
-          </Box>
-
-          <Box mr={2}>
-            <ActionButton
-              name="Printing Types"
-              iconSrc="assets/icons/printingTypes.svg"
-              onClick={() => {
-                onSetRightMenu(true);
-                  setShowRightMenu(true);
-                onSelectCategory('PrintingTypes');
-              }}
-              selected={selectedCategory === 'PrintingTypes'}
-            />
-          </Box>
-          {((width ?? 0) <= 700 || (height ?? 0) <= 450) && <Box width={60} height={60}
-            borderRadius={'50%'}
-            display={'flex'}
-            justifyContent={'center'}
-            className={classes.moreButton}
-            onClick={() => {
-              bottomMenuVisibility('CircularMenu');
-              onSelectBottomMenuType('CircularMenu');
-            }}
-          >+</Box>}
-        </Box>
+        </>
       );
     }
   }, [Actions, classes, getSelectedObjects, isSubMenu, onSelectCategory, selectedCategory]);

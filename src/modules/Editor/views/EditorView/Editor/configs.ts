@@ -1,3 +1,4 @@
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import {ModelType, ModelsConfigsType, SideTypes} from './utilities';
 
 export const modelsConfigs: ModelsConfigsType = {

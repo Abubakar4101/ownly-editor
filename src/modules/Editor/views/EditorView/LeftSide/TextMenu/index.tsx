@@ -35,7 +35,7 @@ function ElementsMenu() {
   }, [selectedTab]);
 
   return (
-    <Box display={'flex'} flexDirection={'column'} height={'100%'}>
+    <Box display={'flex'} flexDirection={'column'} width={'100%'} height={'100%'}>
       <Box className={classes.topMenuWrapper}>
         <Button
           className={clsx(classes.catButton, {active: selectedTab === 'Heading'})}

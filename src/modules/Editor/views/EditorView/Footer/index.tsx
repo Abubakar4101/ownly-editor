@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { Box, IconButton, Fab, Typography } from '@mui/material';
+import { Box, IconButton, Fab, Typography, Divider } from '@mui/material';
 import { useStyles } from './styles';
 import { ArrowBackIos, InfoOutlined, InvertColorsOutlined } from '@mui/icons-material';
 import ActionMenu from './ActionMenu';
@@ -15,6 +15,7 @@ import clsx from 'clsx';
 function Footer() {
   const { selectedRenderMode, isFirstUse, bottomMenu, getSelectedObjects, onSelectBottomMenuType, onSelectCategory, selectedCategory, showRightMenu } = useContext(EditorContext);
   const [priceCollapse, setPriceCollapse] = React.useState(true);
+  const { bottomMenuVisibility } = useEditorActions();
   const { width, height } = useWindowDimensions();
   const classes = useStyles();
   const handleClickCollapse = (e: any) => {
@@ -105,31 +106,76 @@ function Footer() {
           </Box>
         </Box>
       </Box>}
-      <Box display={'flex'} className={classes.bottomMenuWrapper}>
-        {((width ?? 0) <= 700 || (height ?? 0) <= 450) && (
-          <Box
-            display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+
+      <Box display={'flex'} flexDirection={selectedCategory === 'Draw' ? 'column' : 'row'} className={classes.bottomMenuWrapper}>
+        {/* {Draw Menu} */}
+        {
+          (width ?? 0) < 700 && (height ?? 0) > 450 && <Box display={'flex'} className={clsx(classes.subBottomMenuWrapper, { isSubMenu: true })}>
+            <Box
+              display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
+              alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}
+              flexDirection={'column'}
+              justifyContent={'flex-end'}
+              overflow={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'hidden' : 'scroll'}
+              className={classes.actionMenu}
+            >
+              {selectedCategory &&
+                isSubMenu &&
+                (selectedCategory === 'Draw' || getSelectedObjects().length) && <Box width={selectedCategory === 'Draw' ? '650px' : (selectedCategory === 'Graphics' ? '780px' : '840px')} className={clsx(classes.subActionMenu, { isSubMenu: true })}>
+                  <SubFooter />
+                </Box>}
+            </Box>
+          </Box>
+        }
+
+        {/* {Bottom menu} */}
+        <Box display={'flex'} flexDirection={'row'} alignItems={'end'}>
+          {(width ?? 0) <= 700 && (height ?? 0) >= 450 && (selectedCategory === undefined || selectedCategory === 'Draw') &&
+            !(getSelectedObjects().length) ? (
+            <Box
+              display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+              className={classes.leftBottom}
+              justifyContent={'center'}
+              flexDirection={'column'}
+              onClick={e => handleHorizontalMenu(e)}
+              position={'fixed'}
+            >
+              <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
+            </Box>
+          ) : (width ?? 0) <= 700 && (height ?? 0) >= 450 && <Box display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
             className={classes.leftBottom}
             justifyContent={'center'}
             flexDirection={'column'}
-            onClick={e => handleHorizontalMenu(e)}
-          >
-            <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
-          </Box>
-        )}
-        <Box
-          display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
-          alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}
-          flexDirection={'column'}
-          justifyContent={'flex-end'}
-          overflow={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'hidden' : 'scroll'}
-          className={classes.actionMenu}
-        >
+            onClick={e => handleHorizontalMenu(e)}>
 
-          {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
-          <ActionMenu />
+            <Box width={66} height={66}
+              borderRadius={'50%'}
+              display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
+              className={classes.moreButton}
+              onClick={() => {
+                bottomMenuVisibility('CircularMenu');
+                onSelectBottomMenuType('CircularMenu');
+                onSelectCategory(undefined);
+              }}
+            >+</Box>
+          </Box>}
+          <Box
+            display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
+            alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}
+            flexDirection={'column'}
+            justifyContent={'flex-end'}
+            overflow={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'hidden' : 'scroll'}
+            className={classes.actionMenu}
+          >
+            {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
+            <ActionMenu />
+          </Box>
         </Box>
       </Box>
+
+
       {
         (selectedCategory === 'Draw' || !showRightMenu) && (width ?? 0) > 650 && (height ?? 0) < 450 && <Box display={'flex'} className={classes.subBottomMenuWrapper}>
           <Box
@@ -143,44 +189,8 @@ function Footer() {
 
             {selectedRenderMode === '3DMODE' && (width ?? 0) > 700 && (height ?? 0) > 450 && <SidesFooter />}
             {selectedCategory &&
-            isSubMenu &&
-              (selectedCategory === 'Draw' || getSelectedObjects().length) && <Box width={selectedCategory === 'Draw' ? '680px' : (selectedCategory === 'Graphics' ? '810px' : '850px')} className={clsx(classes.subActionMenu, { isSubMenu: true})}>
-                <Box
-                  display={'flex'}
-                  justifyContent={'flex-start'}
-                  alignItems={'center'}
-                  position={'fixed'}
-
-                  width={'70px'}
-                  height={'90px'}
-                  style={{ backgroundColor: '#24232500' }}
-                >
-                  <img src="./footer/backButton.png" height={'100%'}></img>
-                  <Box
-                    position={'absolute'}
-                    width={'100%'}
-                    display={'flex'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      onSelectCategory(undefined);
-                    }}
-                  >
-                    <ArrowBackIos color="secondary" style={{ fontSize: '8px' }} />
-                    <Typography
-                      ml={0.6}
-                      color={'white'}
-                      width={'38px'}
-                      fontSize={'9px'}
-                      fontWeight={600}
-                      lineHeight={'10px'}
-                      variant="caption"
-                    >
-                      Back to menu
-                    </Typography>
-                  </Box>
-                </Box>
+              isSubMenu &&
+              (selectedCategory === 'Draw' || getSelectedObjects().length) && <Box width={selectedCategory === 'Draw' ? '650px' : (selectedCategory === 'Graphics' ? '780px' : '840px')} className={clsx(classes.subActionMenu, { isSubMenu: true })}>
                 <SubFooter />
               </Box>}
           </Box>

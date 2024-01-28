@@ -1,17 +1,19 @@
-import React, {useEffect, useMemo, useState, useContext} from 'react';
-import {useStyles} from './styles';
-import {Box, Typography, Button} from '@mui/material';
-import {ShoppingBasket, Redo, Undo} from '@mui/icons-material';
+import React, { useEffect, useMemo, useState, useContext } from 'react';
+import { useStyles } from './styles';
+import { Box, Typography, Button } from '@mui/material';
+import { ShoppingBasket, Redo, Undo } from '@mui/icons-material';
 import Header from 'shared/components/Header';
-import {RenderMode} from 'modules/Editor/definitions/types';
+import { RenderMode } from 'modules/Editor/definitions/types';
 import clsx from 'clsx';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import EditorContext from '../../context/EditorContext';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 function FooterTab() {
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
-  const {width, height} = useWindowDimensions();
-  const {onSelectCategory} = useContext(EditorContext);
+  const { width, height } = useWindowDimensions();
+  const { onSelectCategory, onSelectBottomMenuType } = useContext(EditorContext);
+  const {bottomMenuVisibility} = useEditorActions();
   const classes = useStyles();
 
   return (
@@ -27,9 +29,12 @@ function FooterTab() {
         </Typography>}
         <Box display={'flex'} gap={2} marginRight={2}>
           <Button variant="outlined" size="small" className={clsx(classes.contentMsgBut)}
-          onClick={() => {
-            onSelectCategory(undefined)
-          }}
+            onClick={() => {
+              onSelectCategory(undefined)
+              bottomMenuVisibility('CircularMenu');
+              onSelectBottomMenuType('CircularMenu');
+
+            }}
           >
             Cancel
           </Button>
