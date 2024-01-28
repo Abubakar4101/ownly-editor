@@ -230,7 +230,7 @@ export function RightMenu() {
     {
       id: 0,
       degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-20' : '0',
-      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '22' : '-3px 125px',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '22' : (width ?? 0) <= 650 ? '-6px 125px' : '-3px 125px',
       iconSrc: 'assets/arcMenu/cloud-up.svg',
       rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '1' : '0',
       buttonText: 'UPload image',
@@ -238,7 +238,7 @@ export function RightMenu() {
     {
       id: 1,
       degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-10' : '0',
-      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : '-20px 61px',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : (width ?? 0) <= 650 ? '-17px 67px' : '-20px 61px',
       iconSrc: 'assets/arcMenu/shape.svg',
       rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '7' : '7',
       buttonText: 'Add Shape',
@@ -246,7 +246,7 @@ export function RightMenu() {
     {
       id: 2,
       degree: '0',
-      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '72' : (width ?? 0) <= 650 ? '-11px 48px' : '-3px 30px',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '72' : (width ?? 0) <= 650 ? '-1px 41px' : '-3px 30px',
       iconSrc: 'assets/arcMenu/text.svg',
       rotateValue: '0',
       buttonText: 'Add Text',
@@ -254,7 +254,7 @@ export function RightMenu() {
     {
       id: 3,
       degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '10' : '0',
-      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '71' : (width ?? 0) <= 650 ? '0px 70px' : '13px 60px',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '71' : (width ?? 0) <= 650 ? '15px 67px' : '13px 60px',
       iconSrc: 'assets/arcMenu/pencil.svg',
       rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '12' : '12',
       buttonText: 'Pencil',
@@ -262,7 +262,7 @@ export function RightMenu() {
     {
       id: 4,
       degree: (width ?? 0) > 700 && (height ?? 0) > 450 ? '20' : '0',
-      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : '0px 125px',
+      transValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '54' : (width ?? 0) <= 650 ? '10px 125px' : '0px 125px',
       iconSrc: 'assets/arcMenu/mySavedImage.svg',
       rotateValue: (width ?? 0) > 700 && (height ?? 0) > 450 ? '-15' : '-15',
       buttonText: 'My Saved image',

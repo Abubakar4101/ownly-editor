@@ -44,7 +44,7 @@ export const useStyles = makeStyles((theme: any) => ({
     [theme.breakpoints.down(700)]: {
       position: 'fixed',
       height: '300px',
-      width: '230px',
+      width: '276px',
       flexDirection: 'row',
       bottom: 0,
       transformOrigin: 'bottom center',
