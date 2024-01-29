@@ -8,6 +8,7 @@ import {RenderMode} from 'modules/Editor/definitions/types';
 import EditorContext from '../../context/EditorContext';
 import {v4 as uuidv4} from 'uuid';
 import ImagesTab, {Image} from './ImagesTab';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 type Tabs = 'Illustrations' | 'ArtWorks';
 
@@ -28,6 +29,8 @@ function Filters() {
 
   const classes = useStyles();
 
+  const {width, height} = useWindowDimensions();
+  const {onSelectCategory} = useContext(EditorContext);
   useEffect(() => {
     const imageData: {id: fabric.IGrayscaleFilter; src: string; selected: boolean}[] =
       getImagesFilters();
@@ -44,10 +47,11 @@ function Filters() {
   }, []);
 
   return (
-    <Box style={{
-      backgroundColor: '#282729',
-      padding: '10px 10px'
-    }} borderRadius={'20px 20px 0 0'}display={'flex'} justifyContent={'center'} flexDirection={'column'}>
+    <Box borderRadius={'20px 20px 0 0'}display={'flex'} justifyContent={'center'} flexDirection={'column'}>
+     
+     {!((width ?? 0) > 700 && (height ?? 0) > 450) && <img
+      onClick={() => onSelectCategory(undefined)}
+       src='./assets/images/Rectangular.png' width={'60px'}/>}
       <Box
         className={clsx(
           classes.rightSideWrapper,

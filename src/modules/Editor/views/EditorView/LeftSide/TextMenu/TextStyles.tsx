@@ -38,11 +38,11 @@ export const FontFamilies = [
 
 function TextStyles() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const {selectedObjectsConfig, elementType, onSelectCategory, onChangeFontFamily, onAddText} =
+  const {selectedObjectsConfig, onSelectBottomMenuType,elementType, onSelectCategory, onChangeFontFamily, onAddText} =
     useContext(EditorContext);
   const {width, height} = useWindowDimensions();
   const classes = useStyles();
-  const {onSetRightMenu} = useEditorActions();
+  const {onSetRightMenu, bottomMenuVisibility} = useEditorActions();
 
   const handleOnSelectFontFamily = useCallback(
     (fontFamilyId: string) => {
@@ -69,6 +69,8 @@ function TextStyles() {
               handleOnSelectFontFamily(fontFamily.id);
               (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
               onSetRightMenu(true)
+              bottomMenuVisibility('CircularMenu');
+    onSelectBottomMenuType('CircularMenu');
 
             }}
           >

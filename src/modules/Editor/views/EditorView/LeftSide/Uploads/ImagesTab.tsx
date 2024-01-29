@@ -21,9 +21,9 @@ interface Props {
 function ImagesTab(props: Props) {
   const {allImages} = props;
   const classes = useInStyles();
-  const {onUploadImage, onSelectCategory} = useContext(EditorContext);
+  const {onUploadImage, onSelectCategory, onSelectBottomMenuType} = useContext(EditorContext);
   const {width, height} = useWindowDimensions();
-  const {onSetRightMenu} = useEditorActions();
+  const {onSetRightMenu, bottomMenuVisibility} = useEditorActions();
 
 
   const onSelectImage = useCallback(
@@ -54,6 +54,8 @@ function ImagesTab(props: Props) {
                 onSelectImage(img.src);
                 (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
                 onSetRightMenu(true)
+                bottomMenuVisibility('CircularMenu');
+    onSelectBottomMenuType('CircularMenu');
               }}
             />
           </Box>

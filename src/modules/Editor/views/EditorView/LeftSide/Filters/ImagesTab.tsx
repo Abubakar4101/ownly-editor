@@ -30,7 +30,11 @@ function ImagesTab(props: Props) {
 
 
   return (
-    <Box className="furniture">
+    <Box style={{
+      backgroundColor: '#282729',
+      padding: '10px 30px',
+            border: '2px solid gray'
+    }} className="furniture">
       {allImages.map((img: Image, index: number) => {
         return (
           <Box

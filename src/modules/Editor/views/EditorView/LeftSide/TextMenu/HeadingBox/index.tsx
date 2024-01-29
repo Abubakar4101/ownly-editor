@@ -29,9 +29,9 @@ function HeadingBox(props: Props) {
   const {id, value} = props;
   const [searchValue, setSearchValue] = useState<string>('');
   const classes = useStyles();
-  const {onAddText, onSelectCategory} = useContext(EditorContext);
+  const {onAddText, onSelectCategory, onSelectBottomMenuType} = useContext(EditorContext);
   const {width, height} = useWindowDimensions();
-  const {onSetRightMenu} = useEditorActions();
+  const {onSetRightMenu, bottomMenuVisibility} = useEditorActions();
 
 
   return (
@@ -41,6 +41,8 @@ function HeadingBox(props: Props) {
         onAddText('Text', {heading: id});
         (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
         onSetRightMenu(true)
+        bottomMenuVisibility('CircularMenu');
+    onSelectBottomMenuType('CircularMenu');
       }}
     >
       <Typography variant={id} gutterBottom>

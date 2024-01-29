@@ -29,13 +29,13 @@ const Shapes: Shape[] = [
 
 function ShapesTab() {
   const [searchValue, setSearchValue] = useState<string>('');
-  const {drawShapeById, onSelectCategory} = useContext(EditorContext);
+  const {drawShapeById, onSelectCategory, onSelectBottomMenuType} = useContext(EditorContext);
   const {width, height} = useWindowDimensions();
 
   const classes = useStyles();
-  const {onSetRightMenu} = useEditorActions();
+  const {onSetRightMenu, bottomMenuVisibility} = useEditorActions();
 
-
+  
   return (
     <Box className={classes.shapesTab}>
       {Shapes.map((shape, index) => {
@@ -46,6 +46,8 @@ function ShapesTab() {
             onClick={() => {
               drawShapeById(shape.id);
               (((width ?? 0) < 700) || ((height ?? 0) < 450)) && onSelectCategory(undefined)
+              bottomMenuVisibility('CircularMenu');
+    onSelectBottomMenuType('CircularMenu');
               onSetRightMenu(true)
             }}
           >

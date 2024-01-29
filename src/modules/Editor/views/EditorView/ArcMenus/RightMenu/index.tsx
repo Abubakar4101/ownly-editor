@@ -77,6 +77,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               onSelectSubCategory('TextStyles');
+              bottomMenuVisibility('HorizontalMenu');
+              onSelectBottomMenuType('HorizontalMenu');
             },
           },
           {
@@ -87,6 +89,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+              bottomMenuVisibility('HorizontalMenu');
+    onSelectBottomMenuType('HorizontalMenu');
             },
 
           },
@@ -98,6 +102,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+              bottomMenuVisibility('HorizontalMenu');
+    onSelectBottomMenuType('HorizontalMenu');
             },
           },
           {
@@ -117,7 +123,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
-
+              bottomMenuVisibility('HorizontalMenu');
+              onSelectBottomMenuType('HorizontalMenu');
             },
           },
           {
@@ -128,6 +135,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               removeImageBackground();
+              bottomMenuVisibility('HorizontalMenu');
+    onSelectBottomMenuType('HorizontalMenu');
             },
           },
           {
@@ -138,7 +147,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               selectedCategory === 'Filters' ? onSelectCategory(undefined) : onSelectCategory('Filters');
-
+              bottomMenuVisibility('HorizontalMenu');
+              onSelectBottomMenuType('HorizontalMenu');
             },
           },
           {
@@ -149,7 +159,8 @@ export function RightMenu() {
               onSetRightMenu(true);
               setShowRightMenu(true);
               selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
-
+              bottomMenuVisibility('HorizontalMenu');
+              onSelectBottomMenuType('HorizontalMenu');
               onDraw();
             },
           },
@@ -161,118 +172,128 @@ export function RightMenu() {
           },
         ];
       default:
-        const menuItems : {
+        const menuItems: {
           id: ArcAction;
           name: string;
           isSelected?: boolean;
           iconSrc: string;
           onClick: () => void;
         }[] = ((width ?? 0) <= 700 || (height ?? 0) <= 450) ?
-         [
-          {
-            id: 'Draw',
-            name: 'Pencil1',
-            iconSrc: 'assets/arcMenu/pencil.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+            [
+              {
+                id: 'Draw',
+                name: 'Pencil1',
+                iconSrc: 'assets/arcMenu/pencil.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                  onDraw();
+                },
+              },
 
-              onDraw();
-            },
-          },
+              {
+                id: 'Graphics',
+                name: 'Add Shape',
+                iconSrc: 'assets/arcMenu/shape.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Graphics' ? onSelectCategory(undefined) : onSelectCategory('Graphics');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
+              {
+                id: 'Uploads',
+                name: 'Upload Images',
+                iconSrc: 'assets/arcMenu/cloud-up.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
+              {
+                id: 'Texts',
+                name: 'Add Text',
+                iconSrc: 'assets/arcMenu/text.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Texts' ? onSelectCategory(undefined) : onSelectCategory('Texts');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
 
-          {
-            id: 'Graphics',
-            name: 'Add Shape',
-            iconSrc: 'assets/arcMenu/shape.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Graphics' ? onSelectCategory(undefined) : onSelectCategory('Graphics');
-            },
-          },
-          {
-            id: 'Uploads',
-            name: 'Upload Images',
-            iconSrc: 'assets/arcMenu/cloud-up.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
-
-            },
-          },
-          {
-            id: 'Texts',
-            name: 'Add Text',
-            iconSrc: 'assets/arcMenu/text.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Texts' ? onSelectCategory(undefined) : onSelectCategory('Texts');
-
-            },
-          },
-
-          {
-            id: 'Templates',
-            name: 'My Saved image',
-            iconSrc: 'assets/arcMenu/mySavedImage.svg',
-            onClick: () => { },
-          },
-        ] :  [
-          {
-            id: 'Uploads',
-            name: 'Upload Images',
-            iconSrc: 'assets/arcMenu/cloud-up.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
-
-            },
-          },
-          {
-            id: 'Graphics',
-            name: 'Add Shape',
-            iconSrc: 'assets/arcMenu/shape.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Graphics' ? onSelectCategory(undefined) : onSelectCategory('Graphics');
-            },
-          },
-          {
-            id: 'Texts',
-            name: 'Add Text',
-            iconSrc: 'assets/arcMenu/text.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Texts' ? onSelectCategory(undefined) : onSelectCategory('Texts');
-
-            },
-          },
-          {
-            id: 'Draw',
-            name: 'Pencil1',
-            iconSrc: 'assets/arcMenu/pencil.svg',
-            onClick: () => {
-              onSetRightMenu(true);
-              setShowRightMenu(true);
-              selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
-
-              onDraw();
-            },
-          },
-          {
-            id: 'Templates',
-            name: 'My Saved image',
-            iconSrc: 'assets/arcMenu/mySavedImage.svg',
-            onClick: () => { },
-          },
-        ];
+              {
+                id: 'Templates',
+                name: 'My Saved image',
+                iconSrc: 'assets/arcMenu/mySavedImage.svg',
+                onClick: () => { },
+              },
+            ] : [
+              {
+                id: 'Uploads',
+                name: 'Upload Images',
+                iconSrc: 'assets/arcMenu/cloud-up.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Uploads' ? onSelectCategory(undefined) : onSelectCategory('Uploads');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
+              {
+                id: 'Graphics',
+                name: 'Add Shape',
+                iconSrc: 'assets/arcMenu/shape.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Graphics' ? onSelectCategory(undefined) : onSelectCategory('Graphics');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
+              {
+                id: 'Texts',
+                name: 'Add Text',
+                iconSrc: 'assets/arcMenu/text.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Texts' ? onSelectCategory(undefined) : onSelectCategory('Texts');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                },
+              },
+              {
+                id: 'Draw',
+                name: 'Pencil1',
+                iconSrc: 'assets/arcMenu/pencil.svg',
+                onClick: () => {
+                  onSetRightMenu(true);
+                  setShowRightMenu(true);
+                  selectedCategory === 'Draw' ? onSelectCategory(undefined) : onSelectCategory('Draw');
+                  bottomMenuVisibility('HorizontalMenu');
+                  onSelectBottomMenuType('HorizontalMenu');
+                  onDraw();
+                },
+              },
+              {
+                id: 'Templates',
+                name: 'My Saved image',
+                iconSrc: 'assets/arcMenu/mySavedImage.svg',
+                onClick: () => { },
+              },
+            ];
         return menuItems;
     }
   }, [
@@ -482,7 +503,7 @@ export function RightMenu() {
               }}
               selected={selected === btn.id}
               activated={btn.isSelected}
-              opacity = {(width ?? 0) > 700 && (height ?? 0) > 450 ? 1 : index === 0 || index === getArcButtons.length - 1 ? 0.6 : 1}
+              opacity={(width ?? 0) > 700 && (height ?? 0) > 450 ? 1 : index === 0 || index === getArcButtons.length - 1 ? 0.6 : 1}
               btnWidth={((width ?? 0) >= 650 && (height ?? 0) <= 450) && (index === 0 || index === getArcButtons.length - 1) ? 40 : 50}
               btnHeight={((width ?? 0) >= 650 && (height ?? 0) <= 450) && (index === 0 || index === getArcButtons.length - 1) ? 40 : 50}
             />

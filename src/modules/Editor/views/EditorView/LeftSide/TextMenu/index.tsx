@@ -38,7 +38,7 @@ function ElementsMenu() {
     <Box
     style={{
       backgroundColor: '#282729',
-      padding: '10px 10px',
+      padding: '10px 30px',
       border: '2px solid gray'
     }} borderRadius={'20px 20px 0 0'} display={'flex'} flexDirection={'column'} width={'100%'} height={'100%'}>
       <Box className={classes.topMenuWrapper}>
