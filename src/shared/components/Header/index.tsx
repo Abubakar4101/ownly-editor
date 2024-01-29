@@ -95,6 +95,10 @@ const MobileHeader = (props: Props) => {
           </Box>
           <Box display={'flex'} p={1.3} mr={2}>
             <Button
+            style={{
+              boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+              
+            }}
               variant="contained"
               className={classes.submitButton}
               onClick={onSubmitData}
@@ -282,11 +286,16 @@ const MobileHeader = (props: Props) => {
               })}
             </Select>
           </Box>
-          <Box display={'flex'} p={1.3} mr={2}>
+          <Box display={'flex'} p={1.3} mr={2}
+          >
             <Button
               variant="contained"
               className={classes.submitButton}
               onClick={onSubmitData}
+              style={{
+                boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+                
+              }}
             >
               Done & Order 
               <ReactSVG
@@ -381,6 +390,10 @@ const Header = (props: Props) => {
             className={classes.submitButton}
             endIcon={<ShoppingBasket />}
             onClick={onSubmitData}
+            style={{
+              boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+              
+            }}
           >
             Done & Order
           </Button>

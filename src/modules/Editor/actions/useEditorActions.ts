@@ -225,6 +225,7 @@ const useEditorActions = () => {
               case "i-text":
                 (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
                 setSelectedCategory("Texts")
+                bottomMenuVisibility('HorizontalMenu')
                 break;
               case "image":
                 (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
@@ -236,14 +237,19 @@ const useEditorActions = () => {
               case "polygon":
                 (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
                 setSelectedCategory("Graphics")
+                bottomMenuVisibility('HorizontalMenu')
                 break;
               case "path":
                 if((aObject as any)["customId"] ){
                   (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
                   setSelectedCategory("Graphics")
+                  bottomMenuVisibility('HorizontalMenu')
+
                 }else{
                   (((width ?? 0) < 700) || ((height ?? 0) < 450)) ? setShowRightMenu(false) : setShowRightMenu(true);
                   setSelectedCategory("Draw");
+                  bottomMenuVisibility('HorizontalMenu')
+
                 }
                 break;
               default:
@@ -292,7 +298,7 @@ const useEditorActions = () => {
     
     const isLandscape = (width ?? 0) >= 650 && (height ?? 0) <= 450;
     
-    const canvasWidth = isLandscape ? 330 : clientWidth;
+    const canvasWidth = isLandscape ? 550 : clientWidth;
     const canvasHeight = isLandscape ? 220 : clientHeight;
     
     fabricCanvasInstance.setDimensions({ width: canvasWidth, height: canvasHeight });

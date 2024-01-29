@@ -33,21 +33,31 @@ function StartCanvas() {
               <div className={clsx(classes.frontSide, { selected: false })} onClick={() => {
                 onSelectFistSide("FRONT")
               }}>
-                <Typography variant="subtitle1" display="block" className={classes.textColor} >
+                <Typography style={{
+                  lineHeight: 1.2,
+                  marginLeft: '5px'
+                }} variant="subtitle1" display="block" className={classes.textColor} >
                   {'edit here'}
                 </Typography>
               </div>
               <div className={clsx(classes.leftSleeve, { selected: false })} onClick={() => {
                 onSelectFistSide("LEFT")
               }}>
-                <Typography variant="subtitle1" display="block" className={classes.textColor} >
+                <Typography 
+                style={{
+                  lineHeight: 1.2,
+                  marginLeft: '5px'
+                }} variant="subtitle1" display="block" className={classes.textColor} >
                   {'edit here'}
                 </Typography>
               </div>
               <div className={clsx(classes.rightSleeve, { selected: false })} onClick={() => {
                 onSelectFistSide("RIGHT")
               }}>
-                <Typography variant="subtitle1" display="block" className={classes.textColor} >
+                <Typography style={{
+                  lineHeight: 1.2,
+                  marginLeft: '5px'
+                }} variant="subtitle1" display="block" className={classes.textColor} >
                   {'edit here'}
                 </Typography>
               </div>

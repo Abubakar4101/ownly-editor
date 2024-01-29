@@ -30,7 +30,12 @@ function UploadsMenu() {
   const classes = useStyles();
 
   return (
-    <Box height={'100%'} display={'flex'} justifyContent={'flex-start'} flexDirection={'column'}>
+    <Box style={{
+      backgroundColor: '#282729',
+      padding: '10px 30px',
+            border: '2px solid gray'
+
+    }} borderRadius={'20px 20px 0 0'} height={'100%'} display={'flex'} justifyContent={'flex-start'} flexDirection={'column'}>
       <UploaderButton
         submitImageData={(imageBase: string) => {
           setAllImages((prevImages: Image[]) => {

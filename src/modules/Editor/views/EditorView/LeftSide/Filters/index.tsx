@@ -44,7 +44,10 @@ function Filters() {
   }, []);
 
   return (
-    <Box display={'flex'} justifyContent={'center'} flexDirection={'column'}>
+    <Box style={{
+      backgroundColor: '#282729',
+      padding: '10px 10px'
+    }} borderRadius={'20px 20px 0 0'}display={'flex'} justifyContent={'center'} flexDirection={'column'}>
       <Box
         className={clsx(
           classes.rightSideWrapper,

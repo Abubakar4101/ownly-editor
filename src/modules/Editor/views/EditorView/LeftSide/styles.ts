@@ -21,25 +21,34 @@ export const useStyles = makeStyles((theme: Theme) => ({
       // minHeight: '43vh',
       // width: '100%',
     },
+    [mobileAndLandscape]: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingTop: '20px',
+      borderRadius: '20px 20px 0 0',
+      gap: '10px',
+    },
     // padding: '16px',
     [landscapeOnly]: {
-      width: '690px',
+      width: '752px',
       // minWidth: '330px',
-      maxWidth: '100vw',
-      maxHeight: '85vh',
-      minHeight: '85vh',
-      position: 'absolute',
-      top: '57%',
-      left: '50%',
+      maxWidth: '150vw',
+      maxHeight: '100vh',
+      minHeight: '100vh',
+      top: '64%',
+      position: 'fixed',
+      left: '45%',
       zIndex: 100,
       transform: 'translate(-50%, -50%)'
     },
     [theme.breakpoints.down(700)]: {
-      width: '375px',
+      width: '100vw',
       // minWidth: '330px',
-      maxWidth: '90vw',
-      maxHeight: '60%',
-      minHeight: '60%',
+      maxWidth: '100vw',
+      maxHeight: '76%',
+      minHeight: '76%',
       // margin: '0px 1vw',
       position: 'absolute',
       top: '50%',
@@ -51,8 +60,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   boxWrapper: {
     border: `1px solid ${theme.palette.primary.main}`,
     boxShadow: '0px 5px 4px 0px #8783E140',
-    background: `linear-gradient(0deg, #282729, #282729)`,
     borderRadius: '5px',
+
+    [mobileAndLandscape]: {
+      border: 'none',
+    }
     // display: 'flex',
   },
   imagesListWrapper: {
@@ -75,7 +87,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   translateAnimation: {
     [mobileAndLandscape]: {
       animation: '$translateAnimation 1s ease-in-out',
-    }
+    },
+    [landscapeOnly] : {
+      animation: '$translateLandAnimation 1s ease-in-out',
+    },
   },
 
   '@keyframes translateAnimation': {
@@ -83,7 +98,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
       top: '100%',
     },
     '100%': {
-      top: '57%',
+      top: '50%',
+    },
+  },
+  '@keyframes translateLandAnimation': {
+    '0%': {
+      top: '100%',
+    },
+    '100%': {
+      top: '64%',
     },
   },
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button, Box} from '@mui/material';
+import { Button, Box } from '@mui/material';
 import clsx from 'clsx';
-import {useStyles} from './styles';
-import {ReactSVG} from 'react-svg';
+import { useStyles } from './styles';
+import { ReactSVG } from 'react-svg';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
 
@@ -15,6 +15,9 @@ interface Props {
   rotateValue: string;
   buttonText: string;
   animationDelay: number;
+  opacity: number;
+  btnWidth: number;
+  btnHeight: number;
   onClick: () => void;
 }
 export default function RightArcButton(props: Props) {
@@ -28,16 +31,20 @@ export default function RightArcButton(props: Props) {
     iconSrc,
     rotateValue,
     animationDelay,
+    opacity,
+    btnWidth,
+    btnHeight,
     onClick,
   } = props;
   const classes = useStyles();
   const buttonPosition = {
+    opacity,
     transform: `rotate(${degree}deg)`,
     transformOrigin: 'top left',
     translate: (width ?? 0) > 700 && (height ?? 0) > 450 ? `${transValue}px 0px` : `${transValue}`,
   };
   const rotateSVG = {
-    transform: (width ?? 0) >= 650 && (height ?? 0) <= 450 ? 'rotate(90deg)': `rotate(${degree}deg)` ,
+    transform: (width ?? 0) >= 650 && (height ?? 0) <= 450 ? 'rotate(90deg)' : `rotate(${degree}deg)`,
   };
 
   const handleClick = () => {
@@ -51,7 +58,10 @@ export default function RightArcButton(props: Props) {
           selected: selected,
         })}
         variant="contained"
-        style={{ animationDelay: `${animationDelay}ms`, opacity: '0' }}
+        style={{
+          animationDelay: `${animationDelay}ms`, opacity: '0',
+          width: `${btnWidth}px`, height: `${btnHeight}px`
+        }}
         onClick={handleClick}
       >
         <Box className={classes.actionContainer}>

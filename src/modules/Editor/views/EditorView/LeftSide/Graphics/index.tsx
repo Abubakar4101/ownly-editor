@@ -41,7 +41,11 @@ function TextMenu() {
   }, [searchValue, selectedTab]);
 
   return (
-    <Box height={'100%'}>
+    <Box style={{
+      backgroundColor: '#282729',
+      padding: '10px 30px',
+      border: '2px solid gray'
+    }} borderRadius={'20px 20px 0 0'} height={'100%'}>
       <Box className={classes.topMenuWrapper}>
         <Button
           className={clsx(classes.catButton, {active: selectedTab === 'Shapes'})}

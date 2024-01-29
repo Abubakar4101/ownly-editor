@@ -22,9 +22,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 140,
     height: 90,
     borderRadius: '20px',
+    boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+
   },
   [theme.breakpoints.down(700)]:{
     borderRadius: '20px',
+    boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+
     width: 190,
     height: 55,
   },
@@ -99,11 +103,15 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       width: 85,
       height: 70,
       borderRadius: 15,
+      boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+
     },
     [theme.breakpoints.down(700)]: {
       width: 95,
       height: 60,
       borderRadius: 15,
+      boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+
     },
   },
   '& .MuiSwitch-track': {

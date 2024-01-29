@@ -43,10 +43,10 @@ export const useStyles = makeStyles((theme: any) => ({
     alignItems: 'center',
     justifyContent: 'center',
     [theme.breakpoints.down(700)]: {
-      height: '50vh',
+      height: '40vh',
     },
     [landscapeOnly]: {
-      height: '65vh'
+      height: '75vh'
     }
 
   },

@@ -17,8 +17,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   
   colorButton: {
-    minWidth: '50px !important',
-    minHeight: '50px !important',
+    minWidth: '40px !important',
+    minHeight: '40px !important',
     opacitly: '0',
     borderRadius: '15px !important',
     border: '2px solid #8783E1 !important',
