@@ -50,7 +50,9 @@ function Filters() {
     <Box borderRadius={'20px 20px 0 0'}display={'flex'} justifyContent={'center'} flexDirection={'column'}>
      
      {!((width ?? 0) > 700 && (height ?? 0) > 450) && <img
-      onClick={() => onSelectCategory(undefined)}
+      onClick={() => {
+        onSelectCategory(undefined)
+      }}
        src='./assets/images/Rectangular.png' width={'60px'}/>}
       <Box
         className={clsx(

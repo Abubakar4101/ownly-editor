@@ -13,10 +13,12 @@ import Graphics from './Graphics';
 import Uploads from './Uploads';
 import Filters from './Filters';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import useEditorActions from 'modules/Editor/actions/useEditorActions';
 
 function LeftSide() {
   const [selectedRenderMode, setSelectedRenderMode] = useState<RenderMode>('2DMODE');
-  const {selectedCategory, showRightMenu, onSelectCategory} = useContext(EditorContext);
+  const {selectedCategory, onSelectBottomMenuType,showRightMenu, onSelectCategory} = useContext(EditorContext);
+  const {bottomMenuVisibility} = useEditorActions();
 
   const {width, height} = useWindowDimensions();
   const classes = useStyles();
@@ -64,7 +66,11 @@ function LeftSide() {
       )}
     >
       {!((width ?? 0) > 700 && (height ?? 0) > 450) && <img
-      onClick={() => onSelectCategory(undefined)}
+      onClick={() =>{
+                  bottomMenuVisibility('CircularMenu');
+                  onSelectBottomMenuType('CircularMenu');
+                  onSelectCategory(undefined)}
+      } 
        src='./assets/images/Rectangular.png' width={'60px'}/>}
       {renderTab}
     </Box>

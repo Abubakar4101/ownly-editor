@@ -29,10 +29,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: '0px 0px 5px 5px #6561C2 !important',
       border: '4px solid #8783E1',
     },
-    '&:hover': {
-      boxShadow: '0px 0px 15px 5px #6561C2 !important',
-      border: '2px solid #8783E1',
-    },
+    // '&:hover': {
+    //   boxShadow: '0px 0px 15px 5px #6561C2 !important',
+    //   border: '2px solid #8783E1',
+    // },
   },
   selectedText: {
     display: 'none',

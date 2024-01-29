@@ -21,7 +21,7 @@ interface Action {
 
 function ActionMenu() {
   const classes = useStyles();
-  const { selectedCategory, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
+  const { selectedCategory,bottomMenu, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
   const { width, height } = useWindowDimensions();
   const { bottomMenuVisibility, onSetRightMenu } = useEditorActions();
 
@@ -76,23 +76,63 @@ function ActionMenu() {
     }
   }, [selectedCategory]);
 
+  const handleHorizontalMenu = (e: any) => {
+    onSelectBottomMenuType('CircularMenu');
+  }
+
   const renderFooterMenu = useMemo(() => {
     if (
       (((width ?? 0) > 700 && (height ?? 0) > 450) || (width ?? 0) < 650) &&
       selectedCategory &&
       isSubMenu &&
-     (!( selectedCategory === 'Draw') &&
-      getSelectedObjects().length)
+      (!(selectedCategory === 'Draw') &&
+        getSelectedObjects().length)
     ) {
       return (
-        <Box
-          width={(selectedCategory === 'Graphics' ? '780px' : '850px')} className={clsx(classes.actionMenu, { isSubMenu: true })}>
-          <SubFooter />
-        </Box>
-      );
+        <>
+        {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? <Box display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+            className={classes.leftBottom}
+            justifyContent={'center'}
+            flexDirection={'column'}
+            onClick={e => handleHorizontalMenu(e)}>
+
+            <Box width={66} height={66}
+              borderRadius={'50%'}
+              display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
+              className={classes.moreButton}
+              onClick={() => {
+                bottomMenuVisibility('CircularMenu');
+                onSelectBottomMenuType('CircularMenu');
+                onSelectCategory(undefined);
+              }}
+            >+</Box>
+          </Box> : null}
+          
+          <Box
+            width={(selectedCategory === 'Graphics' ? '780px' : '850px')}
+            className={clsx(classes.actionMenu, { isSubMenu: true })}
+          >
+            <SubFooter />
+          </Box>
+        </>
+      );      
     } else {
       return (
         <>
+        {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? (
+            <Box
+              display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+              className={classes.leftBottom}
+              justifyContent={'center'}
+              flexDirection={'column'}
+              onClick={(e) => handleHorizontalMenu(e)}
+              position={'fixed'}
+            >
+              <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
+            </Box>
+          ) : null}
           <Box className={clsx(classes.actionMenu, { isSubMenu: false })}>
             <Box ml={2}>
               <ActionButton
@@ -149,6 +189,20 @@ function ActionMenu() {
                 }}
                 selected={selectedCategory === 'PrintingTypes'}
               />
+            </Box>
+            <Box mr={2}>
+              <Box width={50} height={50}
+                borderRadius={'50%'}
+                display={'flex'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                className={classes.moreButton}
+                onClick={() => {
+                  bottomMenuVisibility('CircularMenu');
+                  onSelectBottomMenuType('CircularMenu');
+                  onSelectCategory(undefined);
+                }}
+              >+</Box>
             </Box>
           </Box>
         </>

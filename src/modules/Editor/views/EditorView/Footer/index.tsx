@@ -130,37 +130,6 @@ function Footer() {
 
         {/* {Bottom menu} */}
         <Box display={'flex'} flexDirection={'row'} alignItems={'end'}>
-          {(width ?? 0) <= 700 && (height ?? 0) >= 450 && (selectedCategory === undefined || selectedCategory === 'Draw') &&
-            !(getSelectedObjects().length) ? (
-            <Box
-              display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
-              className={classes.leftBottom}
-              justifyContent={'center'}
-              flexDirection={'column'}
-              onClick={e => handleHorizontalMenu(e)}
-              position={'fixed'}
-            >
-              <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
-            </Box>
-          ) : (width ?? 0) <= 700 && (height ?? 0) >= 450 && <Box display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
-            className={classes.leftBottom}
-            justifyContent={'center'}
-            flexDirection={'column'}
-            onClick={e => handleHorizontalMenu(e)}>
-
-            <Box width={66} height={66}
-              borderRadius={'50%'}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
-              className={classes.moreButton}
-              onClick={() => {
-                bottomMenuVisibility('CircularMenu');
-                onSelectBottomMenuType('CircularMenu');
-                onSelectCategory(undefined);
-              }}
-            >+</Box>
-          </Box>}
           <Box
             display={bottomMenu === 'CircularMenu' && ((width ?? 0) <= 700 || (height ?? 0) <= 450) ? 'none' : 'flex'}
             alignItems={(width ?? 0) > 700 && (height ?? 0) > 450 ? 'center' : 'flex-start'}

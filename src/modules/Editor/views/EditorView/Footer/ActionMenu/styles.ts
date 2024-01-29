@@ -19,8 +19,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     [mobileAndLandscape]: {
       justifySelf: 'flex-start',
-      minWidth: '460px',
-      width: '720px',
+      minWidth: '530px',
+      width: '790px',
       borderRadius: '0px',
     },
     '&.isSubMenu': {
@@ -57,5 +57,28 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: 'white !important',
     fontSize: '40px !important',
     cursor: 'pointer',
+    borderRadius: '50%',
+    border: '1px solid gray'
+  },
+  leftBottom: {
+    [mobileAndLandscape]: {
+      backgroundColor: '#282729',
+      height: '90px',
+      zIndex:'90',
+      border: '1px solid #707070',
+      padding: '10px',
+      transform: 'translate(0, 0)',
+      cursor: 'pointer',
+      pointerEvents: 'all',
+      transformOrigin: 'left center',
+      animation: '$leftSlide 1s ease-in-out',
+      position: 'fixed'
+    },
+  },
+  bottomLeftPic: {
+    [landscapeOnly]: {
+      transform: 'rotate(-90deg)',
+    },
+    pointerEvents: 'none',
   },
 }));

@@ -502,7 +502,7 @@ export function RightMenu() {
                 btn.onClick();
               }}
               selected={selected === btn.id}
-              activated={btn.isSelected}
+              activated={selectedCategory && ((width ?? 0) >=650 || (height ?? 0) >= 450)  ? btn.isSelected : false}
               opacity={(width ?? 0) > 700 && (height ?? 0) > 450 ? 1 : index === 0 || index === getArcButtons.length - 1 ? 0.6 : 1}
               btnWidth={((width ?? 0) >= 650 && (height ?? 0) <= 450) && (index === 0 || index === getArcButtons.length - 1) ? 40 : 50}
               btnHeight={((width ?? 0) >= 650 && (height ?? 0) <= 450) && (index === 0 || index === getArcButtons.length - 1) ? 40 : 50}
