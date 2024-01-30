@@ -26,7 +26,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: '20px',
+      paddingTop: '35px',
       borderRadius: '20px 20px 0 0',
       gap: '10px',
     },
@@ -47,13 +47,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: '100vw',
       // minWidth: '330px',
       maxWidth: '100vw',
-      maxHeight: '76%',
-      minHeight: '76%',
+      maxHeight: '73%',
+      minHeight: '73%',
       // margin: '0px 1vw',
       position: 'absolute',
       top: '50%',
       left: '50%',
-      zIndex: 99,
+      zIndex: 497,
       transform: 'translate(-50%, -50%)'
     }
   },
@@ -63,6 +63,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '5px',
 
     [mobileAndLandscape]: {
+      boxShadow: 'none',
       border: 'none',
     }
     // display: 'flex',
@@ -73,6 +74,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'auto',
     display: 'flex',
     justifyContent: 'center',
+    [theme.breakpoints.down(700)]: {
+      justifyContent: 'space-between',
+
+    },
     height: '70vh',
     overflowX: 'hidden',
     '&::-webkit-scrollbar': {
@@ -88,7 +93,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [mobileAndLandscape]: {
       animation: '$translateAnimation 1s ease-in-out',
     },
-    [landscapeOnly] : {
+    [landscapeOnly]: {
       animation: '$translateLandAnimation 1s ease-in-out',
     },
   },

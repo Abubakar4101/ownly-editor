@@ -11,6 +11,7 @@ export const useStyles = makeStyles((theme: any) => ({
     [theme.breakpoints.down(700)]: {
       right: "0px",
       left: "0px",
+      zIndex: 500,
     },
     bottom: "0px",
     minHeight: "200px",
@@ -68,6 +69,8 @@ export const useStyles = makeStyles((theme: any) => ({
     },
   },
   bottomMenuWrapper: {
+  
+
     [mobileAndLandscape]: {
       overflowX: "scroll",
       overflowY: "hidden",

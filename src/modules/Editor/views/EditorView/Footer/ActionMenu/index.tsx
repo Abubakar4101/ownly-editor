@@ -21,7 +21,7 @@ interface Action {
 
 function ActionMenu() {
   const classes = useStyles();
-  const { selectedCategory, bottomMenu, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
+  const { selectedCategory, bottomMenu, selectedSide, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
   const { width, height } = useWindowDimensions();
   const { bottomMenuVisibility, onSetRightMenu } = useEditorActions();
 
@@ -130,7 +130,18 @@ function ActionMenu() {
               onClick={(e) => handleHorizontalMenu(e)}
               position={'fixed'}
             >
-              <img src='./assets/images/tshirt.png' width={'60px'} className={classes.bottomLeftPic} alt="t-shirt" />
+
+              < div className={classes.sideWrapper}>
+                <Box style={{ position: "absolute", bottom: 0}}>
+                  <div style={{ position: "relative", pointerEvents: "none" }}>
+                    <img src='./assets/images/tshirt.png' width={"70px"} style={{ pointerEvents: "none" }}></img>
+                    <div className={clsx(classes.leftSleeve, { selected: selectedSide === "LEFT" })}></div>
+                    <div className={clsx(classes.rightSleeve, { selected: selectedSide === "RIGHT" })}></div>
+                    <div className={clsx(classes.frontSide, { selected: selectedSide === "FRONT" })}></div>
+                  </div>
+
+                </Box>
+              </div>
             </Box>
           ) : null}
           <Box className={clsx(classes.actionMenu, { isSubMenu: false })}>

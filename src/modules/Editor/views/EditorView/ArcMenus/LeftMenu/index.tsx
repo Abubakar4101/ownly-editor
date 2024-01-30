@@ -16,6 +16,7 @@ interface Props {
 export function LeftMenu(props: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const { onChangeCanvasColor } = props;
+  
   const handleButtonClick = (id: number) => {
     setSelected(id);
   };

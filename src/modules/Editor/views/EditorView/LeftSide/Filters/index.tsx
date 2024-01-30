@@ -47,14 +47,13 @@ function Filters() {
   }, []);
 
   return (
-    <Box borderRadius={'20px 20px 0 0'}display={'flex'} justifyContent={'center'} flexDirection={'column'}>
+    <Box style={{
+      backgroundColor: '#282729',
+      padding: '10px 30px',
+      border: '2px solid gray'
+    }} borderRadius={'20px 20px 0 0'} height={'100%'} width={'100%'} display={'flex'} justifyContent={'center'} flexDirection={'column'}>
      
-     {!((width ?? 0) > 700 && (height ?? 0) > 450) && <img
-      onClick={() => {
-        onSelectCategory(undefined)
-      }}
-       src='./assets/images/Rectangular.png' width={'60px'}/>}
-      <Box
+    <Box
         className={clsx(
           classes.rightSideWrapper,
           classes.boxWrapper,

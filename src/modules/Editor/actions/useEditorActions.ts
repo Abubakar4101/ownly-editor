@@ -296,12 +296,7 @@ const useEditorActions = () => {
       preserveObjectStacking: true,
     });
     
-    const isLandscape = (width ?? 0) >= 650 && (height ?? 0) <= 450;
-    
-    const canvasWidth = isLandscape ? 550 : clientWidth;
-    const canvasHeight = isLandscape ? 220 : clientHeight;
-    
-    fabricCanvasInstance.setDimensions({ width: canvasWidth, height: canvasHeight });
+    fabricCanvasInstance.setDimensions({ width: clientWidth, height: clientHeight });
     
 
     if (sidesData[selectedSide]) {

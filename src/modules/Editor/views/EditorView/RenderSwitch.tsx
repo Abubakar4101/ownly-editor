@@ -26,11 +26,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
   },
   [theme.breakpoints.down(700)]:{
-    borderRadius: '20px',
-    boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
-
-    width: 190,
-    height: 55,
+    borderRadius: '10px',
+    // boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+    width: 170,
+    height: 45,
   },
   // backgroundColor: "#282729 !im",
   '& .MuiSwitch-switchBase': {
@@ -59,8 +58,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         backgroundColor: '#282729',
         borderRadius: '40px',
         border: '2px solid #8783E1',
-        [mobileAndLandscape]: {
+        [landscapeOnly]: {
           borderRadius: '20px',
+        },
+        [theme.breakpoints.down(700)]: {
+          borderRadius: 15,
         },
       },
       [landscapeOnly]: {
@@ -68,7 +70,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         top: 10,
       },
       [theme.breakpoints.down(700)]:{
-        transform: 'translateX(94px)',
+        transform: 'translateX(79px)',
         top: -2,
       },
     },
@@ -107,8 +109,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
     },
     [theme.breakpoints.down(700)]: {
-      width: 95,
-      height: 60,
+      width: 90,
+      height: 50,
       borderRadius: 15,
       boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
 
@@ -119,9 +121,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     backgroundColor: '#282729',
     border: '2px solid #8783E1',
     borderRadius: '40px',
-    [mobileAndLandscape]: {
+    [landscapeOnly]: {
       borderRadius: '20px',
-    }
+    },
+    [theme.breakpoints.down(700)]: {
+      borderRadius: 15,
+
+    },
 
   },
 }));

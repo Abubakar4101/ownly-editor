@@ -106,7 +106,7 @@ function Footer() {
           </Box>
         </Box>
       </Box>}
-
+    
       <Box display={'flex'} flexDirection={selectedCategory === 'Draw' ? 'column' : 'row'} className={classes.bottomMenuWrapper}>
         {/* {Draw Menu} */}
         {

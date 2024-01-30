@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     backgroundColor: `${theme.palette.primary.dark} !important`,
     overflow: 'hidden',
+    zIndex: 500,
   },
   submitButton: {
     backgroundColor: `${theme.palette.primary.main} !important`,

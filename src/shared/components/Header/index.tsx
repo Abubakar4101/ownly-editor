@@ -53,7 +53,9 @@ const MobileHeader = (props: Props) => {
     },
   ];
   return (
-    <AppBar elevation={0} className={classes.headerWrapper}>
+    <AppBar style={{
+      zIndex: 495
+    }} elevation={0} className={classes.headerWrapper}>
       {(width ?? 0) < 700 && (height ?? 0) > 650 ? <>
         <Box height={'100%'} display={'flex'} justifyContent={'space-between'}>
           <Box display={'flex'} gap={1} alignItems={'center'} ml={2} minWidth={'172px'}>
