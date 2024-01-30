@@ -47,7 +47,7 @@ function Editor2D() {
             <SidesFooter />
           </div>
           {true && (
-            <div id="canvas-container" className={classes.drawnWrrapper} style={{ aspectRatio: ((width ?? 0) > 700 && (height ?? 0) > 450) || ((width ?? 0) <= 650) ? getRatio : '2.5', backgroundColor: canvasColor, boxShadow: `0px 0px 15px 5px ${canvasColor}` }}>
+            <div id="canvas-container" className={classes.drawnWrrapper} style={{ aspectRatio: getRatio, backgroundColor: canvasColor, boxShadow: `0px 0px 15px 5px ${canvasColor}` }}>
               <canvas id="canvas" className={classes.canvasWrrapper} ref={fabricContainer}></canvas>
             </div>
           )}

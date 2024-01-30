@@ -21,7 +21,7 @@ interface Action {
 
 function ActionMenu() {
   const classes = useStyles();
-  const { selectedCategory,bottomMenu, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
+  const { selectedCategory, bottomMenu, onSelectBottomMenuType, onSelectCategory, getSelectedObjects, setShowRightMenu } = useContext(EditorContext);
   const { width, height } = useWindowDimensions();
   const { bottomMenuVisibility, onSetRightMenu } = useEditorActions();
 
@@ -90,12 +90,11 @@ function ActionMenu() {
     ) {
       return (
         <>
-        {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? <Box display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
+          {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? <Box display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
             className={classes.leftBottom}
             justifyContent={'center'}
             flexDirection={'column'}
             onClick={e => handleHorizontalMenu(e)}>
-
             <Box width={66} height={66}
               borderRadius={'50%'}
               display={'flex'}
@@ -109,19 +108,20 @@ function ActionMenu() {
               }}
             >+</Box>
           </Box> : null}
-          
+
           <Box
             width={(selectedCategory === 'Graphics' ? '780px' : '850px')}
             className={clsx(classes.actionMenu, { isSubMenu: true })}
+            style={{ border: "2px solid gray" }}
           >
             <SubFooter />
           </Box>
         </>
-      );      
+      );
     } else {
       return (
         <>
-        {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? (
+          {(width ?? 0) <= 700 && (height ?? 0) >= 450 ? (
             <Box
               display={bottomMenu === 'CircularMenu' ? 'none' : 'flex'}
               className={classes.leftBottom}
@@ -190,7 +190,7 @@ function ActionMenu() {
                 selected={selectedCategory === 'PrintingTypes'}
               />
             </Box>
-            <Box mr={2}>
+            {((width ?? 0) <= 700 || (height ?? 0) <= 450) ? <Box mr={2}>
               <Box width={50} height={50}
                 borderRadius={'50%'}
                 display={'flex'}
@@ -203,7 +203,8 @@ function ActionMenu() {
                   onSelectCategory(undefined);
                 }}
               >+</Box>
-            </Box>
+            </Box> : null
+            }
           </Box>
         </>
       );
