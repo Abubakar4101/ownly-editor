@@ -19,17 +19,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   margin: '8px 2px 0px 0px',
   [landscapeOnly]: {
     transform: 'rotateZ(90deg)',
-    width: 140,
-    height: 90,
-    borderRadius: '20px',
-    boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
+    width: 90,
+    height: 70,
+    borderRadius: '10px',
 
   },
-  [theme.breakpoints.down(700)]:{
+  [theme.breakpoints.down(700)]: {
     borderRadius: '10px',
     // boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
-    width: 170,
-    height: 45,
+    width: 125,
+    height: 35,
   },
   // backgroundColor: "#282729 !im",
   '& .MuiSwitch-switchBase': {
@@ -37,7 +36,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     padding: 0,
     transform: 'translateX(6px)',
     [theme.breakpoints.down(700)]: {
-      transform: 'translateX(2px)',
+      transform: 'translateX(1px)',
       top: -2,
     },
     top: 5,
@@ -47,7 +46,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       top: 5,
       '& .MuiSwitch-thumb:before': {
         [mobileAndLandscape]: {
-          backgroundImage: 'url(assets/switch/2D.svg)'
+          backgroundImage: 'url(assets/switch/2D.svg)',
+          backgroundSize: '15px 15px'
         },
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12.5" width="19" viewBox="0 0 14 9"><path fill="${encodeURIComponent(
           '#fff',
@@ -59,24 +59,26 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         borderRadius: '40px',
         border: '2px solid #8783E1',
         [landscapeOnly]: {
-          borderRadius: '20px',
+          borderRadius: '10px',
         },
         [theme.breakpoints.down(700)]: {
-          borderRadius: 15,
+          borderRadius: '10px',
         },
       },
       [landscapeOnly]: {
-        transform: 'translateX(65px)',
-        top: 10,
+        transform: 'translateX(43px)',
+        top: 15,
+        left: -6
       },
-      [theme.breakpoints.down(700)]:{
-        transform: 'translateX(79px)',
+      [theme.breakpoints.down(700)]: {
+        transform: 'translateX(62px)',
         top: -2,
       },
     },
     [landscapeOnly]: {
-      transform: 'translateX(-6px)',
-      top: 10,
+      transform: 'translateX(-8px)',
+      top: 15,
+      left: -6
     }
   },
   '& .MuiSwitch-thumb': {
@@ -94,24 +96,25 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       [mobileAndLandscape]: {
-        backgroundImage: 'url(assets/switch/3D.svg)'
+        backgroundImage: 'url(assets/switch/3D.svg)',
+        backgroundSize: '40px 15px'
       },
-      backgroundImage:`url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12.5" width="19" viewBox="0 0 14 9"><path fill="${encodeURIComponent(
+      backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12.5" width="19" viewBox="0 0 14 9"><path fill="${encodeURIComponent(
         '#fff',
       )}" d="M2.73413 8.5119C1.72613 8.5119 0.919731 8.1311 0.426931 7.4479C0.258931 7.2575 0.146931 7.0559 0.146931 6.7983C0.146931 6.4063 0.471731 6.0591 0.908531 6.0591C1.21093 6.0591 1.40133 6.2047 1.56933 6.4063C1.82693 6.7647 2.15173 6.9999 2.73413 6.9999C3.38373 6.9999 3.82053 6.6527 3.82053 6.0591C3.82053 5.5327 3.39493 5.1855 2.75653 5.1855H2.40933C2.03973 5.1855 1.75973 4.8943 1.75973 4.5023C1.75973 4.1215 2.03973 3.8303 2.40933 3.8303H2.75653C3.33893 3.8303 3.74213 3.4943 3.74213 2.9455C3.74213 2.3967 3.33893 2.0719 2.73413 2.0719C2.17413 2.0719 1.87173 2.3407 1.63653 2.6543C1.49093 2.8447 1.30053 2.9903 0.986931 2.9903C0.550131 2.9903 0.214131 2.6543 0.214131 2.2623C0.214131 2.0271 0.326131 1.8143 0.460531 1.6687C0.975731 0.974302 1.77093 0.559902 2.75653 0.559902C4.43653 0.559902 5.44453 1.5343 5.44453 2.8783C5.44453 3.4383 5.19813 4.0543 4.55973 4.4799C5.25413 4.8271 5.54533 5.4655 5.54533 6.1599C5.54533 7.5151 4.47013 8.5119 2.73413 8.5119ZM9.59054 8.3999H7.32814C6.74574 8.3999 6.39854 8.0639 6.39854 7.4703V1.6015C6.39854 1.0079 6.74574 0.671902 7.32814 0.671902H9.59054C11.8081 0.671902 13.5553 2.3519 13.5553 4.5359C13.5553 6.7199 11.8081 8.3999 9.59054 8.3999ZM8.15694 2.3295V6.7423H9.59054C10.8673 6.7423 11.8081 5.7903 11.8081 4.5359C11.8081 3.2703 10.8673 2.3295 9.59054 2.3295H8.15694Z"/></svg>')`,
     },
     [landscapeOnly]: {
       transform: 'rotateZ(-90deg)',
-      width: 85,
-      height: 70,
-      borderRadius: 15,
+      width: 70,
+      height: 40,
+      borderRadius: 10,
       boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
 
     },
     [theme.breakpoints.down(700)]: {
-      width: 90,
-      height: 50,
-      borderRadius: 15,
+      width: 62,
+      height: 40,
+      borderRadius: '10px',
       boxShadow: 'inset 14px 16px 8px -10px #b9bbea',
 
     },
@@ -122,10 +125,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     border: '2px solid #8783E1',
     borderRadius: '40px',
     [landscapeOnly]: {
-      borderRadius: '20px',
+      borderRadius: '10px',
     },
     [theme.breakpoints.down(700)]: {
-      borderRadius: 15,
+      borderRadius: '10px',
+
 
     },
 

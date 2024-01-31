@@ -7,11 +7,16 @@ export const useStyles = makeStyles((theme: any) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    marginInline: '16px',
+    [theme.breakpoints.down(700)]: {
+      position: 'relative',
+      top: -20
+    },
     [landscapeOnly]: {
       position: 'absolute',
       top: '30vh',
       left: '-40vw',
+      marginInline: '16px',
+
     }
   },
   rotateLeft: {
