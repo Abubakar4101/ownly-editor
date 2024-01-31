@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: any) => ({
     justifyContent: 'center',
     [theme.breakpoints.down(700)]: {
       position: 'relative',
-      top: -20
+      top: -12
     },
     [landscapeOnly]: {
       position: 'absolute',
