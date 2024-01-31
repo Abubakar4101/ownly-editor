@@ -10,6 +10,9 @@ export const useStyles = makeStyles((theme: any) => ({
   editorTab: {
     position: 'relative',
     height: 'calc(100%)',
+    [theme.breakpoints.down(700)]: {
+      height: 'calc(140%)',
+    },
     width: 'calc(100%)',
     '&.rightSideMenu': {
       width: 'calc(100vw - 700px)',

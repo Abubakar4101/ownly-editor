@@ -93,7 +93,7 @@ export const useStyles = makeStyles((theme: any) => ({
     [landscapeOnly]: {
       position: "absolute",
       left: "50%",
-      bottom: "-7%",
+      bottom: "-13%",
       transform: "translate(-50%, 0)",
       border: "2px solid #3A3862",
       borderRadius: "20px 20px 0px 0px",
